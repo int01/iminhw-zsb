@@ -61,7 +61,7 @@
         </javaClientGenerator>
         <!-- tableName是数据库中的表名，domainObjectName是生成的JAVA模型名，后面的参数不用改，要生成更多的表就在下面继续加table标签 -->
 
-        <table tableName="sys_user" domainObjectName="SysUser01"
+        <table tableName="sys_user" domainObjectName="SysUser"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true"></table>

@@ -2,16 +2,16 @@ package com.minhw.entity;
 
 import java.io.Serializable;
 
-public class SysUser01 implements Serializable {
+public class SysUser implements Serializable {
     private Integer id;
 
     private static final long serialVersionUID = 1L;
 
-    public SysUser01(Integer id) {
+    public SysUser(Integer id) {
         this.id = id;
     }
 
-    public SysUser01() {
+    public SysUser() {
         super();
     }
 

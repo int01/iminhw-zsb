@@ -3,14 +3,14 @@ package com.minhw.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SysUser01Example {
+public class SysUserExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public SysUser01Example() {
+    public SysUserExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
