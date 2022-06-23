@@ -6,8 +6,8 @@ spring:
     druid:
       # 主库数据源
       master:
-        url: jdbc:mysql://localhost:3306/ry-vue?useSSL=false&characterEncoding=utf-8&allowPublicKeyRetrieval=true
-        #      url: jdbc:mysql://localhost:13306/zsb?useSSL=false&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+        #        url: jdbc:mysql://localhost:3306/ry-vue?useSSL=false&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://localhost:13306/zsb?useSSL=false&characterEncoding=utf-8&allowPublicKeyRetrieval=true
         username: root
         password: minhwpwd
       # 从库数据源
