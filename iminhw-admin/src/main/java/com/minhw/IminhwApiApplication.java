@@ -6,8 +6,11 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 //@EnableCaching // 标注启动缓存
 //@SpringBootApplication
-/** 多库连接池使用下方这个 **/
-@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
+
+/**
+ * 多库连接池使用下方这个
+ **/
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class IminhwApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(IminhwApiApplication.class, args);

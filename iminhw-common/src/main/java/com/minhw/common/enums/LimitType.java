@@ -6,8 +6,7 @@ package com.minhw.common.enums;
  * @author minhw
  */
 
-public enum LimitType
-{
+public enum LimitType {
     /**
      * 默认策略全局限流
      */

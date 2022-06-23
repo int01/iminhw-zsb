@@ -20,23 +20,18 @@ import java.util.regex.Pattern;
 
 /**
  * 设置Anonymous注解允许匿名访问的url
- * 
+ *
  * @author minhw
  */
 @Configuration
-public class PermitAllUrlProperties implements InitializingBean, ApplicationContextAware
-{
+public class PermitAllUrlProperties implements InitializingBean, ApplicationContextAware {
     private static final Pattern PATTERN = Pattern.compile("\\{(.*?)\\}");
-
+    public String ASTERISK = "*";
     private ApplicationContext applicationContext;
-
     private List<String> urls = new ArrayList<>();
 
-    public String ASTERISK = "*";
-
     @Override
-    public void afterPropertiesSet()
-    {
+    public void afterPropertiesSet() {
         RequestMappingHandlerMapping mapping = applicationContext.getBean(RequestMappingHandlerMapping.class);
         Map<RequestMappingInfo, HandlerMethod> map = mapping.getHandlerMethods();
 
@@ -56,18 +51,15 @@ public class PermitAllUrlProperties implements InitializingBean, ApplicationCont
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext context) throws BeansException
-    {
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
         this.applicationContext = context;
     }
 
-    public List<String> getUrls()
-    {
+    public List<String> getUrls() {
         return urls;
     }
 
-    public void setUrls(List<String> urls)
-    {
+    public void setUrls(List<String> urls) {
         this.urls = urls;
     }
 }

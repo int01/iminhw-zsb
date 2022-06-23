@@ -2,11 +2,10 @@ package com.minhw.common.enums;
 
 /**
  * 操作人类别
- * 
+ *
  * @author minhw
  */
-public enum OperatorType
-{
+public enum OperatorType {
     /**
      * 其它
      */

@@ -2,12 +2,10 @@ package com.minhw.common.enums;
 
 /**
  * 操作状态
- * 
- * @author minhw
  *
+ * @author minhw
  */
-public enum BusinessStatus
-{
+public enum BusinessStatus {
     /**
      * 成功
      */

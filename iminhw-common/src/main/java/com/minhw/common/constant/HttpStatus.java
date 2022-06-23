@@ -2,11 +2,10 @@ package com.minhw.common.constant;
 
 /**
  * 返回状态码
- * 
+ *
  * @author minhw
  */
-public class HttpStatus
-{
+public class HttpStatus {
     /**
      * 操作成功
      */
