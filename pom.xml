@@ -14,10 +14,11 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <modules>
-        <module>iminhw-api</module>
+        <module>iminhw-admin</module>
         <module>iminhw-common</module>
-        <module>iminhw-service</module>
-        <module>iminhw-mapper</module>
+        <module>iminhw-system</module>
+        <module>iminhw-generator</module>
+        <module>iminhw-framework</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

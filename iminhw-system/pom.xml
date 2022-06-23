@@ -9,18 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>iminhw-service</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>iminhw-system</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>com.minhw</groupId>
-            <artifactId>iminhw-mapper</artifactId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
+
 </project>

@@ -5,7 +5,7 @@ iminhw:
 
 #
 server:
-  port: 8081
+  port: 8080
 
 ## mybatis配置
 mybatis:

@@ -8,7 +8,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.minhw</groupId>
-    <artifactId>iminhw-api</artifactId>
+    <artifactId>iminhw-admin</artifactId>
     <packaging>jar</packaging>
 
     <properties>
@@ -16,11 +16,6 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>com.minhw</groupId>
-            <artifactId>iminhw-service</artifactId>
-            <version>1.0</version>
-        </dependency>
     </dependencies>
 
     <build>
