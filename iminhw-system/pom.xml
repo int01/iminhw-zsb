@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>iminhw-system</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.minhw</groupId>
+            <artifactId>iminhw-common</artifactId>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
