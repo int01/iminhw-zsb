@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * token过滤器 验证token有效性
+ * jwt token过滤器 验证token有效性
  *
  * @author minhw
  */

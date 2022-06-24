@@ -1,5 +1,7 @@
 package com.minhw.common.core.domain;
 
+import com.minhw.common.constant.HttpStatus;
+
 import java.io.Serializable;
 
 /**
@@ -8,14 +10,12 @@ import java.io.Serializable;
  * @author minhw
  */
 public class R<T> implements Serializable {
-    /**
-     * 成功
-     */
-    public static final int SUCCESS = 0;
-    /**
-     * 失败
-     */
-    public static final int FAIL = 500;
+    /** 成功 */
+    public static final int SUCCESS = HttpStatus.SUCCESS;
+
+    /** 失败 */
+    public static final int FAIL = HttpStatus.ERROR;
+
     private static final long serialVersionUID = 1L;
     private int code;
 

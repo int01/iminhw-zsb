@@ -46,6 +46,14 @@
             <groupId>com.minhw</groupId>
             <artifactId>iminhw-framework</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.minhw</groupId>
+            <artifactId>iminhw-generator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.minhw</groupId>
+            <artifactId>iminhw-quartz</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
