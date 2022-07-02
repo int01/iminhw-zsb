@@ -1,6 +1,7 @@
 package com.minhw.common.utils;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.minhw.common.constant.CacheConstants;
 import com.minhw.common.constant.Constants;
 import com.minhw.common.core.domain.entity.SysDictData;
 import com.minhw.common.core.redis.RedisCache;
@@ -143,7 +144,8 @@ public class DictUtils {
      * 清空字典缓存
      */
     public static void clearDictCache() {
-        Collection<String> keys = SpringUtils.getBean(RedisCache.class).keys(Constants.SYS_DICT_KEY + "*");
+        Collection<String> keys = SpringUtils.getBean(RedisCache.class).keys(CacheConstants
+                .SYS_DICT_KEY + "*");
         SpringUtils.getBean(RedisCache.class).deleteObject(keys);
     }
 
@@ -154,6 +156,6 @@ public class DictUtils {
      * @return 缓存键key
      */
     public static String getCacheKey(String configKey) {
-        return Constants.SYS_DICT_KEY + configKey;
+        return CacheConstants.SYS_DICT_KEY + configKey;
     }
 }

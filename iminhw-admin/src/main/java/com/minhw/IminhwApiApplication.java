@@ -9,10 +9,13 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * 多库连接池使用下方这个
- **/
+ *
+ * @author mz*/
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class IminhwApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(IminhwApiApplication.class, args);
+
+        System.out.printf("APP启动成功。");
     }
 }

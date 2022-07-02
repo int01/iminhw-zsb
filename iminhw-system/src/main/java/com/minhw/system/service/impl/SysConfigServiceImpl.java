@@ -1,6 +1,7 @@
 package com.minhw.system.service.impl;
 
 import com.minhw.common.annotation.DataSource;
+import com.minhw.common.constant.CacheConstants;
 import com.minhw.common.constant.Constants;
 import com.minhw.common.constant.UserConstants;
 import com.minhw.common.core.redis.RedisCache;
@@ -164,7 +165,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
      */
     @Override
     public void clearConfigCache() {
-        Collection<String> keys = redisCache.keys(Constants.SYS_CONFIG_KEY + "*");
+        Collection<String> keys = redisCache.keys(CacheConstants.SYS_CONFIG_KEY + "*");
         redisCache.deleteObject(keys);
     }
 
@@ -200,6 +201,6 @@ public class SysConfigServiceImpl implements ISysConfigService {
      * @return 缓存键key
      */
     private String getCacheKey(String configKey) {
-        return Constants.SYS_CONFIG_KEY + configKey;
+        return CacheConstants.SYS_CONFIG_KEY + configKey;
     }
 }

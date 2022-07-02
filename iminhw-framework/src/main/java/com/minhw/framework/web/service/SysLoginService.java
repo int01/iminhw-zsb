@@ -1,5 +1,6 @@
 package com.minhw.framework.web.service;
 
+import com.minhw.common.constant.CacheConstants;
 import com.minhw.common.constant.Constants;
 import com.minhw.common.core.domain.entity.SysUser;
 import com.minhw.common.core.domain.model.LoginUser;
@@ -94,7 +95,7 @@ public class SysLoginService {
      * @return 结果
      */
     public void validateCaptcha(String username, String code, String uuid) {
-        String verifyKey = Constants.CAPTCHA_CODE_KEY + StringUtils.nvl(uuid, "");
+        String verifyKey = CacheConstants.CAPTCHA_CODE_KEY + StringUtils.nvl(uuid, "");
         String captcha = redisCache.getCacheObject(verifyKey);
         redisCache.deleteObject(verifyKey);
         if (captcha == null) {

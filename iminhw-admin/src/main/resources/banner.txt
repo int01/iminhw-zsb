@@ -1,4 +1,4 @@
-Application Version: ${zsb.version}
+Application Version: ${iminhw.version}
 Spring Boot Version: ${spring-boot.version}
 ////////////////////////////////////////////////////////////////////
 //                          _ooOoo_                               //

@@ -1,5 +1,6 @@
 package com.minhw.framework.web.service;
 
+import com.minhw.common.constant.CacheConstants;
 import com.minhw.common.constant.Constants;
 import com.minhw.common.core.domain.model.LoginUser;
 import com.minhw.common.core.redis.RedisCache;
@@ -194,6 +195,6 @@ public class TokenService {
     }
 
     private String getTokenKey(String uuid) {
-        return Constants.LOGIN_TOKEN_KEY + uuid;
+        return CacheConstants.LOGIN_TOKEN_KEY + uuid;
     }
 }

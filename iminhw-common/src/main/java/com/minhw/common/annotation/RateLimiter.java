@@ -1,5 +1,6 @@
 package com.minhw.common.annotation;
 
+import com.minhw.common.constant.CacheConstants;
 import com.minhw.common.constant.Constants;
 import com.minhw.common.enums.LimitType;
 
@@ -17,7 +18,7 @@ public @interface RateLimiter {
     /**
      * 限流key
      */
-    public String key() default Constants.RATE_LIMIT_KEY;
+    public String key() default CacheConstants.RATE_LIMIT_KEY;
 
     /**
      * 限流时间,单位秒

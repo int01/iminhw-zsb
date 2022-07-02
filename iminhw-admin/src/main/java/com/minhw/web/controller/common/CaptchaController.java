@@ -2,6 +2,7 @@ package com.minhw.web.controller.common;
 
 import com.google.code.kaptcha.Producer;
 import com.minhw.common.config.IminhwProperties;
+import com.minhw.common.constant.CacheConstants;
 import com.minhw.common.constant.Constants;
 import com.minhw.common.core.domain.AjaxResult;
 import com.minhw.common.core.redis.RedisCache;
@@ -53,7 +54,7 @@ public class CaptchaController {
 
         // 保存验证码信息
         String uuid = IdUtils.simpleUUID();
-        String verifyKey = Constants.CAPTCHA_CODE_KEY + uuid;
+        String verifyKey = CacheConstants.CAPTCHA_CODE_KEY + uuid;
 
         String capStr = null, code = null;
         BufferedImage image = null;

@@ -2,6 +2,7 @@ package com.minhw.framework.interceptor.impl;
 
 import com.alibaba.fastjson2.JSON;
 import com.minhw.common.annotation.RepeatSubmit;
+import com.minhw.common.constant.CacheConstants;
 import com.minhw.common.constant.Constants;
 import com.minhw.common.core.redis.RedisCache;
 import com.minhw.common.filter.RepeatedlyRequestWrapper;
@@ -60,7 +61,7 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
         String submitKey = StringUtils.trimToEmpty(request.getHeader(header));
 
         // 唯一标识（指定key + url + 消息头）
-        String cacheRepeatKey = Constants.REPEAT_SUBMIT_KEY + url + submitKey;
+        String cacheRepeatKey = CacheConstants.REPEAT_SUBMIT_KEY + url + submitKey;
 
         Object sessionObj = redisCache.getCacheObject(cacheRepeatKey);
         if (sessionObj != null) {
