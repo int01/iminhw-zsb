@@ -54,6 +54,10 @@
             <groupId>com.minhw</groupId>
             <artifactId>iminhw-quartz</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.minhw</groupId>
+            <artifactId>iminhw-archives</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

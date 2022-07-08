@@ -1,5 +1,6 @@
 package com.minhw.common.filter;
 
+import com.minhw.common.constant.Constants;
 import com.minhw.common.utils.http.HttpHelper;
 
 import javax.servlet.ReadListener;
@@ -22,10 +23,10 @@ public class RepeatedlyRequestWrapper extends HttpServletRequestWrapper {
 
     public RepeatedlyRequestWrapper(HttpServletRequest request, ServletResponse response) throws IOException {
         super(request);
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding(Constants.UTF8);
+        response.setCharacterEncoding(Constants.UTF8);
 
-        body = HttpHelper.getBodyString(request).getBytes("UTF-8");
+        body = HttpHelper.getBodyString(request).getBytes(Constants.UTF8);
     }
 
     @Override

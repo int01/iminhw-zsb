@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhw.archives.mapper.InArchivesEmsMapper">
+
+    <resultMap type="InArchivesEms" id="InArchivesEmsResult">
+            <result property="id" column="id"/>
+            <result property="kddh" column="kddh"/>
+            <result property="sfda" column="sfda"/>
+            <result property="xm" column="xm"/>
+            <result property="ksh" column="ksh"/>
+            <result property="sfzh" column="sfzh"/>
+            <result property="state" column="state"/>
+            <result property="createBy" column="create_by"/>
+            <result property="updateBy" column="update_by"/>
+            <result property="remarks" column="remarks"/>
+            <result property="updateDate" column="update_date"/>
+            <result property="createDate" column="create_date"/>
+    </resultMap>
+
+    <sql id="selectInArchivesEmsVo">
+        select id, kddh, sfda, xm, ksh, sfzh, state, create_by, update_by, remarks, update_date, create_date
+        from in_archives_ems
+    </sql>
+
+    <select id="selectInArchivesEmsList" parameterType="InArchivesEms" resultMap="InArchivesEmsResult">
+        <include refid="selectInArchivesEmsVo"/>
+        <where>
+                        <if test="kddh != null  and kddh != ''">
+                            and kddh = #{kddh}
+                        </if>
+                        <if test="sfda != null ">
+                            and sfda = #{sfda}
+                        </if>
+                        <if test="xm != null  and xm != ''">
+                            and xm like concat('%', #{xm}, '%')
+                        </if>
+                        <if test="ksh != null  and ksh != ''">
+                            and ksh = #{ksh}
+                        </if>
+                        <if test="sfzh != null  and sfzh != ''">
+                            and sfzh = #{sfzh}
+                        </if>
+                        <if test="state != null ">
+                            and state = #{state}
+                        </if>
+                        <if test="remarks != null  and remarks != ''">
+                            and remarks like concat('%', #{remarks}, '%')
+                        </if>
+                        <if test="updateDate != null ">
+                            and update_date &gt;= #{updateDate}
+                        </if>
+                        <if test="createDate != null ">
+                            and create_date &gt;= #{createDate}
+                        </if>
+        </where>
+    </select>
+
+    <select id="selectInArchivesEmsById" parameterType="Long"
+            resultMap="InArchivesEmsResult">
+            <include refid="selectInArchivesEmsVo"/>
+            where id = #{id}
+    </select>
+
+    <insert id="insertInArchivesEms" parameterType="InArchivesEms" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into in_archives_ems
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                    <if test="kddh != null">kddh,
+                    </if>
+                    <if test="sfda != null">sfda,
+                    </if>
+                    <if test="xm != null">xm,
+                    </if>
+                    <if test="ksh != null">ksh,
+                    </if>
+                    <if test="sfzh != null">sfzh,
+                    </if>
+                    <if test="state != null">state,
+                    </if>
+                    <if test="createBy != null">create_by,
+                    </if>
+                    <if test="updateBy != null">update_by,
+                    </if>
+                    <if test="remarks != null">remarks,
+                    </if>
+                    <if test="updateDate != null">update_date,
+                    </if>
+                    <if test="createDate != null">create_date,
+                    </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                    <if test="kddh != null">#{kddh},
+                    </if>
+                    <if test="sfda != null">#{sfda},
+                    </if>
+                    <if test="xm != null">#{xm},
+                    </if>
+                    <if test="ksh != null">#{ksh},
+                    </if>
+                    <if test="sfzh != null">#{sfzh},
+                    </if>
+                    <if test="state != null">#{state},
+                    </if>
+                    <if test="createBy != null">#{createBy},
+                    </if>
+                    <if test="updateBy != null">#{updateBy},
+                    </if>
+                    <if test="remarks != null">#{remarks},
+                    </if>
+                    <if test="updateDate != null">#{updateDate},
+                    </if>
+                    <if test="createDate != null">#{createDate},
+                    </if>
+        </trim>
+    </insert>
+
+    <update id="updateInArchivesEms" parameterType="InArchivesEms">
+        update in_archives_ems
+        <trim prefix="SET" suffixOverrides=",">
+                    <if test="kddh != null">kddh =
+                        #{kddh},
+                    </if>
+                    <if test="sfda != null">sfda =
+                        #{sfda},
+                    </if>
+                    <if test="xm != null">xm =
+                        #{xm},
+                    </if>
+                    <if test="ksh != null">ksh =
+                        #{ksh},
+                    </if>
+                    <if test="sfzh != null">sfzh =
+                        #{sfzh},
+                    </if>
+                    <if test="state != null">state =
+                        #{state},
+                    </if>
+                    <if test="createBy != null">create_by =
+                        #{createBy},
+                    </if>
+                    <if test="updateBy != null">update_by =
+                        #{updateBy},
+                    </if>
+                    <if test="remarks != null">remarks =
+                        #{remarks},
+                    </if>
+                    <if test="updateDate != null">update_date =
+                        #{updateDate},
+                    </if>
+                    <if test="createDate != null">create_date =
+                        #{createDate},
+                    </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteInArchivesEmsById" parameterType="Long">
+        delete
+        from in_archives_ems where id = #{id}
+    </delete>
+
+    <delete id="deleteInArchivesEmsByIds" parameterType="String">
+        delete from in_archives_ems where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
