@@ -198,6 +198,12 @@
                 <version>1.0</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.minhw</groupId>
+                <artifactId>iminhw-archives</artifactId>
+                <version>1.0</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

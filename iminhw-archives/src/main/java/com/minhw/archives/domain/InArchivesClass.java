@@ -8,29 +8,34 @@ import com.minhw.common.annotation.Excel;
 import com.minhw.common.core.domain.BaseEntity;
 
 /**
- * ems邮寄记录对象 in_archives_ems
+ * 档案收集情况对象 in_archives_class
  *
  * @author iminhw
  * @date 2022-07-09
  */
-public class InArchivesEms extends BaseEntity
+public class InArchivesClass extends BaseEntity
         {
 private static final long serialVersionUID=1L;
 
-    /** 主键 */
-    private Long id;
+    /** 学号 */
+            @Excel(name = "学号")
+    private String xuehao;
 
-    /** ems单号 */
-            @Excel(name = "ems单号")
-    private String kddh;
+    /** 序号 */
+            @Excel(name = "序号")
+    private Long xh;
 
-    /** 袋内是否有档案 */
-            @Excel(name = "袋内是否有档案")
-    private Long sfda;
+    /** 班级 */
+            @Excel(name = "班级")
+    private String bj;
 
     /** 姓名 */
             @Excel(name = "姓名")
     private String xm;
+
+    /** 档案状态 */
+            @Excel(name = "档案状态")
+    private Long dazt;
 
     /** 考生号 */
             @Excel(name = "考生号")
@@ -49,41 +54,41 @@ private static final long serialVersionUID=1L;
     private String remarks;
 
     /** 更新时间 */
-            @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-            @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+            @JsonFormat(pattern = "yyyy-MM-dd")
+            @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date updateDate;
 
     /** 创建时间 */
-            @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-            @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+            @JsonFormat(pattern = "yyyy-MM-dd")
+            @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date createDate;
 
-    public void setId(Long id)
+    public void setXuehao(String xuehao)
             {
-            this.id = id;
+            this.xuehao = xuehao;
             }
 
-    public Long getId()
+    public String getXuehao()
             {
-            return id;
+            return xuehao;
             }
-    public void setKddh(String kddh)
+    public void setXh(Long xh)
             {
-            this.kddh = kddh;
-            }
-
-    public String getKddh()
-            {
-            return kddh;
-            }
-    public void setSfda(Long sfda)
-            {
-            this.sfda = sfda;
+            this.xh = xh;
             }
 
-    public Long getSfda()
+    public Long getXh()
             {
-            return sfda;
+            return xh;
+            }
+    public void setBj(String bj)
+            {
+            this.bj = bj;
+            }
+
+    public String getBj()
+            {
+            return bj;
             }
     public void setXm(String xm)
             {
@@ -93,6 +98,15 @@ private static final long serialVersionUID=1L;
     public String getXm()
             {
             return xm;
+            }
+    public void setDazt(Long dazt)
+            {
+            this.dazt = dazt;
+            }
+
+    public Long getDazt()
+            {
+            return dazt;
             }
     public void setKsh(String ksh)
             {
@@ -152,10 +166,11 @@ private static final long serialVersionUID=1L;
 @Override
 public String toString(){
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("id",getId())
-            .append("kddh",getKddh())
-            .append("sfda",getSfda())
+            .append("xuehao",getXuehao())
+            .append("xh",getXh())
+            .append("bj",getBj())
             .append("xm",getXm())
+            .append("dazt",getDazt())
             .append("ksh",getKsh())
             .append("sfzh",getSfzh())
             .append("state",getState())

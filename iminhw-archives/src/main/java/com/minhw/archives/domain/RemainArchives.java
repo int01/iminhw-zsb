@@ -8,37 +8,33 @@ import com.minhw.common.annotation.Excel;
 import com.minhw.common.core.domain.BaseEntity;
 
 /**
- * ems邮寄记录对象 in_archives_ems
+ * 剩余档案对象 remain_archives
  *
  * @author iminhw
  * @date 2022-07-09
  */
-public class InArchivesEms extends BaseEntity
+public class RemainArchives extends BaseEntity
         {
 private static final long serialVersionUID=1L;
 
-    /** 主键 */
+    /** id */
     private Long id;
-
-    /** ems单号 */
-            @Excel(name = "ems单号")
-    private String kddh;
-
-    /** 袋内是否有档案 */
-            @Excel(name = "袋内是否有档案")
-    private Long sfda;
 
     /** 姓名 */
             @Excel(name = "姓名")
     private String xm;
 
-    /** 考生号 */
-            @Excel(name = "考生号")
-    private String ksh;
+    /** 学年/学年 */
+            @Excel(name = "学年/学年")
+    private String nf;
 
-    /** 身份证号 */
-            @Excel(name = "身份证号")
-    private String sfzh;
+    /** 身份证号码 */
+            @Excel(name = "身份证号码")
+    private String sfzhm;
+
+    /** 班级 */
+            @Excel(name = "班级")
+    private String bj;
 
     /** 数据状态 */
             @Excel(name = "数据状态")
@@ -49,13 +45,13 @@ private static final long serialVersionUID=1L;
     private String remarks;
 
     /** 更新时间 */
-            @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-            @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+            @JsonFormat(pattern = "yyyy-MM-dd")
+            @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date updateDate;
 
     /** 创建时间 */
-            @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-            @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+            @JsonFormat(pattern = "yyyy-MM-dd")
+            @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date createDate;
 
     public void setId(Long id)
@@ -67,24 +63,6 @@ private static final long serialVersionUID=1L;
             {
             return id;
             }
-    public void setKddh(String kddh)
-            {
-            this.kddh = kddh;
-            }
-
-    public String getKddh()
-            {
-            return kddh;
-            }
-    public void setSfda(Long sfda)
-            {
-            this.sfda = sfda;
-            }
-
-    public Long getSfda()
-            {
-            return sfda;
-            }
     public void setXm(String xm)
             {
             this.xm = xm;
@@ -94,23 +72,32 @@ private static final long serialVersionUID=1L;
             {
             return xm;
             }
-    public void setKsh(String ksh)
+    public void setNf(String nf)
             {
-            this.ksh = ksh;
+            this.nf = nf;
             }
 
-    public String getKsh()
+    public String getNf()
             {
-            return ksh;
+            return nf;
             }
-    public void setSfzh(String sfzh)
+    public void setSfzhm(String sfzhm)
             {
-            this.sfzh = sfzh;
+            this.sfzhm = sfzhm;
             }
 
-    public String getSfzh()
+    public String getSfzhm()
             {
-            return sfzh;
+            return sfzhm;
+            }
+    public void setBj(String bj)
+            {
+            this.bj = bj;
+            }
+
+    public String getBj()
+            {
+            return bj;
             }
     public void setState(Long state)
             {
@@ -153,11 +140,10 @@ private static final long serialVersionUID=1L;
 public String toString(){
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("id",getId())
-            .append("kddh",getKddh())
-            .append("sfda",getSfda())
             .append("xm",getXm())
-            .append("ksh",getKsh())
-            .append("sfzh",getSfzh())
+            .append("nf",getNf())
+            .append("sfzhm",getSfzhm())
+            .append("bj",getBj())
             .append("state",getState())
             .append("createBy",getCreateBy())
             .append("updateBy",getUpdateBy())

@@ -8,25 +8,29 @@ import com.minhw.common.annotation.Excel;
 import com.minhw.common.core.domain.BaseEntity;
 
 /**
- * ems邮寄记录对象 in_archives_ems
+ * 档案收录缓存对象 in_archives_class_temp
  *
  * @author iminhw
  * @date 2022-07-09
  */
-public class InArchivesEms extends BaseEntity
+public class InArchivesClassTemp extends BaseEntity
         {
 private static final long serialVersionUID=1L;
 
-    /** 主键 */
+    /** id */
     private Long id;
 
-    /** ems单号 */
-            @Excel(name = "ems单号")
-    private String kddh;
+    /** 学号 */
+            @Excel(name = "学号")
+    private String xuehao;
 
-    /** 袋内是否有档案 */
-            @Excel(name = "袋内是否有档案")
-    private Long sfda;
+    /** 序号 */
+            @Excel(name = "序号")
+    private Long xh;
+
+    /** 班级 */
+            @Excel(name = "班级")
+    private String bj;
 
     /** 姓名 */
             @Excel(name = "姓名")
@@ -67,23 +71,32 @@ private static final long serialVersionUID=1L;
             {
             return id;
             }
-    public void setKddh(String kddh)
+    public void setXuehao(String xuehao)
             {
-            this.kddh = kddh;
+            this.xuehao = xuehao;
             }
 
-    public String getKddh()
+    public String getXuehao()
             {
-            return kddh;
+            return xuehao;
             }
-    public void setSfda(Long sfda)
+    public void setXh(Long xh)
             {
-            this.sfda = sfda;
+            this.xh = xh;
             }
 
-    public Long getSfda()
+    public Long getXh()
             {
-            return sfda;
+            return xh;
+            }
+    public void setBj(String bj)
+            {
+            this.bj = bj;
+            }
+
+    public String getBj()
+            {
+            return bj;
             }
     public void setXm(String xm)
             {
@@ -153,8 +166,9 @@ private static final long serialVersionUID=1L;
 public String toString(){
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("id",getId())
-            .append("kddh",getKddh())
-            .append("sfda",getSfda())
+            .append("xuehao",getXuehao())
+            .append("xh",getXh())
+            .append("bj",getBj())
             .append("xm",getXm())
             .append("ksh",getKsh())
             .append("sfzh",getSfzh())

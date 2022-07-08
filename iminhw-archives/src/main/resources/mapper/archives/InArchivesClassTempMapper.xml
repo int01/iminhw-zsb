@@ -2,12 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.minhw.archives.mapper.InArchivesEmsMapper">
+<mapper namespace="com.minhw.archives.mapper.InArchivesClassTempMapper">
 
-    <resultMap type="InArchivesEms" id="InArchivesEmsResult">
+    <resultMap type="InArchivesClassTemp" id="InArchivesClassTempResult">
             <result property="id" column="id"/>
-            <result property="kddh" column="kddh"/>
-            <result property="sfda" column="sfda"/>
+            <result property="xuehao" column="xuehao"/>
+            <result property="xh" column="xh"/>
+            <result property="bj" column="bj"/>
             <result property="xm" column="xm"/>
             <result property="ksh" column="ksh"/>
             <result property="sfzh" column="sfzh"/>
@@ -19,16 +20,22 @@
             <result property="createDate" column="create_date"/>
     </resultMap>
 
-    <sql id="selectInArchivesEmsVo">
-        select id, kddh, sfda, xm, ksh, sfzh, state, create_by, update_by, remarks, update_date, create_date
-        from in_archives_ems
+    <sql id="selectInArchivesClassTempVo">
+        select id, xuehao, xh, bj, xm, ksh, sfzh, state, create_by, update_by, remarks, update_date, create_date
+        from in_archives_class_temp
     </sql>
 
-    <select id="selectInArchivesEmsList" parameterType="InArchivesEms" resultMap="InArchivesEmsResult">
-        <include refid="selectInArchivesEmsVo"/>
+    <select id="selectInArchivesClassTempList" parameterType="InArchivesClassTemp" resultMap="InArchivesClassTempResult">
+        <include refid="selectInArchivesClassTempVo"/>
         <where>
-                        <if test="kddh != null  and kddh != ''">
-                            and kddh = #{kddh}
+                        <if test="xuehao != null  and xuehao != ''">
+                            and xuehao = #{xuehao}
+                        </if>
+                        <if test="xh != null ">
+                            and xh = #{xh}
+                        </if>
+                        <if test="bj != null  and bj != ''">
+                            and bj = #{bj}
                         </if>
                         <if test="xm != null  and xm != ''">
                             and xm like concat('%', #{xm}, '%')
@@ -42,22 +49,33 @@
                         <if test="state != null ">
                             and state = #{state}
                         </if>
+                        <if test="remarks != null  and remarks != ''">
+                            and remarks = #{remarks}
+                        </if>
+                        <if test="updateDate != null ">
+                            and update_date like concat('%', #{updateDate}, '%')
+                        </if>
+                        <if test="createDate != null ">
+                            and create_date like concat('%', #{createDate}, '%')
+                        </if>
         </where>
     </select>
 
-    <select id="selectInArchivesEmsById" parameterType="Long"
-            resultMap="InArchivesEmsResult">
-            <include refid="selectInArchivesEmsVo"/>
+    <select id="selectInArchivesClassTempById" parameterType="Long"
+            resultMap="InArchivesClassTempResult">
+            <include refid="selectInArchivesClassTempVo"/>
             where id = #{id}
     </select>
 
-    <insert id="insertInArchivesEms" parameterType="InArchivesEms" useGeneratedKeys="true"
+    <insert id="insertInArchivesClassTemp" parameterType="InArchivesClassTemp" useGeneratedKeys="true"
             keyProperty="id">
-        insert into in_archives_ems
+        insert into in_archives_class_temp
         <trim prefix="(" suffix=")" suffixOverrides=",">
-                    <if test="kddh != null">kddh,
+                    <if test="xuehao != null and xuehao != ''">xuehao,
                     </if>
-                    <if test="sfda != null">sfda,
+                    <if test="xh != null">xh,
+                    </if>
+                    <if test="bj != null">bj,
                     </if>
                     <if test="xm != null">xm,
                     </if>
@@ -79,9 +97,11 @@
                     </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-                    <if test="kddh != null">#{kddh},
+                    <if test="xuehao != null and xuehao != ''">#{xuehao},
                     </if>
-                    <if test="sfda != null">#{sfda},
+                    <if test="xh != null">#{xh},
+                    </if>
+                    <if test="bj != null">#{bj},
                     </if>
                     <if test="xm != null">#{xm},
                     </if>
@@ -104,14 +124,17 @@
         </trim>
     </insert>
 
-    <update id="updateInArchivesEms" parameterType="InArchivesEms">
-        update in_archives_ems
+    <update id="updateInArchivesClassTemp" parameterType="InArchivesClassTemp">
+        update in_archives_class_temp
         <trim prefix="SET" suffixOverrides=",">
-                    <if test="kddh != null">kddh =
-                        #{kddh},
+                    <if test="xuehao != null and xuehao != ''">xuehao =
+                        #{xuehao},
                     </if>
-                    <if test="sfda != null">sfda =
-                        #{sfda},
+                    <if test="xh != null">xh =
+                        #{xh},
+                    </if>
+                    <if test="bj != null">bj =
+                        #{bj},
                     </if>
                     <if test="xm != null">xm =
                         #{xm},
@@ -144,13 +167,13 @@
         where id = #{id}
     </update>
 
-    <delete id="deleteInArchivesEmsById" parameterType="Long">
+    <delete id="deleteInArchivesClassTempById" parameterType="Long">
         delete
-        from in_archives_ems where id = #{id}
+        from in_archives_class_temp where id = #{id}
     </delete>
 
-    <delete id="deleteInArchivesEmsByIds" parameterType="String">
-        delete from in_archives_ems where id in
+    <delete id="deleteInArchivesClassTempByIds" parameterType="String">
+        delete from in_archives_class_temp where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
