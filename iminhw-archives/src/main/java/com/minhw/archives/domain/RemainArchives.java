@@ -23,11 +23,11 @@ public class RemainArchives extends BaseEntity
     private String xm;
 
     /** 学年/学年 */
-    @Excel(name = "学年/学年")
+    @Excel(name = "学年")
     private String nf;
 
     /** 身份证号码 */
-    @Excel(name = "身份证号码")
+    @Excel(name = "身份证号")
     private String sfzhm;
 
     /** 班级 */
@@ -35,7 +35,7 @@ public class RemainArchives extends BaseEntity
     private String bj;
 
     /** 数据状态 */
-    @Excel(name = "数据状态")
+    @Excel(name = "数据状态", dictType = "data_status")
     private Long status;
 
     public void setId(Long id) 

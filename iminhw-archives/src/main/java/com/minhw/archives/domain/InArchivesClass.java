@@ -32,7 +32,7 @@ public class InArchivesClass extends BaseEntity
     private String xm;
 
     /** 档案状态 */
-    @Excel(name = "档案状态")
+    @Excel(name = "档案状态", dictType = "archives_class_status")
     private Long dazt;
 
     /** 考生号 */
@@ -44,7 +44,7 @@ public class InArchivesClass extends BaseEntity
     private String sfzh;
 
     /** 数据状态 */
-    @Excel(name = "数据状态")
+    @Excel(name = "数据状态", dictType = "data_status")
     private Long status;
 
     public void setXuehao(String xuehao) 

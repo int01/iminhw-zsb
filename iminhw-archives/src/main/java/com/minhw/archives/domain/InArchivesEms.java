@@ -23,11 +23,11 @@ public class InArchivesEms extends BaseEntity
     private String kddh;
 
     /** 签收验证 */
-    @Excel(name = "签收验证")
+    @Excel(name = "签收验证", dictType="ems_validated")
     private Long qsyz;
 
     /** 是否档案 */
-    @Excel(name = "是否档案")
+    @Excel(name = "是否档案",dictType = "in_archives_ems_danan")
     private Long sfda;
 
     /** 姓名 */
@@ -43,7 +43,7 @@ public class InArchivesEms extends BaseEntity
     private String sfzh;
 
     /** 数据状态 */
-    @Excel(name = "数据状态")
+    @Excel(name = "数据状态", dictType = "data_status")
     private Long status;
 
     public void setId(Long id) 

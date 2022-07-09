@@ -43,7 +43,7 @@ public class InArchivesClassTemp extends BaseEntity
     private String sfzh;
 
     /** 数据状态 */
-    @Excel(name = "数据状态")
+    @Excel(name = "数据状态", dictType = "data_status")
     private Long status;
 
     public void setId(Long id) 
