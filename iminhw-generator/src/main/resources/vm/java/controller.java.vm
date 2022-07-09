@@ -1,7 +1,6 @@
 package ${packageName}.controller;
 
 import java.util.List;
-import java.util.Date;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +89,6 @@ public class ${ClassName}Controller extends BaseController
     public AjaxResult add(@RequestBody ${ClassName} ${className})
     {
         ${className}.setCreateBy(getUserId()+":"+getUsername());
-        ${className}.setCreateTime(new Date());
         return toAjax(${className}Service.insert${ClassName}(${className}));
     }
 
