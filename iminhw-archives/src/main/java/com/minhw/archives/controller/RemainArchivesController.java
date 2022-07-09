@@ -1,8 +1,8 @@
 package com.minhw.archives.controller;
 
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,22 +24,24 @@ import com.minhw.common.core.page.TableDataInfo;
 
 /**
  * 剩余档案Controller
- *
+ * 
  * @author iminhw
  * @date 2022-07-09
  */
 @RestController
 @RequestMapping("/archives/remain")
-public class RemainArchivesController extends BaseController {
+public class RemainArchivesController extends BaseController
+{
     @Autowired
     private IRemainArchivesService remainArchivesService;
 
-/**
- * 查询剩余档案列表
- */
-@PreAuthorize("@ss.hasPermi('archives:remain:list')")
-@GetMapping("/list")
-    public TableDataInfo list(RemainArchives remainArchives) {
+    /**
+     * 查询剩余档案列表
+     */
+    @PreAuthorize("@ss.hasPermi('archives:remain:list')")
+    @GetMapping("/list")
+    public TableDataInfo list(RemainArchives remainArchives)
+    {
         startPage();
         List<RemainArchives> list = remainArchivesService.selectRemainArchivesList(remainArchives);
         return getDataTable(list);
@@ -51,9 +53,10 @@ public class RemainArchivesController extends BaseController {
     @PreAuthorize("@ss.hasPermi('archives:remain:export')")
     @Log(title = "剩余档案", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, RemainArchives remainArchives) {
+    public void export(HttpServletResponse response, RemainArchives remainArchives)
+    {
         List<RemainArchives> list = remainArchivesService.selectRemainArchivesList(remainArchives);
-        ExcelUtil<RemainArchives> util = new ExcelUtil<RemainArchives>(RemainArchives. class);
+        ExcelUtil<RemainArchives> util = new ExcelUtil<RemainArchives>(RemainArchives.class);
         util.exportExcel(response, list, "剩余档案数据");
     }
 
@@ -62,7 +65,8 @@ public class RemainArchivesController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('archives:remain:query')")
     @GetMapping(value = "/{id}")
-    public AjaxResult getInfo(@PathVariable("id") Long id) {
+    public AjaxResult getInfo(@PathVariable("id") Long id)
+    {
         return AjaxResult.success(remainArchivesService.selectRemainArchivesById(id));
     }
 
@@ -72,7 +76,10 @@ public class RemainArchivesController extends BaseController {
     @PreAuthorize("@ss.hasPermi('archives:remain:add')")
     @Log(title = "剩余档案", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody RemainArchives remainArchives) {
+    public AjaxResult add(@RequestBody RemainArchives remainArchives)
+    {
+        remainArchives.setCreateBy(getUserId()+":"+getUsername());
+        remainArchives.setCreateTime(new Date());
         return toAjax(remainArchivesService.insertRemainArchives(remainArchives));
     }
 
@@ -83,6 +90,7 @@ public class RemainArchivesController extends BaseController {
     @Log(title = "剩余档案", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody RemainArchives remainArchives) {
+        remainArchives.setUpdateBy(getUserId()+":"+getUsername());
         return toAjax(remainArchivesService.updateRemainArchives(remainArchives));
     }
 
@@ -91,8 +99,9 @@ public class RemainArchivesController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('archives:remain:remove')")
     @Log(title = "剩余档案", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public AjaxResult remove(@PathVariable Long[] ids) {
+	@DeleteMapping("/{ids}")
+    public AjaxResult remove(@PathVariable Long[] ids)
+    {
         return toAjax(remainArchivesService.deleteRemainArchivesByIds(ids));
     }
 }

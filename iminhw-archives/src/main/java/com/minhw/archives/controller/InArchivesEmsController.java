@@ -1,8 +1,8 @@
 package com.minhw.archives.controller;
 
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,76 +23,85 @@ import com.minhw.common.utils.poi.ExcelUtil;
 import com.minhw.common.core.page.TableDataInfo;
 
 /**
- * ems邮寄记录Controller
- *
+ * 邮寄档案Controller
+ * 
  * @author iminhw
  * @date 2022-07-09
  */
 @RestController
 @RequestMapping("/archives/ems")
-public class InArchivesEmsController extends BaseController {
+public class InArchivesEmsController extends BaseController
+{
     @Autowired
     private IInArchivesEmsService inArchivesEmsService;
 
-/**
- * 查询ems邮寄记录列表
- */
-@PreAuthorize("@ss.hasPermi('archives:ems:list')")
-@GetMapping("/list")
-    public TableDataInfo list(InArchivesEms inArchivesEms) {
+    /**
+     * 查询邮寄档案列表
+     */
+    @PreAuthorize("@ss.hasPermi('archives:ems:list')")
+    @GetMapping("/list")
+    public TableDataInfo list(InArchivesEms inArchivesEms)
+    {
         startPage();
         List<InArchivesEms> list = inArchivesEmsService.selectInArchivesEmsList(inArchivesEms);
         return getDataTable(list);
     }
 
     /**
-     * 导出ems邮寄记录列表
+     * 导出邮寄档案列表
      */
     @PreAuthorize("@ss.hasPermi('archives:ems:export')")
-    @Log(title = "ems邮寄记录", businessType = BusinessType.EXPORT)
+    @Log(title = "邮寄档案", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, InArchivesEms inArchivesEms) {
+    public void export(HttpServletResponse response, InArchivesEms inArchivesEms)
+    {
         List<InArchivesEms> list = inArchivesEmsService.selectInArchivesEmsList(inArchivesEms);
-        ExcelUtil<InArchivesEms> util = new ExcelUtil<InArchivesEms>(InArchivesEms. class);
-        util.exportExcel(response, list, "ems邮寄记录数据");
+        ExcelUtil<InArchivesEms> util = new ExcelUtil<InArchivesEms>(InArchivesEms.class);
+        util.exportExcel(response, list, "邮寄档案数据");
     }
 
     /**
-     * 获取ems邮寄记录详细信息
+     * 获取邮寄档案详细信息
      */
     @PreAuthorize("@ss.hasPermi('archives:ems:query')")
     @GetMapping(value = "/{id}")
-    public AjaxResult getInfo(@PathVariable("id") Long id) {
+    public AjaxResult getInfo(@PathVariable("id") Long id)
+    {
         return AjaxResult.success(inArchivesEmsService.selectInArchivesEmsById(id));
     }
 
     /**
-     * 新增ems邮寄记录
+     * 新增邮寄档案
      */
     @PreAuthorize("@ss.hasPermi('archives:ems:add')")
-    @Log(title = "ems邮寄记录", businessType = BusinessType.INSERT)
+    @Log(title = "邮寄档案", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody InArchivesEms inArchivesEms) {
+    public AjaxResult add(@RequestBody InArchivesEms inArchivesEms)
+    {
+        inArchivesEms.setCreateBy(getUserId()+":"+getUsername());
+        inArchivesEms.setCreateTime(new Date());
         return toAjax(inArchivesEmsService.insertInArchivesEms(inArchivesEms));
     }
 
     /**
-     * 修改ems邮寄记录
+     * 修改邮寄档案
      */
     @PreAuthorize("@ss.hasPermi('archives:ems:edit')")
-    @Log(title = "ems邮寄记录", businessType = BusinessType.UPDATE)
+    @Log(title = "邮寄档案", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesEms inArchivesEms) {
+        inArchivesEms.setUpdateBy(getUserId()+":"+getUsername());
         return toAjax(inArchivesEmsService.updateInArchivesEms(inArchivesEms));
     }
 
     /**
-     * 删除ems邮寄记录
+     * 删除邮寄档案
      */
     @PreAuthorize("@ss.hasPermi('archives:ems:remove')")
-    @Log(title = "ems邮寄记录", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public AjaxResult remove(@PathVariable Long[] ids) {
+    @Log(title = "邮寄档案", businessType = BusinessType.DELETE)
+	@DeleteMapping("/{ids}")
+    public AjaxResult remove(@PathVariable Long[] ids)
+    {
         return toAjax(inArchivesEmsService.deleteInArchivesEmsByIds(ids));
     }
 }

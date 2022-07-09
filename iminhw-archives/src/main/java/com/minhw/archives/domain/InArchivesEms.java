@@ -1,158 +1,140 @@
 package com.minhw.archives.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import com.minhw.common.annotation.Excel;
 import com.minhw.common.core.domain.BaseEntity;
 
-import java.util.Date;
-
 /**
- * ems邮寄记录对象 in_archives_ems
- *
+ * 邮寄档案对象 in_archives_ems
+ * 
  * @author iminhw
  * @date 2022-07-09
  */
-public class InArchivesEms extends BaseEntity {
+public class InArchivesEms extends BaseEntity
+{
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     */
+    /** 主键 */
     private Long id;
 
-    /**
-     * ems单号
-     */
-    @Excel(name = "ems单号")
+    /** 快递单号 */
+    @Excel(name = "快递单号")
     private String kddh;
 
-    /**
-     * 袋内是否有档案
-     */
-    @Excel(name = "袋内是否有档案")
+    /** 签收验证 */
+    @Excel(name = "签收验证")
+    private Long qsyz;
+
+    /** 是否档案 */
+    @Excel(name = "是否档案")
     private Long sfda;
 
-    /**
-     * 姓名
-     */
+    /** 姓名 */
     @Excel(name = "姓名")
     private String xm;
 
-    /**
-     * 考生号
-     */
+    /** 考生号 */
     @Excel(name = "考生号")
     private String ksh;
 
-    /**
-     * 身份证号
-     */
+    /** 身份证号 */
     @Excel(name = "身份证号")
     private String sfzh;
 
-    /**
-     * 数据状态
-     */
+    /** 数据状态 */
     @Excel(name = "数据状态")
     private Long status;
 
-    /**
-     * 备注
-     */
-    @Excel(name = "备注")
-    private String remarks;
-
-    /**
-     * 更新时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "更新时间" , width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
-    private Date updateDate;
-
-    /**
-     * 创建时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "创建时间" , width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
-    private Date createDate;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public void setId(Long id) 
+    {
         this.id = id;
     }
 
-    public String getKddh() {
-        return kddh;
+    public Long getId() 
+    {
+        return id;
     }
-
-    public void setKddh(String kddh) {
+    public void setKddh(String kddh) 
+    {
         this.kddh = kddh;
     }
 
-    public Long getSfda() {
-        return sfda;
+    public String getKddh() 
+    {
+        return kddh;
+    }
+    public void setQsyz(Long qsyz) 
+    {
+        this.qsyz = qsyz;
     }
 
-    public void setSfda(Long sfda) {
+    public Long getQsyz() 
+    {
+        return qsyz;
+    }
+    public void setSfda(Long sfda) 
+    {
         this.sfda = sfda;
     }
 
-    public String getXm() {
-        return xm;
+    public Long getSfda() 
+    {
+        return sfda;
     }
-
-    public void setXm(String xm) {
+    public void setXm(String xm) 
+    {
         this.xm = xm;
     }
 
-    public String getKsh() {
-        return ksh;
+    public String getXm() 
+    {
+        return xm;
     }
-
-    public void setKsh(String ksh) {
+    public void setKsh(String ksh) 
+    {
         this.ksh = ksh;
     }
 
-    public String getSfzh() {
-        return sfzh;
+    public String getKsh() 
+    {
+        return ksh;
     }
-
-    public void setSfzh(String sfzh) {
+    public void setSfzh(String sfzh) 
+    {
         this.sfzh = sfzh;
     }
 
-    public Long getStatus() {
-        return status;
+    public String getSfzh() 
+    {
+        return sfzh;
     }
-
-    public void setStatus(Long status) {
+    public void setStatus(Long status) 
+    {
         this.status = status;
     }
 
-    public String getRemarks() {
-        return remarks;
+    public Long getStatus() 
+    {
+        return status;
     }
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+            .append("id", getId())
+            .append("kddh", getKddh())
+            .append("qsyz", getQsyz())
+            .append("sfda", getSfda())
+            .append("xm", getXm())
+            .append("ksh", getKsh())
+            .append("sfzh", getSfzh())
+            .append("status", getStatus())
+            .append("createBy", getCreateBy())
+            .append("updateBy", getUpdateBy())
+            .append("remark", getRemark())
+            .append("updateTime", getUpdateTime())
+            .append("createTime", getCreateTime())
+            .toString();
     }
 }
