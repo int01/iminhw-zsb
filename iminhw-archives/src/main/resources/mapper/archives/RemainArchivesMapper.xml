@@ -10,7 +10,7 @@
             <result property="nf" column="nf"/>
             <result property="sfzhm" column="sfzhm"/>
             <result property="bj" column="bj"/>
-            <result property="state" column="state"/>
+            <result property="status" column="status"/>
             <result property="createBy" column="create_by"/>
             <result property="updateBy" column="update_by"/>
             <result property="remarks" column="remarks"/>
@@ -19,7 +19,7 @@
     </resultMap>
 
     <sql id="selectRemainArchivesVo">
-        select id, xm, nf, sfzhm, bj, state, create_by, update_by, remarks, update_date, create_date
+        select id, xm, nf, sfzhm, bj, status, create_by, update_by, remarks, update_date, create_date
         from remain_archives
     </sql>
 
@@ -38,8 +38,8 @@
                         <if test="bj != null  and bj != ''">
                             and bj like concat('%', #{bj}, '%')
                         </if>
-                        <if test="state != null ">
-                            and state = #{state}
+                        <if test="status != null ">
+                            and status = #{status}
                         </if>
         </where>
     </select>
@@ -62,7 +62,7 @@
                     </if>
                     <if test="bj != null">bj,
                     </if>
-                    <if test="state != null">state,
+                    <if test="status != null">status,
                     </if>
                     <if test="createBy != null">create_by,
                     </if>
@@ -84,7 +84,7 @@
                     </if>
                     <if test="bj != null">#{bj},
                     </if>
-                    <if test="state != null">#{state},
+                    <if test="status != null">#{status},
                     </if>
                     <if test="createBy != null">#{createBy},
                     </if>
@@ -114,8 +114,8 @@
                     <if test="bj != null">bj =
                         #{bj},
                     </if>
-                    <if test="state != null">state =
-                        #{state},
+                    <if test="status != null">status =
+                        #{status},
                     </if>
                     <if test="createBy != null">create_by =
                         #{createBy},

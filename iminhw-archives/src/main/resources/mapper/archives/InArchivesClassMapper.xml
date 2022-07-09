@@ -12,7 +12,7 @@
             <result property="dazt" column="dazt"/>
             <result property="ksh" column="ksh"/>
             <result property="sfzh" column="sfzh"/>
-            <result property="state" column="state"/>
+            <result property="status" column="status"/>
             <result property="createBy" column="create_by"/>
             <result property="updateBy" column="update_by"/>
             <result property="remarks" column="remarks"/>
@@ -21,7 +21,7 @@
     </resultMap>
 
     <sql id="selectInArchivesClassVo">
-        select xuehao, xh, bj, xm, dazt, ksh, sfzh, state, create_by, update_by, remarks, update_date, create_date
+        select xuehao, xh, bj, xm, dazt, ksh, sfzh, status, create_by, update_by, remarks, update_date, create_date
         from in_archives_class
     </sql>
 
@@ -49,8 +49,8 @@
                         <if test="sfzh != null  and sfzh != ''">
                             and sfzh = #{sfzh}
                         </if>
-                        <if test="state != null ">
-                            and state = #{state}
+                        <if test="status != null ">
+                            and status = #{status}
                         </if>
         </where>
     </select>
@@ -78,7 +78,7 @@
                     </if>
                     <if test="sfzh != null">sfzh,
                     </if>
-                    <if test="state != null">state,
+                    <if test="status != null">status,
                     </if>
                     <if test="createBy != null">create_by,
                     </if>
@@ -106,7 +106,7 @@
                     </if>
                     <if test="sfzh != null">#{sfzh},
                     </if>
-                    <if test="state != null">#{state},
+                    <if test="status != null">#{status},
                     </if>
                     <if test="createBy != null">#{createBy},
                     </if>
@@ -142,8 +142,8 @@
                     <if test="sfzh != null">sfzh =
                         #{sfzh},
                     </if>
-                    <if test="state != null">state =
-                        #{state},
+                    <if test="status != null">status =
+                        #{status},
                     </if>
                     <if test="createBy != null">create_by =
                         #{createBy},
