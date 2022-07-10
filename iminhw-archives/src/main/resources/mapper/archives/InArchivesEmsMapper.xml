@@ -41,6 +41,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectInArchivesEmsVo"/>
         where id = #{id}
     </select>
+
+    <select id="selectInArchivesEmsBykddh" parameterType="String" resultMap="InArchivesEmsResult">
+        <include refid="selectInArchivesEmsVo"/>
+        where kddh = #{kddh}
+    </select>
         
     <insert id="insertInArchivesEms" parameterType="InArchivesEms" useGeneratedKeys="true" keyProperty="id">
         insert into in_archives_ems
@@ -91,6 +96,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createTime != null">create_time = #{createTime},</if>
         </trim>
         where id = #{id}
+    </update>
+
+
+    <update id="updateInArchivesEmsByKddh" parameterType="InArchivesEms">
+        update in_archives_ems
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="qsyz != null">qsyz = #{qsyz},</if>
+            <if test="sfda != null">sfda = #{sfda},</if>
+            <if test="xm != null">xm = #{xm},</if>
+            <if test="ksh != null">ksh = #{ksh},</if>
+            <if test="sfzh != null">sfzh = #{sfzh},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where kddh = #{kddh}
     </update>
 
     <delete id="deleteInArchivesEmsById" parameterType="Long">

@@ -58,4 +58,18 @@ public interface InArchivesEmsMapper
      * @return 结果
      */
     public int deleteInArchivesEmsByIds(Long[] ids);
+
+    /**
+     *
+     * @param kddh
+     * @return
+     */
+    InArchivesEms selectInArchivesEmsBykddh(String kddh);
+
+    /**
+     * 根据单号更新
+     * @param inArchivesEms
+     * @return
+     */
+    int updateInArchivesEmsByKddh(InArchivesEms inArchivesEms);
 }
