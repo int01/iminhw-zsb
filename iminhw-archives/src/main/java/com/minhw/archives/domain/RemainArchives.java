@@ -9,7 +9,7 @@ import com.minhw.common.core.domain.BaseEntity;
  * 剩余档案对象 remain_archives
  * 
  * @author iminhw
- * @date 2022-07-09
+ * @date 2022-07-11
  */
 public class RemainArchives extends BaseEntity
 {
@@ -18,25 +18,37 @@ public class RemainArchives extends BaseEntity
     /** id */
     private Long id;
 
+    /** 序号 */
+    @Excel(name = "序号")
+    private Long xh;
+
     /** 姓名 */
     @Excel(name = "姓名")
     private String xm;
 
-    /** 学年/学年 */
+    /** 学年 */
     @Excel(name = "学年")
     private String nf;
 
-    /** 身份证号码 */
-    @Excel(name = "身份证号")
-    private String sfzhm;
+    /** 考生号 */
+    private String ksh;
+
+    /** 身份证号 */
+    private String sfzh;
 
     /** 班级 */
-    @Excel(name = "班级")
     private String bj;
 
     /** 数据状态 */
     @Excel(name = "数据状态", dictType = "data_status")
     private Long status;
+
+    /**
+     * 备注
+     */
+    @Excel(name = "备注")
+    private String remark;
+
 
     public void setId(Long id) 
     {
@@ -46,6 +58,15 @@ public class RemainArchives extends BaseEntity
     public Long getId() 
     {
         return id;
+    }
+    public void setXh(Long xh) 
+    {
+        this.xh = xh;
+    }
+
+    public Long getXh() 
+    {
+        return xh;
     }
     public void setXm(String xm) 
     {
@@ -65,14 +86,23 @@ public class RemainArchives extends BaseEntity
     {
         return nf;
     }
-    public void setSfzhm(String sfzhm) 
+    public void setKsh(String ksh) 
     {
-        this.sfzhm = sfzhm;
+        this.ksh = ksh;
     }
 
-    public String getSfzhm() 
+    public String getKsh() 
     {
-        return sfzhm;
+        return ksh;
+    }
+    public void setSfzh(String sfzh) 
+    {
+        this.sfzh = sfzh;
+    }
+
+    public String getSfzh() 
+    {
+        return sfzh;
     }
     public void setBj(String bj) 
     {
@@ -94,12 +124,24 @@ public class RemainArchives extends BaseEntity
     }
 
     @Override
+    public String getRemark() {
+        return remark;
+    }
+
+    @Override
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("id", getId())
+            .append("xh", getXh())
             .append("xm", getXm())
             .append("nf", getNf())
-            .append("sfzhm", getSfzhm())
+            .append("ksh", getKsh())
+            .append("sfzh", getSfzh())
             .append("bj", getBj())
             .append("status", getStatus())
             .append("createBy", getCreateBy())

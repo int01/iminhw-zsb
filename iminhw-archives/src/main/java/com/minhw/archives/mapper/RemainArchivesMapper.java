@@ -7,7 +7,7 @@ import com.minhw.archives.domain.RemainArchives;
  * 剩余档案Mapper接口
  * 
  * @author iminhw
- * @date 2022-07-09
+ * @date 2022-07-11
  */
 public interface RemainArchivesMapper 
 {
@@ -58,4 +58,6 @@ public interface RemainArchivesMapper
      * @return 结果
      */
     public int deleteRemainArchivesByIds(Long[] ids);
+
+    RemainArchives selectRemainArchivesRepeat(RemainArchives remain);
 }

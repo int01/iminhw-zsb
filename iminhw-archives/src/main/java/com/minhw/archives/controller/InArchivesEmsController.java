@@ -100,9 +100,9 @@ public class InArchivesEmsController extends BaseController {
     @PostMapping("/importData")
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
         ExcelUtil<InArchivesEms> util = new ExcelUtil<InArchivesEms>(InArchivesEms.class);
-        List<InArchivesEms> userList = util.importExcel(file.getInputStream());
+        List<InArchivesEms> inArchivesEmsList = util.importExcel(file.getInputStream());
         String operName = getUsername();
-        String message = inArchivesEmsService.importArchivesEms(userList, updateSupport, operName);
+        String message = inArchivesEmsService.importArchivesEms(inArchivesEmsList, updateSupport, operName);
         return AjaxResult.success(message);
     }
 

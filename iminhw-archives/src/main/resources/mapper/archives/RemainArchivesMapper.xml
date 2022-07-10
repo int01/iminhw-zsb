@@ -6,9 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <resultMap type="RemainArchives" id="RemainArchivesResult">
         <result property="id"    column="id"    />
+        <result property="xh"    column="xh"    />
         <result property="xm"    column="xm"    />
         <result property="nf"    column="nf"    />
-        <result property="sfzhm"    column="sfzhm"    />
+        <result property="ksh"    column="ksh"    />
+        <result property="sfzh"    column="sfzh"    />
         <result property="bj"    column="bj"    />
         <result property="status"    column="status"    />
         <result property="createBy"    column="create_by"    />
@@ -19,31 +21,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectRemainArchivesVo">
-        select id, xm, nf, sfzhm, bj, status, create_by, update_by, remark, update_time, create_time from remain_archives
+        select id, xh, xm, nf, ksh, sfzh, bj, status, create_by, update_by, remark, update_time, create_time from remain_archives
     </sql>
 
     <select id="selectRemainArchivesList" parameterType="RemainArchives" resultMap="RemainArchivesResult">
         <include refid="selectRemainArchivesVo"/>
         <where>  
             <if test="xm != null  and xm != ''"> and xm like concat('%', #{xm}, '%')</if>
-            <if test="nf != null  and nf != ''"> and nf = #{nf}</if>
-            <if test="sfzhm != null  and sfzhm != ''"> and sfzhm like concat('%', #{sfzhm}, '%')</if>
-            <if test="bj != null  and bj != ''"> and bj like concat('%', #{bj}, '%')</if>
+            <if test="nf != null  and nf != ''"> and nf like concat('%', #{nf}, '%')</if>
+            <if test="ksh != null  and ksh != ''"> and ksh = #{ksh}</if>
+            <if test="sfzh != null  and sfzh != ''"> and sfzh = #{sfzh}</if>
+            <if test="bj != null  and bj != ''"> and bj = #{bj}</if>
             <if test="status != null "> and status = #{status}</if>
+            <if test="remark != null  and remark != ''"> and remark like concat('%', #{remark}, '%')</if>
         </where>
     </select>
     
-    <select id="selectRemainArchivesById" parameterType="Long" resultMap="RemainArchivesResult">
+    <select id="selectRemainArchivesById" parameterType="RemainArchives" resultMap="RemainArchivesResult">
         <include refid="selectRemainArchivesVo"/>
         where id = #{id}
+    </select>
+
+
+    <select id="selectRemainArchivesRepeat" parameterType="Long" resultMap="RemainArchivesResult">
+        <include refid="selectRemainArchivesVo"/>
+        <where>
+            <if test="xm != null  and xm != ''"> and xm = #{xm}</if>
+            <if test="nf != null  and nf != ''"> and nf #{nf}</if>
+            <if test="ksh != null  and ksh != ''"> and ksh = #{ksh}</if>
+            <if test="sfzh != null  and sfzh != ''"> and sfzh = #{sfzh}</if>
+        </where>
     </select>
         
     <insert id="insertRemainArchives" parameterType="RemainArchives" useGeneratedKeys="true" keyProperty="id">
         insert into remain_archives
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="xh != null">xh,</if>
             <if test="xm != null">xm,</if>
             <if test="nf != null">nf,</if>
-            <if test="sfzhm != null">sfzhm,</if>
+            <if test="ksh != null">ksh,</if>
+            <if test="sfzh != null">sfzh,</if>
             <if test="bj != null">bj,</if>
             <if test="status != null">status,</if>
             <if test="createBy != null">create_by,</if>
@@ -53,9 +70,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createTime != null">create_time,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="xh != null">#{xh},</if>
             <if test="xm != null">#{xm},</if>
             <if test="nf != null">#{nf},</if>
-            <if test="sfzhm != null">#{sfzhm},</if>
+            <if test="ksh != null">#{ksh},</if>
+            <if test="sfzh != null">#{sfzh},</if>
             <if test="bj != null">#{bj},</if>
             <if test="status != null">#{status},</if>
             <if test="createBy != null">#{createBy},</if>
@@ -69,9 +88,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateRemainArchives" parameterType="RemainArchives">
         update remain_archives
         <trim prefix="SET" suffixOverrides=",">
+            <if test="xh != null">xh = #{xh},</if>
             <if test="xm != null">xm = #{xm},</if>
             <if test="nf != null">nf = #{nf},</if>
-            <if test="sfzhm != null">sfzhm = #{sfzhm},</if>
+            <if test="ksh != null">ksh = #{ksh},</if>
+            <if test="sfzh != null">sfzh = #{sfzh},</if>
             <if test="bj != null">bj = #{bj},</if>
             <if test="status != null">status = #{status},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
