@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhw.stu.mapper.StuMatriculateMapper">
+    
+    <resultMap type="StuMatriculate" id="StuMatriculateResult">
+        <result property="ksh"    column="ksh"    />
+        <result property="sfzh"    column="sfzh"    />
+        <result property="xm"    column="xm"    />
+        <result property="zy"    column="zy"    />
+        <result property="lxdh"    column="lxdh"    />
+        <result property="dz"    column="dz"    />
+        <result property="status"    column="status"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="remark"    column="remark"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectStuMatriculateVo">
+        select ksh, sfzh, xm, zy, lxdh, dz, status, create_by, update_by, remark, update_time, create_time from stu_matriculate
+    </sql>
+
+    <select id="selectStuMatriculateList" parameterType="StuMatriculate" resultMap="StuMatriculateResult">
+        <include refid="selectStuMatriculateVo"/>
+        <where>  
+            <if test="ksh != null  and ksh != ''"> and ksh like concat('%', #{ksh}, '%')</if>
+            <if test="sfzh != null  and sfzh != ''"> and sfzh like concat('%', #{sfzh}, '%')</if>
+            <if test="xm != null  and xm != ''"> and xm like concat('%', #{xm}, '%')</if>
+            <if test="zy != null  and zy != ''"> and zy like concat('%', #{zy}, '%')</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''"> and create_time between #{params.beginCreateTime} and #{params.endCreateTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectStuMatriculateByKsh" parameterType="String" resultMap="StuMatriculateResult">
+        <include refid="selectStuMatriculateVo"/>
+        where ksh = #{ksh}
+    </select>
+        
+    <insert id="insertStuMatriculate" parameterType="StuMatriculate">
+        insert into stu_matriculate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ksh != null">ksh,</if>
+            <if test="sfzh != null">sfzh,</if>
+            <if test="xm != null">xm,</if>
+            <if test="zy != null">zy,</if>
+            <if test="lxdh != null">lxdh,</if>
+            <if test="dz != null">dz,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="remark != null">remark,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ksh != null">#{ksh},</if>
+            <if test="sfzh != null">#{sfzh},</if>
+            <if test="xm != null">#{xm},</if>
+            <if test="zy != null">#{zy},</if>
+            <if test="lxdh != null">#{lxdh},</if>
+            <if test="dz != null">#{dz},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStuMatriculate" parameterType="StuMatriculate">
+        update stu_matriculate
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sfzh != null">sfzh = #{sfzh},</if>
+            <if test="xm != null">xm = #{xm},</if>
+            <if test="zy != null">zy = #{zy},</if>
+            <if test="lxdh != null">lxdh = #{lxdh},</if>
+            <if test="dz != null">dz = #{dz},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where ksh = #{ksh}
+    </update>
+
+    <delete id="deleteStuMatriculateByKsh" parameterType="String">
+        delete from stu_matriculate where ksh = #{ksh}
+    </delete>
+
+    <delete id="deleteStuMatriculateByKshs" parameterType="String">
+        delete from stu_matriculate where ksh in 
+        <foreach item="ksh" collection="array" open="(" separator="," close=")">
+            #{ksh}
+        </foreach>
+    </delete>
+</mapper>
