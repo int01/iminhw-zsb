@@ -117,7 +117,7 @@ public class RemainArchivesServiceImpl implements IRemainArchivesService {
                     remain.setCreateBy(operName);
                     this.insertRemainArchives(remain);
                     successNum++;
-                    successMsg.append("<br/>" + successNum + "、数据 " + remain.toString() + " 导入成功");
+                    successMsg.append("<br/>" + successNum + "、数据 " + remain + " 导入成功");
                 } else if (isUpdateSupport) {
                     BeanValidators.validateWithException(validator, remain);
                     remain.setUpdateBy(operName);
@@ -137,7 +137,7 @@ public class RemainArchivesServiceImpl implements IRemainArchivesService {
         }
         if (failureNum > 0) {
             failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum +
-                    " 条数据异常（重复数据请提供唯一标识进行区分，如：身份证号），错误如下：");
+                    " 条数据异常（同学年同名数据请提供唯一标识进行区分，如：身份证号），错误如下：");
             throw new ServiceException(failureMsg.toString());
         } else {
             successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");

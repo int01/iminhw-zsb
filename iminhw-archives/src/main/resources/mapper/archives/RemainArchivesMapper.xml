@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectRemainArchivesVo"/>
         <where>
             <if test="xm != null  and xm != ''"> and xm = #{xm}</if>
-            <if test="nf != null  and nf != ''"> and nf #{nf}</if>
+            <if test="nf != null  and nf != ''"> and nf = #{nf}</if>
             <if test="ksh != null  and ksh != ''"> and ksh = #{ksh}</if>
             <if test="sfzh != null  and sfzh != ''"> and sfzh = #{sfzh}</if>
         </where>

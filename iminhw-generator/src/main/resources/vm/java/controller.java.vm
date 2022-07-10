@@ -88,7 +88,7 @@ public class ${ClassName}Controller extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody ${ClassName} ${className})
     {
-        ${className}.setCreateBy(getUserId()+":"+getUsername());
+        ${className}.setCreateBy(getUsername());
         return toAjax(${className}Service.insert${ClassName}(${className}));
     }
 
@@ -99,7 +99,7 @@ public class ${ClassName}Controller extends BaseController
     @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody ${ClassName} ${className}) {
-        ${className}.setUpdateBy(getUserId()+":"+getUsername());
+        ${className}.setUpdateBy(getUsername());
         return toAjax(${className}Service.update${ClassName}(${className}));
     }
 

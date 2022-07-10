@@ -69,7 +69,7 @@ public class InArchivesEmsController extends BaseController {
     @Log(title = "邮寄档案" , businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody InArchivesEms inArchivesEms) {
-        inArchivesEms.setCreateBy(getUserId() + ":" + getUsername());
+        inArchivesEms.setCreateBy(getUsername());
         inArchivesEms.setCreateTime(new Date());
         return toAjax(inArchivesEmsService.insertInArchivesEms(inArchivesEms));
     }
@@ -81,7 +81,7 @@ public class InArchivesEmsController extends BaseController {
     @Log(title = "邮寄档案" , businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesEms inArchivesEms) {
-        inArchivesEms.setUpdateBy(getUserId() + ":" + getUsername());
+        inArchivesEms.setUpdateBy(getUsername());
         return toAjax(inArchivesEmsService.updateInArchivesEms(inArchivesEms));
     }
 
@@ -116,7 +116,7 @@ public class InArchivesEmsController extends BaseController {
     @Log(title = "邮寄档案" , businessType = BusinessType.UPDATE)
     @PutMapping("/verify")
     public AjaxResult verifyKddh(@RequestBody InArchivesEms inArchivesEms) {
-        inArchivesEms.setUpdateBy(getUserId() + ":" + getUsername());
+        inArchivesEms.setUpdateBy(getUsername());
         InArchivesEms resObj = inArchivesEmsService.updateInArchivesEmsByKddh(inArchivesEms);
         return AjaxResult.success(resObj);
     }

@@ -66,7 +66,7 @@ public class InArchivesClassController extends BaseController {
     @Log(title = "档案收集" , businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody InArchivesClass inArchivesClass) {
-        inArchivesClass.setCreateBy(getUserId() + ":" + getUsername());
+        inArchivesClass.setCreateBy(getUsername());
         return toAjax(inArchivesClassService.insertInArchivesClass(inArchivesClass));
     }
 
@@ -77,7 +77,7 @@ public class InArchivesClassController extends BaseController {
     @Log(title = "档案收集" , businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesClass inArchivesClass) {
-        inArchivesClass.setUpdateBy(getUserId() + ":" + getUsername());
+        inArchivesClass.setUpdateBy(getUsername());
         return toAjax(inArchivesClassService.updateInArchivesClass(inArchivesClass));
     }
 

@@ -31,9 +31,11 @@ public class RemainArchives extends BaseEntity
     private String nf;
 
     /** 考生号 */
+    @Excel(name = "考生号")
     private String ksh;
 
     /** 身份证号 */
+    @Excel(name = "身份证号")
     private String sfzh;
 
     /** 班级 */
@@ -133,22 +135,36 @@ public class RemainArchives extends BaseEntity
         this.remark = remark;
     }
 
+//    @Override
+//    public String toString() {
+//        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+//            .append("id", getId())
+//            .append("xh", getXh())
+//            .append("xm", getXm())
+//            .append("nf", getNf())
+//            .append("ksh", getKsh())
+//            .append("sfzh", getSfzh())
+//            .append("bj", getBj())
+//            .append("status", getStatus())
+//            .append("createBy", getCreateBy())
+//            .append("updateBy", getUpdateBy())
+//            .append("remark", getRemark())
+//            .append("updateTime", getUpdateTime())
+//            .append("createTime", getCreateTime())
+//            .toString();
+//    }
+
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("id", getId())
-            .append("xh", getXh())
-            .append("xm", getXm())
-            .append("nf", getNf())
-            .append("ksh", getKsh())
-            .append("sfzh", getSfzh())
-            .append("bj", getBj())
-            .append("status", getStatus())
-            .append("createBy", getCreateBy())
-            .append("updateBy", getUpdateBy())
-            .append("remark", getRemark())
-            .append("updateTime", getUpdateTime())
-            .append("createTime", getCreateTime())
-            .toString();
+        return "剩余档案{ 序号=" + xh +
+                ", 姓名='" + xm + '\'' +
+                ", 学年='" + nf + '\'' +
+                ", 考生号='" + ksh + '\'' +
+                ", 身份证号='" + sfzh + '\'' +
+                ", 班级='" + bj + '\'' +
+                ", 数据状态=" + status +
+                ", 备注='" + remark + '\'' +
+                '}';
     }
 }

@@ -78,7 +78,7 @@ public class InArchivesClassTempController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody InArchivesClassTemp inArchivesClassTemp)
     {
-        inArchivesClassTemp.setCreateBy(getUserId()+":"+getUsername());
+        inArchivesClassTemp.setCreateBy(getUsername());
         inArchivesClassTemp.setCreateTime(new Date());
         return toAjax(inArchivesClassTempService.insertInArchivesClassTemp(inArchivesClassTemp));
     }
@@ -90,7 +90,7 @@ public class InArchivesClassTempController extends BaseController
     @Log(title = "档案收录缓存", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesClassTemp inArchivesClassTemp) {
-        inArchivesClassTemp.setUpdateBy(getUserId()+":"+getUsername());
+        inArchivesClassTemp.setUpdateBy(getUsername());
         return toAjax(inArchivesClassTempService.updateInArchivesClassTemp(inArchivesClassTemp));
     }
 

@@ -67,7 +67,7 @@ public class RemainArchivesController extends BaseController {
     @Log(title = "剩余档案" , businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody RemainArchives remainArchives) {
-        remainArchives.setCreateBy(getUserId() + ":" + getUsername());
+        remainArchives.setCreateBy(getUsername());
         return toAjax(remainArchivesService.insertRemainArchives(remainArchives));
     }
 
@@ -78,7 +78,7 @@ public class RemainArchivesController extends BaseController {
     @Log(title = "剩余档案" , businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody RemainArchives remainArchives) {
-        remainArchives.setUpdateBy(getUserId() + ":" + getUsername());
+        remainArchives.setUpdateBy(getUsername());
         return toAjax(remainArchivesService.updateRemainArchives(remainArchives));
     }
 
