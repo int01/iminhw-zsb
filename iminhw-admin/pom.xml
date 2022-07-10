@@ -43,21 +43,37 @@
             <groupId>com.minhw</groupId>
             <artifactId>iminhw-common</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.minhw</groupId>
-            <artifactId>iminhw-framework</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.minhw</groupId>
-            <artifactId>iminhw-generator</artifactId>
-        </dependency>
+        <!-- 定时任务-->
         <dependency>
             <groupId>com.minhw</groupId>
             <artifactId>iminhw-quartz</artifactId>
         </dependency>
+
+        <!-- 代码生成-->
+        <dependency>
+            <groupId>com.minhw</groupId>
+            <artifactId>iminhw-generator</artifactId>
+        </dependency>
+
+        <!-- 核心模块-->
+        <dependency>
+            <groupId>com.minhw</groupId>
+            <artifactId>iminhw-framework</artifactId>
+        </dependency>
+
+        <!-- 系统模块-->
+        <dependency>
+            <groupId>com.minhw</groupId>
+            <artifactId>iminhw-system</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.minhw</groupId>
             <artifactId>iminhw-archives</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.minhw</groupId>
+            <artifactId>iminhw-stu</artifactId>
         </dependency>
     </dependencies>
 

@@ -23,6 +23,7 @@
         <module>iminhw-framework</module>
         <module>iminhw-quartz</module>
         <module>iminhw-archives</module>
+        <module>iminhw-stu</module>
     </modules>
 
     <properties>
@@ -163,6 +164,11 @@
                 <version>${kaptcha.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.minhw</groupId>
+                <artifactId>iminhw-common</artifactId>
+                <version>1.0</version>
+            </dependency>
             <!-- 定时任务-->
             <dependency>
                 <groupId>com.minhw</groupId>
@@ -191,19 +197,16 @@
                 <version>1.0</version>
             </dependency>
 
-            <!-- 通用工具-->
-            <dependency>
-                <groupId>com.minhw</groupId>
-                <artifactId>iminhw-common</artifactId>
-                <version>1.0</version>
-            </dependency>
-
             <dependency>
                 <groupId>com.minhw</groupId>
                 <artifactId>iminhw-archives</artifactId>
                 <version>1.0</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.minhw</groupId>
+                <artifactId>iminhw-stu</artifactId>
+                <version>1.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
