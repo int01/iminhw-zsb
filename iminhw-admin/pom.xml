@@ -60,7 +60,6 @@
             <groupId>com.minhw</groupId>
             <artifactId>iminhw-framework</artifactId>
         </dependency>
-
         <!-- 系统模块-->
         <dependency>
             <groupId>com.minhw</groupId>

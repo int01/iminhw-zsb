@@ -16,7 +16,7 @@ public class InArchivesClass extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 学号 */
-    @Excel(name = "学号")
+    @Excel(name = "学号", prompt="必填项")
     private String xuehao;
 
     /** 序号 */

@@ -58,4 +58,6 @@ public interface IStuMatriculateService
      * @return 结果
      */
     public int deleteStuMatriculateByKsh(String ksh);
+
+    String importStuMatriculate(List<StuMatriculate> stuMatriculateList, boolean isUpdateSupport, String operName);
 }

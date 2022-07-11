@@ -16,7 +16,7 @@ public class StuMatriculate extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 考生号 */
-    @Excel(name = "考生号")
+    @Excel(name = "考生号", prompt="必填项")
     private String ksh;
 
     /** 身份证号 */
@@ -36,11 +36,11 @@ public class StuMatriculate extends BaseEntity
     private String lxdh;
 
     /** 邮件地址 */
-    @Excel(name = "邮件地址")
+    @Excel(name = "地址")
     private String dz;
 
     /** 数据状态 */
-    @Excel(name = "数据状态")
+    @Excel(name = "数据状态", dictType = "data_status")
     private Long status;
 
     public void setKsh(String ksh) 
@@ -107,21 +107,33 @@ public class StuMatriculate extends BaseEntity
         return status;
     }
 
+//    @Override
+//    public String toString() {
+//        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+//            .append("ksh", getKsh())
+//            .append("sfzh", getSfzh())
+//            .append("xm", getXm())
+//            .append("zy", getZy())
+//            .append("lxdh", getLxdh())
+//            .append("dz", getDz())
+//            .append("status", getStatus())
+//            .append("createBy", getCreateBy())
+//            .append("updateBy", getUpdateBy())
+//            .append("remark", getRemark())
+//            .append("updateTime", getUpdateTime())
+//            .append("createTime", getCreateTime())
+//            .toString();
+//    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("ksh", getKsh())
-            .append("sfzh", getSfzh())
-            .append("xm", getXm())
-            .append("zy", getZy())
-            .append("lxdh", getLxdh())
-            .append("dz", getDz())
-            .append("status", getStatus())
-            .append("createBy", getCreateBy())
-            .append("updateBy", getUpdateBy())
-            .append("remark", getRemark())
-            .append("updateTime", getUpdateTime())
-            .append("createTime", getCreateTime())
-            .toString();
+        return "录取数据{" +
+                "考生号='" + ksh + '\'' +
+                ", 身份证号='" + sfzh + '\'' +
+                ", 姓名='" + xm + '\'' +
+                ", 专业='" + zy + '\'' +
+                ", 联系电话='" + lxdh + '\'' +
+                ", 地址='" + dz + '\''
+                ;
     }
 }

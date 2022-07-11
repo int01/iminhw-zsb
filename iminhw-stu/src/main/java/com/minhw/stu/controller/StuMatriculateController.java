@@ -11,6 +11,7 @@ import com.minhw.stu.service.IStuMatriculateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -89,5 +90,22 @@ public class StuMatriculateController extends BaseController {
     @DeleteMapping("/{kshs}")
     public AjaxResult remove(@PathVariable String[] kshs) {
         return toAjax(stuMatriculateService.deleteStuMatriculateByKshs(kshs));
+    }
+
+    @Log(title = "邮寄档案" , businessType = BusinessType.IMPORT)
+    @PreAuthorize("@ss.hasPermi('archives:ems:import')")
+    @PostMapping("/importData")
+    public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
+        ExcelUtil<StuMatriculate> util = new ExcelUtil<>(StuMatriculate.class);
+        List<StuMatriculate> stuMatriculateList = util.importExcel(file.getInputStream());
+        String operName = getUsername();
+        String message = stuMatriculateService.importStuMatriculate(stuMatriculateList, updateSupport, operName);
+        return AjaxResult.success(message);
+    }
+
+    @PostMapping("/importTemplate")
+    public void importTemplate(HttpServletResponse response) {
+        ExcelUtil<StuMatriculate> util = new ExcelUtil<>(StuMatriculate.class);
+        util.importTemplateExcel(response, "录取数据");
     }
 }

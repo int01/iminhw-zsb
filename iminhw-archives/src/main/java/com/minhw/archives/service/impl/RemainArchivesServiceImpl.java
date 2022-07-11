@@ -29,7 +29,7 @@ public class RemainArchivesServiceImpl implements IRemainArchivesService {
     @Autowired
     protected Validator validator;
 
-    private static final Logger log = LoggerFactory.getLogger(InArchivesEmsServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(RemainArchivesServiceImpl.class);
 
     /**
      * 查询剩余档案
