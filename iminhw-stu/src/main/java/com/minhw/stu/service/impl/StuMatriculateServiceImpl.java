@@ -60,6 +60,9 @@ public class StuMatriculateServiceImpl implements IStuMatriculateService {
      */
     @Override
     public int insertStuMatriculate(StuMatriculate stuMatriculate) {
+        if (StringUtils.isNotNull(stuMatriculateMapper.selectStuMatriculateByKsh(stuMatriculate.getKsh()))) {
+            throw new ServiceException("考生号不允许重复");
+        }
         stuMatriculate.setCreateTime(DateUtils.getNowDate());
         return stuMatriculateMapper.insertStuMatriculate(stuMatriculate);
     }

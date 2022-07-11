@@ -3,7 +3,9 @@ package com.minhw.archives.service.impl;
 import com.minhw.archives.domain.InArchivesClass;
 import com.minhw.archives.mapper.InArchivesClassMapper;
 import com.minhw.archives.service.IInArchivesClassService;
+import com.minhw.common.exception.ServiceException;
 import com.minhw.common.utils.DateUtils;
+import com.minhw.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +52,9 @@ public class InArchivesClassServiceImpl implements IInArchivesClassService {
      */
     @Override
     public int insertInArchivesClass(InArchivesClass inArchivesClass) {
+        if (StringUtils.isNotNull(inArchivesClassMapper.selectInArchivesClassByXuehao(inArchivesClass.getXuehao()))) {
+            throw new ServiceException("学号不允许重复");
+        }
         inArchivesClass.setCreateTime(DateUtils.getNowDate());
         return inArchivesClassMapper.insertInArchivesClass(inArchivesClass);
     }
