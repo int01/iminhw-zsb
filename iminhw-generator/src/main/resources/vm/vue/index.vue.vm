@@ -362,7 +362,7 @@ const ${subclassName}List = ref([]);
 const open = ref(false);
 const loading = ref(true);
 const showSearch = ref(true);
-const ids = ref([]);
+const rowIds = ref([]);
 #if($table.sub)
 const checked${subClassName} = ref([]);
 #end
@@ -477,7 +477,7 @@ function resetQuery() {
 
 // 多选框选中数据
 function handleSelectionChange(selection) {
-  ids.value = selection.map(item => item.${pkColumn.javaField});
+  rowIds.value = selection.map(item => item.${pkColumn.javaField});
   single.value = selection.length != 1;
   multiple.value = !selection.length;
 }
@@ -492,7 +492,7 @@ function handleAdd() {
 /** 修改按钮操作 */
 function handleUpdate(row) {
   reset();
-  const ${pkColumn.javaField} = row.${pkColumn.javaField} || ids.value
+  const ${pkColumn.javaField} = row.${pkColumn.javaField} || rowIds.value
   get${BusinessName}(${pkColumn.javaField}).then(response => {
     form.value = response.data;
 #foreach ($column in $columns)
@@ -539,7 +539,7 @@ function submitForm() {
 
 /** 删除按钮操作 */
 function handleDelete(row) {
-  const ${pkColumn.javaField}s = row.${pkColumn.javaField} || ids.value;
+  const ${pkColumn.javaField}s = row.${pkColumn.javaField} || rowIds.value;
   proxy.#[[$modal]]#.confirm('是否确认删除${functionName}编号为"' + ${pkColumn.javaField}s + '"的数据项？').then(function() {
     return del${BusinessName}(${pkColumn.javaField}s);
   }).then(() => {
