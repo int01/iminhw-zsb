@@ -5,24 +5,24 @@ import com.minhw.common.core.domain.BaseEntity;
 
 /**
  * 通知书邮寄记录对象 stu_out_notification
- * 这里的Excel操作主要提供给热敏打印机的数据导入
+ * 这里的Excel操作主要提供给针式打印的导入  导出也使用此模版
  *
  * @author iminhw
  * @date 2022-07-12
  */
-public class StuOutNotification extends BaseEntity {
+public class StuOutNotificationStylusPrinting extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
      * 考生号
      */
-    @Excel(prompt = "考生号，不可重复", name = "*配货单号")
+    @Excel(prompt = "考生号，不可重复", name = "内件品名")
     private String ksh;
 
     /**
      * 快递单号
      */
-    @Excel(prompt = "快递单号", name = "邮件号")
+    @Excel(name = "快递单号")
     private String kddh;
 
     /**
@@ -34,13 +34,13 @@ public class StuOutNotification extends BaseEntity {
     /**
      * 邮政编码
      */
-//    @Excel(name = "邮政编码")
+    @Excel(name = "收件人邮编", prompt = "邮政编码")
     private String yzbh;
 
     /**
      * 联系电话
      */
-    @Excel(prompt = "联系电话", name = "*收件人联系方式")
+    @Excel(prompt = "联系电话", name = "*收件人电话/手机")
     private String lxdh;
 
     /**
@@ -57,20 +57,6 @@ public class StuOutNotification extends BaseEntity {
 
     @Excel(name = "备注")
     private String remark;
-
-    public StuOutNotification() {
-    }
-
-    public StuOutNotification(String ksh, String kddh, String xm, String yzbh, String lxdh, String yjdz, Long status, String remark) {
-        this.ksh = ksh;
-        this.kddh = kddh;
-        this.xm = xm;
-        this.yzbh = yzbh;
-        this.lxdh = lxdh;
-        this.yjdz = yjdz;
-        this.status = status;
-        this.remark = remark;
-    }
 
     @Override
     public String toString() {

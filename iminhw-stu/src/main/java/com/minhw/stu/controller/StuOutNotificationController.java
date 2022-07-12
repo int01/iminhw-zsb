@@ -7,6 +7,7 @@ import com.minhw.common.core.page.TableDataInfo;
 import com.minhw.common.enums.BusinessType;
 import com.minhw.common.utils.poi.ExcelUtil;
 import com.minhw.stu.domain.StuOutNotification;
+import com.minhw.stu.domain.StuOutNotificationStylusPrinting;
 import com.minhw.stu.service.IStuOutNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -93,6 +94,13 @@ public class StuOutNotificationController extends BaseController {
     }
 
 
+    /**
+     * 热敏
+     * @param file
+     * @param updateSupport
+     * @return
+     * @throws Exception
+     */
     @Log(title = "通知书邮寄记录", businessType = BusinessType.IMPORT)
     @PreAuthorize("@ss.hasPermi('stu:notification:import')")
     @PostMapping("/importData")
@@ -104,9 +112,34 @@ public class StuOutNotificationController extends BaseController {
         return AjaxResult.success(message);
     }
 
+    /**
+     * 热敏模版
+     * @param response
+     */
     @PostMapping("/importTemplate")
     public void importTemplate(HttpServletResponse response) {
         ExcelUtil<StuOutNotification> util = new ExcelUtil<>(StuOutNotification.class);
-        util.importTemplateExcel(response, "通知书邮寄记录数据");
+        util.importTemplateExcel(response, "通知书邮寄记录");
+    }
+
+    @Log(title = "通知书邮寄记录", businessType = BusinessType.IMPORT)
+    @PreAuthorize("@ss.hasPermi('stu:notification:import')")
+    @PostMapping("/importStylusPrintingData")
+    public AjaxResult imporStylusPrintingtData(MultipartFile file, boolean updateSupport) throws Exception {
+        ExcelUtil<StuOutNotificationStylusPrinting> util = new ExcelUtil<>(StuOutNotificationStylusPrinting.class);
+        List<StuOutNotificationStylusPrinting> stuOutNotificationStylusPrintingList = util.importExcel(file.getInputStream());
+        String operName = getUsername();
+        String message = stuOutNotificationService.importStuOutNotificationStylusPrinting(stuOutNotificationStylusPrintingList, updateSupport, operName);
+        return AjaxResult.success(message);
+    }
+
+    /**
+     * 针
+     * @param response
+     */
+    @PostMapping("/importStylusPrintingTemplate")
+    public void importStylusPrintingTemplate(HttpServletResponse response) {
+        ExcelUtil<StuOutNotification> util = new ExcelUtil<>(StuOutNotification.class);
+        util.importTemplateExcel(response, "通知书邮寄记录");
     }
 }

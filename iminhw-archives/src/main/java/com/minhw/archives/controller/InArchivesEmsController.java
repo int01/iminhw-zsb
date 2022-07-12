@@ -108,7 +108,7 @@ public class InArchivesEmsController extends BaseController {
     @PostMapping("/importTemplate")
     public void importTemplate(HttpServletResponse response) {
         ExcelUtil<InArchivesEms> util = new ExcelUtil<InArchivesEms>(InArchivesEms.class);
-        util.importTemplateExcel(response, "快递单号数据");
+        util.importTemplateExcel(response, "收到快递档案");
     }
 
     @PreAuthorize("@ss.hasPermi('archives:ems:verify')")

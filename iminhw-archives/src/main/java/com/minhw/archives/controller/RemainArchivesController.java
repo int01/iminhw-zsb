@@ -106,6 +106,6 @@ public class RemainArchivesController extends BaseController {
     @PostMapping("/importTemplate")
     public void importTemplate(HttpServletResponse response) {
         ExcelUtil<RemainArchives> util = new ExcelUtil<>(RemainArchives.class);
-        util.importTemplateExcel(response, "剩余档案数据");
+        util.importTemplateExcel(response, "剩余档案");
     }
 }

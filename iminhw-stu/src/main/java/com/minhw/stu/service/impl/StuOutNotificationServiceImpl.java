@@ -5,6 +5,7 @@ import com.minhw.common.utils.DateUtils;
 import com.minhw.common.utils.StringUtils;
 import com.minhw.common.utils.bean.BeanValidators;
 import com.minhw.stu.domain.StuOutNotification;
+import com.minhw.stu.domain.StuOutNotificationStylusPrinting;
 import com.minhw.stu.mapper.StuOutNotificationMapper;
 import com.minhw.stu.service.IStuOutNotificationService;
 import org.slf4j.Logger;
@@ -111,6 +112,66 @@ public class StuOutNotificationServiceImpl implements IStuOutNotificationService
         StringBuilder successMsg = new StringBuilder();
         StringBuilder failureMsg = new StringBuilder();
         for (StuOutNotification stuOutNotification : stuOutNotificationList) {
+            try {
+                if (StringUtils.isNotEmpty(stuOutNotification.getKsh())) {
+                    // 验证是否存在
+                    StuOutNotification ot = stuOutNotificationMapper.selectStuOutNotificationByKsh(stuOutNotification.getKsh());
+                    if (StringUtils.isNull(ot)) {
+                        BeanValidators.validateWithException(validator, stuOutNotification);
+                        stuOutNotification.setCreateBy(operName);
+                        this.insertStuOutNotification(stuOutNotification);
+                        successNum++;
+                        successMsg.append("<br/>" + successNum + "、 " + stuOutNotification + " 导入成功");
+                    } else if (isUpdateSupport) {
+                        BeanValidators.validateWithException(validator, stuOutNotification);
+                        stuOutNotification.setUpdateBy(operName);
+                        this.updateStuOutNotification(stuOutNotification);
+                        successNum++;
+                        successMsg.append("<br/>" + successNum + "、 " + stuOutNotification + " 更新成功");
+                    } else {
+                        failureNum++;
+                        failureMsg.append("<br/>" + failureNum + "、 " + stuOutNotification + " 已存在");
+                    }
+                } else {
+                    failureNum++;
+                    failureMsg.append("<br/>" + failureNum + "、 " + stuOutNotification + " 考生号为空");
+                }
+            } catch (Exception e) {
+                failureNum++;
+                String msg = "<br/>" + failureNum + "、 " + stuOutNotification + " 导入失败：";
+                failureMsg.append(msg + e.getMessage());
+                log.error(msg, e);
+            }
+        }
+        if (failureNum > 0) {
+            failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据异常，错误如下：");
+            throw new ServiceException(failureMsg.toString());
+        } else {
+            successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
+        }
+        return successMsg.toString();
+    }
+
+    @Override
+    public String importStuOutNotificationStylusPrinting(List<StuOutNotificationStylusPrinting> stuOutNotificationSPList, boolean isUpdateSupport, String operName) {
+        if (StringUtils.isNull(stuOutNotificationSPList) || stuOutNotificationSPList.size() == 0) {
+            throw new ServiceException("导入通知书邮寄记录数据不能为空！");
+        }
+        int successNum = 0;
+        int failureNum = 0;
+        StringBuilder successMsg = new StringBuilder();
+        StringBuilder failureMsg = new StringBuilder();
+        for (StuOutNotificationStylusPrinting stuONSP : stuOutNotificationSPList) {
+            StuOutNotification stuOutNotification = new StuOutNotification(
+                    stuONSP.getKsh(),
+                    stuONSP.getKddh(),
+                    stuONSP.getXm(),
+                    stuONSP.getYzbh(),
+                    stuONSP.getLxdh(),
+                    stuONSP.getYjdz(),
+                    stuONSP.getStatus(),
+                    stuONSP.getRemark()
+            );
             try {
                 if (StringUtils.isNotEmpty(stuOutNotification.getKsh())) {
                     // 验证是否存在

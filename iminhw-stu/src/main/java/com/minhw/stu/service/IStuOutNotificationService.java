@@ -1,6 +1,7 @@
 package com.minhw.stu.service;
 
 import com.minhw.stu.domain.StuOutNotification;
+import com.minhw.stu.domain.StuOutNotificationStylusPrinting;
 
 import java.util.List;
 
@@ -61,4 +62,5 @@ public interface IStuOutNotificationService {
 
     String importStuOutNotification(List<StuOutNotification> stuOutNotificationList, boolean isUpdateSupport, String operName);
 
+    String importStuOutNotificationStylusPrinting(List<StuOutNotificationStylusPrinting> stuOutNotificationStylusPrintingList, boolean isUpdateSupport, String operName);
 }
