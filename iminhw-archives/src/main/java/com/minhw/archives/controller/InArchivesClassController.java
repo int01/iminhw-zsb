@@ -42,7 +42,7 @@ public class InArchivesClassController extends BaseController {
      * 导出档案收集列表
      */
     @PreAuthorize("@ss.hasPermi('archives:class:export')")
-    @Log(title = "档案收集" , businessType = BusinessType.EXPORT)
+    @Log(title = "档案收集", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, InArchivesClass inArchivesClass) {
         List<InArchivesClass> list = inArchivesClassService.selectInArchivesClassList(inArchivesClass);
@@ -63,7 +63,7 @@ public class InArchivesClassController extends BaseController {
      * 新增档案收集
      */
     @PreAuthorize("@ss.hasPermi('archives:class:add')")
-    @Log(title = "档案收集" , businessType = BusinessType.INSERT)
+    @Log(title = "档案收集", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody InArchivesClass inArchivesClass) {
         inArchivesClass.setCreateBy(getUsername());
@@ -74,7 +74,7 @@ public class InArchivesClassController extends BaseController {
      * 修改档案收集
      */
     @PreAuthorize("@ss.hasPermi('archives:class:edit')")
-    @Log(title = "档案收集" , businessType = BusinessType.UPDATE)
+    @Log(title = "档案收集", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesClass inArchivesClass) {
         inArchivesClass.setUpdateBy(getUsername());
@@ -85,7 +85,7 @@ public class InArchivesClassController extends BaseController {
      * 删除档案收集
      */
     @PreAuthorize("@ss.hasPermi('archives:class:remove')")
-    @Log(title = "档案收集" , businessType = BusinessType.DELETE)
+    @Log(title = "档案收集", businessType = BusinessType.DELETE)
     @DeleteMapping("/{xuehaos}")
     public AjaxResult remove(@PathVariable String[] xuehaos) {
         return toAjax(inArchivesClassService.deleteInArchivesClassByXuehaos(xuehaos));

@@ -1,19 +1,19 @@
 package com.minhw.stu.service;
 
-import java.util.List;
 import com.minhw.stu.domain.StuMatriculate;
+
+import java.util.List;
 
 /**
  * 录取数据Service接口
- * 
+ *
  * @author iminhw
  * @date 2022-07-11
  */
-public interface IStuMatriculateService 
-{
+public interface IStuMatriculateService {
     /**
      * 查询录取数据
-     * 
+     *
      * @param ksh 录取数据主键
      * @return 录取数据
      */
@@ -21,7 +21,7 @@ public interface IStuMatriculateService
 
     /**
      * 查询录取数据列表
-     * 
+     *
      * @param stuMatriculate 录取数据
      * @return 录取数据集合
      */
@@ -29,7 +29,7 @@ public interface IStuMatriculateService
 
     /**
      * 新增录取数据
-     * 
+     *
      * @param stuMatriculate 录取数据
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface IStuMatriculateService
 
     /**
      * 修改录取数据
-     * 
+     *
      * @param stuMatriculate 录取数据
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface IStuMatriculateService
 
     /**
      * 批量删除录取数据
-     * 
+     *
      * @param kshs 需要删除的录取数据主键集合
      * @return 结果
      */
@@ -53,7 +53,7 @@ public interface IStuMatriculateService
 
     /**
      * 删除录取数据信息
-     * 
+     *
      * @param ksh 录取数据主键
      * @return 结果
      */

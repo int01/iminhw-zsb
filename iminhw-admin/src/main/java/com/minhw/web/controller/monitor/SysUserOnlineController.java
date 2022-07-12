@@ -2,7 +2,6 @@ package com.minhw.web.controller.monitor;
 
 import com.minhw.common.annotation.Log;
 import com.minhw.common.constant.CacheConstants;
-import com.minhw.common.constant.Constants;
 import com.minhw.common.core.controller.BaseController;
 import com.minhw.common.core.domain.AjaxResult;
 import com.minhw.common.core.domain.model.LoginUser;

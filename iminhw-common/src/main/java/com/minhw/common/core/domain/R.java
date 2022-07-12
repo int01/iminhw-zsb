@@ -10,10 +10,14 @@ import java.io.Serializable;
  * @author minhw
  */
 public class R<T> implements Serializable {
-    /** 成功 */
+    /**
+     * 成功
+     */
     public static final int SUCCESS = HttpStatus.SUCCESS;
 
-    /** 失败 */
+    /**
+     * 失败
+     */
     public static final int FAIL = HttpStatus.ERROR;
 
     private static final long serialVersionUID = 1L;

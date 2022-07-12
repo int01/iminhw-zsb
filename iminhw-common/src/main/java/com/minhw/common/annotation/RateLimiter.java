@@ -1,7 +1,6 @@
 package com.minhw.common.annotation;
 
 import com.minhw.common.constant.CacheConstants;
-import com.minhw.common.constant.Constants;
 import com.minhw.common.enums.LimitType;
 
 import java.lang.annotation.*;

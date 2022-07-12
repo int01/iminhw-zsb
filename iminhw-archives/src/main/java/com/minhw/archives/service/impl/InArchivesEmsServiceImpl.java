@@ -25,10 +25,9 @@ import java.util.List;
 public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
     private static final Logger log = LoggerFactory.getLogger(InArchivesEmsServiceImpl.class);
     @Autowired
-    private InArchivesEmsMapper inArchivesEmsMapper;
-
-    @Autowired
     protected Validator validator;
+    @Autowired
+    private InArchivesEmsMapper inArchivesEmsMapper;
 
     /**
      * 查询邮寄档案

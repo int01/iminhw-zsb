@@ -1,110 +1,113 @@
 package com.minhw.stu.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.minhw.common.annotation.Excel;
 import com.minhw.common.core.domain.BaseEntity;
 
 /**
  * 录取数据对象 stu_matriculate
- * 
+ *
  * @author iminhw
  * @date 2022-07-11
  */
-public class StuMatriculate extends BaseEntity
-{
+public class StuMatriculate extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** 考生号 */
-    @Excel(name = "考生号", prompt="必填项")
+    /**
+     * 考生号
+     */
+    @Excel(name = "考生号", prompt = "必填项")
     private String ksh;
 
-    /** 身份证号 */
+    /**
+     * 身份证号
+     */
     @Excel(name = "身份证号")
     private String sfzh;
 
-    /** 姓名 */
+    /**
+     * 姓名
+     */
     @Excel(name = "姓名")
     private String xm;
 
-    /** 录取专业 */
+    /**
+     * 录取专业
+     */
     @Excel(name = "录取专业")
     private String zy;
 
-    /** 联系电话 */
+    /**
+     * 联系电话
+     */
     @Excel(name = "联系电话")
     private String lxdh;
 
-    /** 邮件地址 */
+    /**
+     * 邮件地址
+     */
     @Excel(name = "地址")
     private String dz;
 
-    /** 数据状态 */
+    /**
+     * 数据状态
+     */
     @Excel(name = "数据状态", dictType = "data_status")
     private Long status;
 
-    public void setKsh(String ksh) 
-    {
+    public String getKsh() {
+        return ksh;
+    }
+
+    public void setKsh(String ksh) {
         this.ksh = ksh;
     }
 
-    public String getKsh() 
-    {
-        return ksh;
+    public String getSfzh() {
+        return sfzh;
     }
-    public void setSfzh(String sfzh) 
-    {
+
+    public void setSfzh(String sfzh) {
         this.sfzh = sfzh;
     }
 
-    public String getSfzh() 
-    {
-        return sfzh;
+    public String getXm() {
+        return xm;
     }
-    public void setXm(String xm) 
-    {
+
+    public void setXm(String xm) {
         this.xm = xm;
     }
 
-    public String getXm() 
-    {
-        return xm;
+    public String getZy() {
+        return zy;
     }
-    public void setZy(String zy) 
-    {
+
+    public void setZy(String zy) {
         this.zy = zy;
     }
 
-    public String getZy() 
-    {
-        return zy;
+    public String getLxdh() {
+        return lxdh;
     }
-    public void setLxdh(String lxdh) 
-    {
+
+    public void setLxdh(String lxdh) {
         this.lxdh = lxdh;
     }
 
-    public String getLxdh() 
-    {
-        return lxdh;
+    public String getDz() {
+        return dz;
     }
-    public void setDz(String dz) 
-    {
+
+    public void setDz(String dz) {
         this.dz = dz;
     }
 
-    public String getDz() 
-    {
-        return dz;
-    }
-    public void setStatus(Long status) 
-    {
-        this.status = status;
+    public Long getStatus() {
+        return status;
     }
 
-    public Long getStatus() 
-    {
-        return status;
+    public void setStatus(Long status) {
+        this.status = status;
     }
 
 //    @Override

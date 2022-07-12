@@ -2,15 +2,15 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.minhw.stu.mapper.StuMatriculateMapper">
+<mapper namespace="com.minhw.stu.mapper.StuOutNotificationMapper">
 
-    <resultMap type="StuMatriculate" id="StuMatriculateResult">
+    <resultMap type="StuOutNotification" id="StuOutNotificationResult">
         <result property="ksh" column="ksh"/>
-        <result property="sfzh" column="sfzh"/>
+        <result property="kddh" column="kddh"/>
         <result property="xm" column="xm"/>
-        <result property="zy" column="zy"/>
+        <result property="yzbh" column="yzbh"/>
         <result property="lxdh" column="lxdh"/>
-        <result property="dz" column="dz"/>
+        <result property="yjdz" column="yjdz"/>
         <result property="status" column="status"/>
         <result property="createBy" column="create_by"/>
         <result property="updateBy" column="update_by"/>
@@ -19,29 +19,29 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
-    <sql id="selectStuMatriculateVo">
+    <sql id="selectStuOutNotificationVo">
         select ksh,
-               sfzh,
+               kddh,
                xm,
-               zy,
+               yzbh,
                lxdh,
-               dz,
+               yjdz,
                status,
                create_by,
                update_by,
                remark,
                update_time,
                create_time
-        from stu_matriculate
+        from stu_out_notification
     </sql>
 
-    <select id="selectStuMatriculateList" parameterType="StuMatriculate" resultMap="StuMatriculateResult">
-        <include refid="selectStuMatriculateVo"/>
+    <select id="selectStuOutNotificationList" parameterType="StuOutNotification" resultMap="StuOutNotificationResult">
+        <include refid="selectStuOutNotificationVo"/>
         <where>
-            <if test="ksh != null  and ksh != ''">and ksh like concat('%', #{ksh}, '%')</if>
-            <if test="sfzh != null  and sfzh != ''">and sfzh like concat('%', #{sfzh}, '%')</if>
+            <if test="ksh != null  and ksh != ''">and ksh = #{ksh}</if>
+            <if test="kddh != null  and kddh != ''">and kddh like concat('%', #{kddh}, '%')</if>
             <if test="xm != null  and xm != ''">and xm like concat('%', #{xm}, '%')</if>
-            <if test="zy != null  and zy != ''">and zy like concat('%', #{zy}, '%')</if>
+            <if test="lxdh != null  and lxdh != ''">and lxdh like concat('%', #{lxdh}, '%')</if>
             <if test="status != null ">and status = #{status}</if>
             <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''">
                 and create_time between #{params.beginCreateTime} and #{params.endCreateTime}
@@ -49,20 +49,20 @@
         </where>
     </select>
 
-    <select id="selectStuMatriculateByKsh" parameterType="String" resultMap="StuMatriculateResult">
-        <include refid="selectStuMatriculateVo"/>
+    <select id="selectStuOutNotificationByKsh" parameterType="String" resultMap="StuOutNotificationResult">
+        <include refid="selectStuOutNotificationVo"/>
         where ksh = #{ksh}
     </select>
 
-    <insert id="insertStuMatriculate" parameterType="StuMatriculate">
-        insert into stu_matriculate
+    <insert id="insertStuOutNotification" parameterType="StuOutNotification">
+        insert into stu_out_notification
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="ksh != null">ksh,</if>
-            <if test="sfzh != null">sfzh,</if>
-            <if test="xm != null">xm,</if>
-            <if test="zy != null">zy,</if>
-            <if test="lxdh != null">lxdh,</if>
-            <if test="dz != null">dz,</if>
+            <if test="ksh != null and ksh != ''">ksh,</if>
+            <if test="kddh != null and kddh != ''">kddh,</if>
+            <if test="xm != null and xm != ''">xm,</if>
+            <if test="yzbh != null">yzbh,</if>
+            <if test="lxdh != null and lxdh != ''">lxdh,</if>
+            <if test="yjdz != null and yjdz != ''">yjdz,</if>
             <if test="status != null">status,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateBy != null">update_by,</if>
@@ -71,12 +71,12 @@
             <if test="createTime != null">create_time,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="ksh != null">#{ksh},</if>
-            <if test="sfzh != null">#{sfzh},</if>
-            <if test="xm != null">#{xm},</if>
-            <if test="zy != null">#{zy},</if>
-            <if test="lxdh != null">#{lxdh},</if>
-            <if test="dz != null">#{dz},</if>
+            <if test="ksh != null and ksh != ''">#{ksh},</if>
+            <if test="kddh != null and kddh != ''">#{kddh},</if>
+            <if test="xm != null and xm != ''">#{xm},</if>
+            <if test="yzbh != null">#{yzbh},</if>
+            <if test="lxdh != null and lxdh != ''">#{lxdh},</if>
+            <if test="yjdz != null and yjdz != ''">#{yjdz},</if>
             <if test="status != null">#{status},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -86,14 +86,14 @@
         </trim>
     </insert>
 
-    <update id="updateStuMatriculate" parameterType="StuMatriculate">
-        update stu_matriculate
+    <update id="updateStuOutNotification" parameterType="StuOutNotification">
+        update stu_out_notification
         <trim prefix="SET" suffixOverrides=",">
-            <if test="sfzh != null">sfzh = #{sfzh},</if>
-            <if test="xm != null">xm = #{xm},</if>
-            <if test="zy != null">zy = #{zy},</if>
-            <if test="lxdh != null">lxdh = #{lxdh},</if>
-            <if test="dz != null">dz = #{dz},</if>
+            <if test="kddh != null and kddh != ''">kddh = #{kddh},</if>
+            <if test="xm != null and xm != ''">xm = #{xm},</if>
+            <if test="yzbh != null">yzbh = #{yzbh},</if>
+            <if test="lxdh != null and lxdh != ''">lxdh = #{lxdh},</if>
+            <if test="yjdz != null and yjdz != ''">yjdz = #{yjdz},</if>
             <if test="status != null">status = #{status},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
@@ -104,14 +104,14 @@
         where ksh = #{ksh}
     </update>
 
-    <delete id="deleteStuMatriculateByKsh" parameterType="String">
+    <delete id="deleteStuOutNotificationByKsh" parameterType="String">
         delete
-        from stu_matriculate
+        from stu_out_notification
         where ksh = #{ksh}
     </delete>
 
-    <delete id="deleteStuMatriculateByKshs" parameterType="String">
-        delete from stu_matriculate where ksh in
+    <delete id="deleteStuOutNotificationByKshs" parameterType="String">
+        delete from stu_out_notification where ksh in
         <foreach item="ksh" collection="array" open="(" separator="," close=")">
             #{ksh}
         </foreach>

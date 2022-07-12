@@ -7,7 +7,6 @@ import com.minhw.common.core.controller.BaseController;
 import com.minhw.common.core.domain.AjaxResult;
 import com.minhw.common.core.page.TableDataInfo;
 import com.minhw.common.enums.BusinessType;
-import com.minhw.common.utils.StringUtils;
 import com.minhw.common.utils.poi.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -45,7 +44,7 @@ public class InArchivesEmsController extends BaseController {
      * 导出邮寄档案列表
      */
     @PreAuthorize("@ss.hasPermi('archives:ems:export')")
-    @Log(title = "邮寄档案" , businessType = BusinessType.EXPORT)
+    @Log(title = "邮寄档案", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, InArchivesEms inArchivesEms) {
         List<InArchivesEms> list = inArchivesEmsService.selectInArchivesEmsList(inArchivesEms);
@@ -66,7 +65,7 @@ public class InArchivesEmsController extends BaseController {
      * 新增邮寄档案
      */
     @PreAuthorize("@ss.hasPermi('archives:ems:add')")
-    @Log(title = "邮寄档案" , businessType = BusinessType.INSERT)
+    @Log(title = "邮寄档案", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody InArchivesEms inArchivesEms) {
         inArchivesEms.setCreateBy(getUsername());
@@ -78,7 +77,7 @@ public class InArchivesEmsController extends BaseController {
      * 修改邮寄档案
      */
     @PreAuthorize("@ss.hasPermi('archives:ems:edit')")
-    @Log(title = "邮寄档案" , businessType = BusinessType.UPDATE)
+    @Log(title = "邮寄档案", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesEms inArchivesEms) {
         inArchivesEms.setUpdateBy(getUsername());
@@ -89,13 +88,13 @@ public class InArchivesEmsController extends BaseController {
      * 删除邮寄档案
      */
     @PreAuthorize("@ss.hasPermi('archives:ems:remove')")
-    @Log(title = "邮寄档案" , businessType = BusinessType.DELETE)
+    @Log(title = "邮寄档案", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids) {
         return toAjax(inArchivesEmsService.deleteInArchivesEmsByIds(ids));
     }
 
-    @Log(title = "邮寄档案" , businessType = BusinessType.IMPORT)
+    @Log(title = "邮寄档案", businessType = BusinessType.IMPORT)
     @PreAuthorize("@ss.hasPermi('archives:ems:import')")
     @PostMapping("/importData")
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
@@ -113,7 +112,7 @@ public class InArchivesEmsController extends BaseController {
     }
 
     @PreAuthorize("@ss.hasPermi('archives:ems:verify')")
-    @Log(title = "邮寄档案" , businessType = BusinessType.UPDATE)
+    @Log(title = "邮寄档案", businessType = BusinessType.UPDATE)
     @PutMapping("/verify")
     public AjaxResult verifyKddh(@RequestBody InArchivesEms inArchivesEms) {
         inArchivesEms.setUpdateBy(getUsername());

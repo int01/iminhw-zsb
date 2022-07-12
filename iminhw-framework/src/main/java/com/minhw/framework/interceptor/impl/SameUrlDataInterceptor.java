@@ -3,7 +3,6 @@ package com.minhw.framework.interceptor.impl;
 import com.alibaba.fastjson2.JSON;
 import com.minhw.common.annotation.RepeatSubmit;
 import com.minhw.common.constant.CacheConstants;
-import com.minhw.common.constant.Constants;
 import com.minhw.common.core.redis.RedisCache;
 import com.minhw.common.filter.RepeatedlyRequestWrapper;
 import com.minhw.common.utils.StringUtils;

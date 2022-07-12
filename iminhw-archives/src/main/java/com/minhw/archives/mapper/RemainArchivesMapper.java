@@ -1,19 +1,19 @@
 package com.minhw.archives.mapper;
 
-import java.util.List;
 import com.minhw.archives.domain.RemainArchives;
+
+import java.util.List;
 
 /**
  * 剩余档案Mapper接口
- * 
+ *
  * @author iminhw
  * @date 2022-07-11
  */
-public interface RemainArchivesMapper 
-{
+public interface RemainArchivesMapper {
     /**
      * 查询剩余档案
-     * 
+     *
      * @param id 剩余档案主键
      * @return 剩余档案
      */
@@ -21,7 +21,7 @@ public interface RemainArchivesMapper
 
     /**
      * 查询剩余档案列表
-     * 
+     *
      * @param remainArchives 剩余档案
      * @return 剩余档案集合
      */
@@ -29,7 +29,7 @@ public interface RemainArchivesMapper
 
     /**
      * 新增剩余档案
-     * 
+     *
      * @param remainArchives 剩余档案
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface RemainArchivesMapper
 
     /**
      * 修改剩余档案
-     * 
+     *
      * @param remainArchives 剩余档案
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface RemainArchivesMapper
 
     /**
      * 删除剩余档案
-     * 
+     *
      * @param id 剩余档案主键
      * @return 结果
      */
@@ -53,7 +53,7 @@ public interface RemainArchivesMapper
 
     /**
      * 批量删除剩余档案
-     * 
+     *
      * @param ids 需要删除的数据主键集合
      * @return 结果
      */

@@ -1,47 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.minhw.archives.mapper.InArchivesClassTempMapper">
-    
+
     <resultMap type="InArchivesClassTemp" id="InArchivesClassTempResult">
-        <result property="id"    column="id"    />
-        <result property="xuehao"    column="xuehao"    />
-        <result property="xh"    column="xh"    />
-        <result property="bj"    column="bj"    />
-        <result property="xm"    column="xm"    />
-        <result property="ksh"    column="ksh"    />
-        <result property="sfzh"    column="sfzh"    />
-        <result property="status"    column="status"    />
-        <result property="createBy"    column="create_by"    />
-        <result property="updateBy"    column="update_by"    />
-        <result property="remark"    column="remark"    />
-        <result property="updateTime"    column="update_time"    />
-        <result property="createTime"    column="create_time"    />
+        <result property="id" column="id"/>
+        <result property="xuehao" column="xuehao"/>
+        <result property="xh" column="xh"/>
+        <result property="bj" column="bj"/>
+        <result property="xm" column="xm"/>
+        <result property="ksh" column="ksh"/>
+        <result property="sfzh" column="sfzh"/>
+        <result property="status" column="status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="remark" column="remark"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createTime" column="create_time"/>
     </resultMap>
 
     <sql id="selectInArchivesClassTempVo">
-        select id, xuehao, xh, bj, xm, ksh, sfzh, status, create_by, update_by, remark, update_time, create_time from in_archives_class_temp
+        select id,
+               xuehao,
+               xh,
+               bj,
+               xm,
+               ksh,
+               sfzh,
+               status,
+               create_by,
+               update_by,
+               remark,
+               update_time,
+               create_time
+        from in_archives_class_temp
     </sql>
 
-    <select id="selectInArchivesClassTempList" parameterType="InArchivesClassTemp" resultMap="InArchivesClassTempResult">
+    <select id="selectInArchivesClassTempList" parameterType="InArchivesClassTemp"
+            resultMap="InArchivesClassTempResult">
         <include refid="selectInArchivesClassTempVo"/>
-        <where>  
-            <if test="xuehao != null  and xuehao != ''"> and xuehao = #{xuehao}</if>
-            <if test="xh != null "> and xh = #{xh}</if>
-            <if test="bj != null  and bj != ''"> and bj like concat('%', #{bj}, '%')</if>
-            <if test="xm != null  and xm != ''"> and xm like concat('%', #{xm}, '%')</if>
-            <if test="ksh != null  and ksh != ''"> and ksh like concat('%', #{ksh}, '%')</if>
-            <if test="sfzh != null  and sfzh != ''"> and sfzh like concat('%', #{sfzh}, '%')</if>
-            <if test="status != null "> and status = #{status}</if>
+        <where>
+            <if test="xuehao != null  and xuehao != ''">and xuehao = #{xuehao}</if>
+            <if test="xh != null ">and xh = #{xh}</if>
+            <if test="bj != null  and bj != ''">and bj like concat('%', #{bj}, '%')</if>
+            <if test="xm != null  and xm != ''">and xm like concat('%', #{xm}, '%')</if>
+            <if test="ksh != null  and ksh != ''">and ksh like concat('%', #{ksh}, '%')</if>
+            <if test="sfzh != null  and sfzh != ''">and sfzh like concat('%', #{sfzh}, '%')</if>
+            <if test="status != null ">and status = #{status}</if>
         </where>
     </select>
-    
+
     <select id="selectInArchivesClassTempById" parameterType="Long" resultMap="InArchivesClassTempResult">
         <include refid="selectInArchivesClassTempVo"/>
         where id = #{id}
     </select>
-        
+
     <insert id="insertInArchivesClassTemp" parameterType="InArchivesClassTemp" useGeneratedKeys="true" keyProperty="id">
         insert into in_archives_class_temp
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -57,7 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="remark != null">remark,</if>
             <if test="updateTime != null">update_time,</if>
             <if test="createTime != null">create_time,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="xuehao != null and xuehao != ''">#{xuehao},</if>
             <if test="xh != null">#{xh},</if>
@@ -71,7 +85,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="remark != null">#{remark},</if>
             <if test="updateTime != null">#{updateTime},</if>
             <if test="createTime != null">#{createTime},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateInArchivesClassTemp" parameterType="InArchivesClassTemp">
@@ -94,11 +108,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteInArchivesClassTempById" parameterType="Long">
-        delete from in_archives_class_temp where id = #{id}
+        delete
+        from in_archives_class_temp
+        where id = #{id}
     </delete>
 
     <delete id="deleteInArchivesClassTempByIds" parameterType="String">
-        delete from in_archives_class_temp where id in 
+        delete from in_archives_class_temp where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

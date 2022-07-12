@@ -1,19 +1,19 @@
 package com.minhw.archives.service;
 
-import java.util.List;
 import com.minhw.archives.domain.InArchivesClassTemp;
+
+import java.util.List;
 
 /**
  * 档案收录缓存Service接口
- * 
+ *
  * @author iminhw
  * @date 2022-07-09
  */
-public interface IInArchivesClassTempService 
-{
+public interface IInArchivesClassTempService {
     /**
      * 查询档案收录缓存
-     * 
+     *
      * @param id 档案收录缓存主键
      * @return 档案收录缓存
      */
@@ -21,7 +21,7 @@ public interface IInArchivesClassTempService
 
     /**
      * 查询档案收录缓存列表
-     * 
+     *
      * @param inArchivesClassTemp 档案收录缓存
      * @return 档案收录缓存集合
      */
@@ -29,7 +29,7 @@ public interface IInArchivesClassTempService
 
     /**
      * 新增档案收录缓存
-     * 
+     *
      * @param inArchivesClassTemp 档案收录缓存
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface IInArchivesClassTempService
 
     /**
      * 修改档案收录缓存
-     * 
+     *
      * @param inArchivesClassTemp 档案收录缓存
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface IInArchivesClassTempService
 
     /**
      * 批量删除档案收录缓存
-     * 
+     *
      * @param ids 需要删除的档案收录缓存主键集合
      * @return 结果
      */
@@ -53,7 +53,7 @@ public interface IInArchivesClassTempService
 
     /**
      * 删除档案收录缓存信息
-     * 
+     *
      * @param id 档案收录缓存主键
      * @return 结果
      */

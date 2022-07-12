@@ -2,7 +2,6 @@ package com.minhw.common.utils;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.minhw.common.constant.CacheConstants;
-import com.minhw.common.constant.Constants;
 import com.minhw.common.core.domain.entity.SysDictData;
 import com.minhw.common.core.redis.RedisCache;
 import com.minhw.common.utils.spring.SpringUtils;

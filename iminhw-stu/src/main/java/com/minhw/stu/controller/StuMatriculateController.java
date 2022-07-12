@@ -43,7 +43,7 @@ public class StuMatriculateController extends BaseController {
      * 导出录取数据列表
      */
     @PreAuthorize("@ss.hasPermi('stu:matriculate:export')")
-    @Log(title = "录取数据" , businessType = BusinessType.EXPORT)
+    @Log(title = "录取数据", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, StuMatriculate stuMatriculate) {
         List<StuMatriculate> list = stuMatriculateService.selectStuMatriculateList(stuMatriculate);
@@ -64,7 +64,7 @@ public class StuMatriculateController extends BaseController {
      * 新增录取数据
      */
     @PreAuthorize("@ss.hasPermi('stu:matriculate:add')")
-    @Log(title = "录取数据" , businessType = BusinessType.INSERT)
+    @Log(title = "录取数据", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody StuMatriculate stuMatriculate) {
         stuMatriculate.setCreateBy(getUsername());
@@ -75,7 +75,7 @@ public class StuMatriculateController extends BaseController {
      * 修改录取数据
      */
     @PreAuthorize("@ss.hasPermi('stu:matriculate:edit')")
-    @Log(title = "录取数据" , businessType = BusinessType.UPDATE)
+    @Log(title = "录取数据", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody StuMatriculate stuMatriculate) {
         stuMatriculate.setUpdateBy(getUsername());
@@ -86,14 +86,14 @@ public class StuMatriculateController extends BaseController {
      * 删除录取数据
      */
     @PreAuthorize("@ss.hasPermi('stu:matriculate:remove')")
-    @Log(title = "录取数据" , businessType = BusinessType.DELETE)
+    @Log(title = "录取数据", businessType = BusinessType.DELETE)
     @DeleteMapping("/{kshs}")
     public AjaxResult remove(@PathVariable String[] kshs) {
         return toAjax(stuMatriculateService.deleteStuMatriculateByKshs(kshs));
     }
 
-    @Log(title = "邮寄档案" , businessType = BusinessType.IMPORT)
-    @PreAuthorize("@ss.hasPermi('archives:ems:import')")
+    @Log(title = "录取数据", businessType = BusinessType.IMPORT)
+    @PreAuthorize("@ss.hasPermi('stu:matriculate:import')")
     @PostMapping("/importData")
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
         ExcelUtil<StuMatriculate> util = new ExcelUtil<>(StuMatriculate.class);

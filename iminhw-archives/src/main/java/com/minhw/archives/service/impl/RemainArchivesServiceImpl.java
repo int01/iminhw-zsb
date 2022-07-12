@@ -23,13 +23,11 @@ import java.util.List;
  */
 @Service
 public class RemainArchivesServiceImpl implements IRemainArchivesService {
-    @Autowired
-    private RemainArchivesMapper remainArchivesMapper;
-
+    private static final Logger log = LoggerFactory.getLogger(RemainArchivesServiceImpl.class);
     @Autowired
     protected Validator validator;
-
-    private static final Logger log = LoggerFactory.getLogger(RemainArchivesServiceImpl.class);
+    @Autowired
+    private RemainArchivesMapper remainArchivesMapper;
 
     /**
      * 查询剩余档案

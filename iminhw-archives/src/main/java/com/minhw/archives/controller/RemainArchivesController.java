@@ -43,7 +43,7 @@ public class RemainArchivesController extends BaseController {
      * 导出剩余档案列表
      */
     @PreAuthorize("@ss.hasPermi('archives:remain:export')")
-    @Log(title = "剩余档案" , businessType = BusinessType.EXPORT)
+    @Log(title = "剩余档案", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, RemainArchives remainArchives) {
         List<RemainArchives> list = remainArchivesService.selectRemainArchivesList(remainArchives);
@@ -64,7 +64,7 @@ public class RemainArchivesController extends BaseController {
      * 新增剩余档案
      */
     @PreAuthorize("@ss.hasPermi('archives:remain:add')")
-    @Log(title = "剩余档案" , businessType = BusinessType.INSERT)
+    @Log(title = "剩余档案", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody RemainArchives remainArchives) {
         remainArchives.setCreateBy(getUsername());
@@ -75,7 +75,7 @@ public class RemainArchivesController extends BaseController {
      * 修改剩余档案
      */
     @PreAuthorize("@ss.hasPermi('archives:remain:edit')")
-    @Log(title = "剩余档案" , businessType = BusinessType.UPDATE)
+    @Log(title = "剩余档案", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody RemainArchives remainArchives) {
         remainArchives.setUpdateBy(getUsername());
@@ -86,13 +86,13 @@ public class RemainArchivesController extends BaseController {
      * 删除剩余档案
      */
     @PreAuthorize("@ss.hasPermi('archives:remain:remove')")
-    @Log(title = "剩余档案" , businessType = BusinessType.DELETE)
+    @Log(title = "剩余档案", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids) {
         return toAjax(remainArchivesService.deleteRemainArchivesByIds(ids));
     }
 
-    @Log(title = "邮寄档案" , businessType = BusinessType.IMPORT)
+    @Log(title = "邮寄档案", businessType = BusinessType.IMPORT)
     @PreAuthorize("@ss.hasPermi('archives:remain:import')")
     @PostMapping("/importData")
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {

@@ -2,7 +2,6 @@ package com.minhw.system.service.impl;
 
 import com.minhw.common.annotation.DataSource;
 import com.minhw.common.constant.CacheConstants;
-import com.minhw.common.constant.Constants;
 import com.minhw.common.constant.UserConstants;
 import com.minhw.common.core.redis.RedisCache;
 import com.minhw.common.core.text.Convert;

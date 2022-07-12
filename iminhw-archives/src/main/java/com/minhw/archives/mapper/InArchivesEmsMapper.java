@@ -1,19 +1,19 @@
 package com.minhw.archives.mapper;
 
-import java.util.List;
 import com.minhw.archives.domain.InArchivesEms;
+
+import java.util.List;
 
 /**
  * 邮寄档案Mapper接口
- * 
+ *
  * @author iminhw
  * @date 2022-07-09
  */
-public interface InArchivesEmsMapper 
-{
+public interface InArchivesEmsMapper {
     /**
      * 查询邮寄档案
-     * 
+     *
      * @param id 邮寄档案主键
      * @return 邮寄档案
      */
@@ -21,7 +21,7 @@ public interface InArchivesEmsMapper
 
     /**
      * 查询邮寄档案列表
-     * 
+     *
      * @param inArchivesEms 邮寄档案
      * @return 邮寄档案集合
      */
@@ -29,7 +29,7 @@ public interface InArchivesEmsMapper
 
     /**
      * 新增邮寄档案
-     * 
+     *
      * @param inArchivesEms 邮寄档案
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface InArchivesEmsMapper
 
     /**
      * 修改邮寄档案
-     * 
+     *
      * @param inArchivesEms 邮寄档案
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface InArchivesEmsMapper
 
     /**
      * 删除邮寄档案
-     * 
+     *
      * @param id 邮寄档案主键
      * @return 结果
      */
@@ -53,14 +53,13 @@ public interface InArchivesEmsMapper
 
     /**
      * 批量删除邮寄档案
-     * 
+     *
      * @param ids 需要删除的数据主键集合
      * @return 结果
      */
     public int deleteInArchivesEmsByIds(Long[] ids);
 
     /**
-     *
      * @param kddh
      * @return
      */
@@ -68,6 +67,7 @@ public interface InArchivesEmsMapper
 
     /**
      * 根据单号更新
+     *
      * @param inArchivesEms
      * @return
      */
