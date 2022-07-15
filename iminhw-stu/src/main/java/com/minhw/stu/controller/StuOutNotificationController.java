@@ -139,7 +139,7 @@ public class StuOutNotificationController extends BaseController {
      */
     @PostMapping("/importStylusPrintingTemplate")
     public void importStylusPrintingTemplate(HttpServletResponse response) {
-        ExcelUtil<StuOutNotification> util = new ExcelUtil<>(StuOutNotification.class);
+        ExcelUtil<StuOutNotificationStylusPrinting> util = new ExcelUtil<>(StuOutNotificationStylusPrinting.class);
         util.importTemplateExcel(response, "通知书邮寄记录");
     }
 }

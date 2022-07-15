@@ -5,9 +5,11 @@ import com.minhw.common.core.domain.AjaxResult;
 import com.minhw.common.core.domain.entity.SysMenu;
 import com.minhw.common.core.domain.entity.SysUser;
 import com.minhw.common.core.domain.model.LoginBody;
+import com.minhw.common.core.domain.model.LoginUser;
 import com.minhw.common.utils.SecurityUtils;
 import com.minhw.framework.web.service.SysLoginService;
 import com.minhw.framework.web.service.SysPermissionService;
+import com.minhw.system.service.ISysConfigService;
 import com.minhw.system.service.ISysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Set;
+
+import static com.minhw.common.core.domain.AjaxResult.error;
 
 /**
  * 登录验证
@@ -34,6 +38,9 @@ public class SysLoginController {
     @Autowired
     private SysPermissionService permissionService;
 
+    @Autowired
+    private ISysConfigService configService;
+
     /**
      * 登录方法
      *
@@ -43,6 +50,10 @@ public class SysLoginController {
     @PostMapping("/login")
     public AjaxResult login(@RequestBody LoginBody loginBody) {
         AjaxResult ajax = AjaxResult.success();
+//        if (!("true".equals(configService.selectConfigByKey("sys.login:restriction")))) {
+////            LoginUser user = redisCache.getCacheObject(key);
+//            return error("当前系统没有开启注册功能！");
+//        }
         // 生成令牌
         String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
                 loginBody.getUuid());
