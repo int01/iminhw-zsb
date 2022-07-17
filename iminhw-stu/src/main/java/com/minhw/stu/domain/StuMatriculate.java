@@ -36,6 +36,9 @@ public class StuMatriculate extends BaseEntity {
     @Excel(name = "录取专业")
     private String zy;
 
+    @Excel(name= "序号")
+    private String xh;
+
     /**
      * 联系电话
      */
@@ -110,7 +113,15 @@ public class StuMatriculate extends BaseEntity {
         this.status = status;
     }
 
-//    @Override
+    public String getXh() {
+        return xh;
+    }
+
+    public void setXh(String xh) {
+        this.xh = xh;
+    }
+
+    //    @Override
 //    public String toString() {
 //        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 //            .append("ksh", getKsh())
@@ -135,6 +146,7 @@ public class StuMatriculate extends BaseEntity {
                 ", 身份证号='" + sfzh + '\'' +
                 ", 姓名='" + xm + '\'' +
                 ", 专业='" + zy + '\'' +
+                "，序号='" + xh + '\'' +
                 ", 联系电话='" + lxdh + '\'' +
                 ", 地址='" + dz + '\''
                 ;

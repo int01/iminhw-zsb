@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhw.stu.mapper.StuZyXyMapper">
+
+    <resultMap type="StuZyXy" id="StuZyXyResult">
+        <result property="zy" column="zy"/>
+        <result property="xy" column="xy"/>
+        <result property="status" column="status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="remark" column="remark"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="selectStuZyXyVo">
+        select zy,
+               xy,
+               status,
+               create_by,
+               update_by,
+               remark,
+               update_time,
+               create_time
+        from stu_zy_xy
+    </sql>
+
+    <select id="selectStuZyXyList" parameterType="StuZyXy" resultMap="StuZyXyResult">
+        <include refid="selectStuZyXyVo"/>
+        <where>
+            <if test="zy != null  and zy != ''">and zy like concat('%', #{zy}, '%')</if>
+            <if test="xy != null  and xy != ''">and xy like concat('%', #{xy}, '%')</if>
+            <if test="status != null ">and status = #{status}</if>
+        </where>
+    </select>
+
+    <select id="selectStuZyXyByZy" parameterType="String" resultMap="StuZyXyResult">
+        <include refid="selectStuZyXyVo"/>
+        where zy = #{zy}
+    </select>
+
+    <insert id="insertStuZyXy" parameterType="StuZyXy">
+        insert into stu_zy_xy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="zy != null and zy != ''">zy,</if>
+            <if test="xy != null">xy,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="remark != null">remark,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="zy != null and zy != ''">#{zy},</if>
+            <if test="xy != null">#{xy},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateStuZyXy" parameterType="StuZyXy">
+        update stu_zy_xy
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="xy != null">xy = #{xy},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where zy = #{zy}
+    </update>
+
+    <delete id="deleteStuZyXyByZy" parameterType="String">
+        delete
+        from stu_zy_xy
+        where zy = #{zy}
+    </delete>
+
+    <delete id="deleteStuZyXyByZys" parameterType="String">
+        delete from stu_zy_xy where zy in
+        <foreach item="zy" collection="array" open="(" separator="," close=")">
+            #{zy}
+        </foreach>
+    </delete>
+</mapper>

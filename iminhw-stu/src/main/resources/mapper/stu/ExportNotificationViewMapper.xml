@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhw.stu.mapper.ExportNotificationViewMapper">
+
+    <resultMap type="ExportNotificationView" id="ExportNotificationViewResult">
+        <result property="xh" column="xh"/>
+        <result property="ksh" column="ksh"/>
+        <result property="sfzh" column="sfzh"/>
+        <result property="xm" column="xm"/>
+        <result property="zy" column="zy"/>
+        <result property="xy" column="xy"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="selectExportNotificationViewVo">
+        select xh, ksh, sfzh, xm, zy, xy, create_time
+        from export_notification_view
+    </sql>
+
+    <select id="selectExportNotificationViewList" parameterType="ExportNotificationView"
+            resultMap="ExportNotificationViewResult">
+        <include refid="selectExportNotificationViewVo"/>
+        <where>
+            <if test="xh != null  and xh != ''"> and xh like concat('%', #{xh}, '%')</if>
+            <if test="ksh != null  and ksh != ''"> and ksh like concat('%', #{ksh}, '%')</if>
+            <if test="sfzh != null  and sfzh != ''"> and sfzh like concat('%', #{sfzh}, '%')</if>
+            <if test="xm != null  and xm != ''"> and xm like concat('%', #{xm}, '%')</if>
+            <if test="zy != null  and zy != ''"> and zy like concat('%', #{zy}, '%')</if>
+            <if test="xy != null  and xy != ''"> and xy like concat('%', #{xy}, '%')</if>
+            <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''"> and create_time between #{params.beginCreateTime} and #{params.endCreateTime}</if>
+        </where>
+    </select>
+
+    <select id="selectExportNotificationViewByXh" parameterType="String" resultMap="ExportNotificationViewResult">
+        <include refid="selectExportNotificationViewVo"/>
+        where xh = #{xh}
+    </select>
+</mapper>

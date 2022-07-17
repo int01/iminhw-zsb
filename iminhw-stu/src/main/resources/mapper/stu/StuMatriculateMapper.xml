@@ -9,6 +9,7 @@
         <result property="sfzh" column="sfzh"/>
         <result property="xm" column="xm"/>
         <result property="zy" column="zy"/>
+        <result property="xh" column="xh"/>
         <result property="lxdh" column="lxdh"/>
         <result property="dz" column="dz"/>
         <result property="status" column="status"/>
@@ -24,6 +25,7 @@
                sfzh,
                xm,
                zy,
+               xh,
                lxdh,
                dz,
                status,
@@ -63,6 +65,7 @@
             <if test="zy != null">zy,</if>
             <if test="lxdh != null">lxdh,</if>
             <if test="dz != null">dz,</if>
+            <if test="xh != null">xh,</if>
             <if test="status != null">status,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateBy != null">update_by,</if>
@@ -77,6 +80,7 @@
             <if test="zy != null">#{zy},</if>
             <if test="lxdh != null">#{lxdh},</if>
             <if test="dz != null">#{dz},</if>
+            <if test="xh != null">#{xh},</if>
             <if test="status != null">#{status},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -94,6 +98,7 @@
             <if test="zy != null">zy = #{zy},</if>
             <if test="lxdh != null">lxdh = #{lxdh},</if>
             <if test="dz != null">dz = #{dz},</if>
+            <if test="xh != null">xh = #{xh},</if>
             <if test="status != null">status = #{status},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
