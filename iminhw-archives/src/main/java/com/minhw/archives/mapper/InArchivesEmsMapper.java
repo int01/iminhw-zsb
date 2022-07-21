@@ -1,6 +1,7 @@
 package com.minhw.archives.mapper;
 
 import com.minhw.archives.domain.InArchivesEms;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -65,6 +66,7 @@ public interface InArchivesEmsMapper {
      */
     InArchivesEms selectInArchivesEmsBykddh(String kddh);
 
+    InArchivesEms selectInArchivesEmsByYearkddh(InArchivesEms inArchivesEms);
     /**
      * 根据单号更新
      *
@@ -72,4 +74,7 @@ public interface InArchivesEmsMapper {
      * @return
      */
     int updateInArchivesEmsByKddh(InArchivesEms inArchivesEms);
+
+    Integer selectInArchivesEmsByDateMaxXh(@Param("dateStr") String dateStr);
+
 }

@@ -24,7 +24,7 @@ public class StuZyXy extends BaseEntity
     private String xy;
 
     /** 数据状态 */
-    @Excel(name = "数据状态")
+    @Excel(name = "数据状态", dictType = "data_status")
     private Long status;
 
     public void setZy(String zy)

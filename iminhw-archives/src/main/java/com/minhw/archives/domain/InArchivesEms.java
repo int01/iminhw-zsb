@@ -19,6 +19,9 @@ public class InArchivesEms extends BaseEntity {
      */
     private Long id;
 
+    @Excel(name = "序号", prompt = "邮寄档案流水号")
+    private Long xh;
+
     /**
      * 快递单号
      */
@@ -125,10 +128,19 @@ public class InArchivesEms extends BaseEntity {
         this.status = status;
     }
 
+    public Long getXh() {
+        return xh;
+    }
+
+    public void setXh(Long xh) {
+        this.xh = xh;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
                 .append("id", getId())
+                .append("xh", getXh())
                 .append("kddh", getKddh())
                 .append("qsyz", getQsyz())
                 .append("sfda", getSfda())

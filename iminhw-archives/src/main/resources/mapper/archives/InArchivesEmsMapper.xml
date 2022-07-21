@@ -6,6 +6,7 @@
 
     <resultMap type="InArchivesEms" id="InArchivesEmsResult">
         <result property="id" column="id"/>
+        <result property="xh" column="xh"/>
         <result property="kddh" column="kddh"/>
         <result property="qsyz" column="qsyz"/>
         <result property="sfda" column="sfda"/>
@@ -22,6 +23,7 @@
 
     <sql id="selectInArchivesEmsVo">
         select id,
+               xh,
                kddh,
                qsyz,
                sfda,
@@ -55,14 +57,26 @@
         where id = #{id}
     </select>
 
-    <select id="selectInArchivesEmsBykddh" parameterType="String" resultMap="InArchivesEmsResult">
+    <select id="selectInArchivesEmsBykddh" parameterType="InArchivesEms" resultMap="InArchivesEmsResult">
         <include refid="selectInArchivesEmsVo"/>
         where kddh = #{kddh}
+    </select>
+
+    <select id="selectInArchivesEmsByYearkddh" parameterType="InArchivesEms" resultMap="InArchivesEmsResult">
+        <include refid="selectInArchivesEmsVo"/>
+        where kddh = #{kddh} and create_time between #{params.beginCreateTime} and #{params.endCreateTime}
+    </select>
+
+    <select id="selectInArchivesEmsByDateMaxXh" parameterType="String" resultType="Integer">
+        select MAX(xh) as maxxh
+        from in_archives_ems
+        where create_time like concat('%', #{dateStr}, '%')
     </select>
 
     <insert id="insertInArchivesEms" parameterType="InArchivesEms" useGeneratedKeys="true" keyProperty="id">
         insert into in_archives_ems
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="xh != null">xh,</if>
             <if test="kddh != null">kddh,</if>
             <if test="qsyz != null">qsyz,</if>
             <if test="sfda != null">sfda,</if>
@@ -77,6 +91,7 @@
             <if test="createTime != null">create_time,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="xh !=null">#{xh},</if>
             <if test="kddh != null">#{kddh},</if>
             <if test="qsyz != null">#{qsyz},</if>
             <if test="sfda != null">#{sfda},</if>
@@ -95,6 +110,7 @@
     <update id="updateInArchivesEms" parameterType="InArchivesEms">
         update in_archives_ems
         <trim prefix="SET" suffixOverrides=",">
+            <if test="xh !=null">xh = #{xh},</if>
             <if test="kddh != null">kddh = #{kddh},</if>
             <if test="qsyz != null">qsyz = #{qsyz},</if>
             <if test="sfda != null">sfda = #{sfda},</if>
@@ -115,6 +131,7 @@
     <update id="updateInArchivesEmsByKddh" parameterType="InArchivesEms">
         update in_archives_ems
         <trim prefix="SET" suffixOverrides=",">
+            <if test="xh !=null">xh = #{xh},</if>
             <if test="qsyz != null">qsyz = #{qsyz},</if>
             <if test="sfda != null">sfda = #{sfda},</if>
             <if test="xm != null">xm = #{xm},</if>
@@ -124,10 +141,10 @@
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="remark != null">remark = #{remark},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
+            <!--            <if test="updateTime != null">update_time = #{updateTime},</if>-->
+            <!--            <if test="createTime != null">create_time = #{createTime},</if>-->
         </trim>
-        where kddh = #{kddh}
+        where kddh = #{kddh} and create_time between #{params.beginCreateTime} and #{params.endCreateTime}
     </update>
 
     <delete id="deleteInArchivesEmsById" parameterType="Long">

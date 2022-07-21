@@ -119,4 +119,12 @@ public class InArchivesEmsController extends BaseController {
         InArchivesEms resObj = inArchivesEmsService.updateInArchivesEmsByKddh(inArchivesEms);
         return AjaxResult.success(resObj);
     }
+
+    @PreAuthorize("@ss.hasPermi('archives:ems:verify')")
+    @Log(title = "邮寄档案", businessType = BusinessType.UPDATE)
+    @GetMapping("/datemaxxh/{dateStr}")
+    public AjaxResult getDateMaxXhElm(@PathVariable String dateStr) {
+        Integer resObj = inArchivesEmsService.selectInArchivesEmsByDateMaxXh(dateStr);
+        return AjaxResult.success(resObj);
+    }
 }

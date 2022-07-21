@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Validator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 邮寄档案Service业务层处理
@@ -59,7 +61,7 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
      */
     @Override
     public int insertInArchivesEms(InArchivesEms inArchivesEms) {
-        inArchivesEms.setCreateTime(DateUtils.getNowDate());
+//        inArchivesEms.setCreateTime(DateUtils.getNowDate());
         return inArchivesEmsMapper.insertInArchivesEms(inArchivesEms);
     }
 
@@ -71,7 +73,7 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
      */
     @Override
     public int updateInArchivesEms(InArchivesEms inArchivesEms) {
-        inArchivesEms.setUpdateTime(DateUtils.getNowDate());
+//        inArchivesEms.setUpdateTime(DateUtils.getNowDate());
         return inArchivesEmsMapper.updateInArchivesEms(inArchivesEms);
     }
 
@@ -108,8 +110,12 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
         StringBuilder failureMsg = new StringBuilder();
         for (InArchivesEms ems : inArchivesEmsList) {
             try {
+                Map<String,Object> map = new HashMap<>();
+                map.put("beginCreateTime", DateUtils.getYearStart());
+                map.put("endCreateTime", DateUtils.getYearEnd());
+                ems.setParams(map);
                 // 验证是否存在这个快递单号
-                InArchivesEms e = inArchivesEmsMapper.selectInArchivesEmsBykddh(ems.getKddh());
+                InArchivesEms e = inArchivesEmsMapper.selectInArchivesEmsByYearkddh(ems);
                 if (StringUtils.isNull(e)) {
                     BeanValidators.validateWithException(validator, ems);
                     ems.setCreateBy(operName);
@@ -124,7 +130,7 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
                     successMsg.append("<br/>" + successNum + "、快递单号 " + ems.getKddh() + " 更新成功");
                 } else {
                     failureNum++;
-                    failureMsg.append("<br/>" + failureNum + "、快递单号 " + ems.getKddh() + " 已存在");
+                    failureMsg.append("<br/>" + failureNum + "、快递单号 " + ems.getKddh() + " 在本年限内存在");
                 }
             } catch (Exception e) {
                 failureNum++;
@@ -144,11 +150,20 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
 
     @Override
     public InArchivesEms updateInArchivesEmsByKddh(InArchivesEms inArchivesEms) {
-        InArchivesEms archivesEms = inArchivesEmsMapper.selectInArchivesEmsBykddh(inArchivesEms.getKddh());
+        InArchivesEms archivesEms = inArchivesEmsMapper.selectInArchivesEmsByYearkddh(inArchivesEms);
         if (StringUtils.isNotNull(archivesEms)) {
             inArchivesEmsMapper.updateInArchivesEmsByKddh(inArchivesEms);
             return archivesEms;
         }
         return inArchivesEms;
+    }
+
+    @Override
+    public Integer selectInArchivesEmsByDateMaxXh(String dateStr) {
+        Integer res = inArchivesEmsMapper.selectInArchivesEmsByDateMaxXh(dateStr);
+        if (StringUtils.isNull(res)){
+            return 1;
+        }
+        return res;
     }
 }
