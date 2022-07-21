@@ -77,14 +77,16 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         }
     }
 
+    public static final String getYearNow(){
+        return dateTimeNow(YYYY);
+    }
+
     public static final String getYearStart(){
-        Date now = new Date();
-        return parseDateToStr(YYYY_MM_DD_HH_MM_SS, new Date(now.getYear()+"-01-01 00:00:00"));
+        return getYearNow()+"-01-01 00:00:00";
     }
 
     public static final String getYearEnd(){
-        Date now = new Date();
-        return parseDateToStr(YYYY_MM_DD_HH_MM_SS, new Date(now.getYear()+"-12-31 23:59:59"));
+        return getYearNow()+"-12-31 23:59:59";
     }
 
     /**

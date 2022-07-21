@@ -93,11 +93,11 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
     @Override
     public int update${ClassName}(${ClassName} ${className})
     {
-###foreach ($column in $columns)
-###if($column.javaField == 'updateTime')
-##        ${className}.setUpdateTime(DateUtils.getNowDate());
-###end
-###end
+#foreach ($column in $columns)
+#if($column.javaField == 'updateTime')
+        ${className}.setUpdateTime(DateUtils.getNowDate());
+#end
+#end
 #if($table.sub)
         ${className}Mapper.delete${subClassName}By${subTableFkClassName}(${className}.get${pkColumn.capJavaField}());
         insert${subClassName}(${className});

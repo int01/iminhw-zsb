@@ -61,7 +61,7 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
      */
     @Override
     public int insertInArchivesEms(InArchivesEms inArchivesEms) {
-//        inArchivesEms.setCreateTime(DateUtils.getNowDate());
+        inArchivesEms.setCreateTime(DateUtils.getNowDate());
         return inArchivesEmsMapper.insertInArchivesEms(inArchivesEms);
     }
 
@@ -73,7 +73,7 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
      */
     @Override
     public int updateInArchivesEms(InArchivesEms inArchivesEms) {
-//        inArchivesEms.setUpdateTime(DateUtils.getNowDate());
+        inArchivesEms.setUpdateTime(DateUtils.getNowDate());
         return inArchivesEmsMapper.updateInArchivesEms(inArchivesEms);
     }
 
