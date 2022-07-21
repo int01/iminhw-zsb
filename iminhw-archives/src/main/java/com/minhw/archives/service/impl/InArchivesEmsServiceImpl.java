@@ -162,7 +162,7 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
     public Integer selectInArchivesEmsByDateMaxXh(String dateStr) {
         Integer res = inArchivesEmsMapper.selectInArchivesEmsByDateMaxXh(dateStr);
         if (StringUtils.isNull(res)){
-            return 1;
+            return 0;
         }
         return res;
     }
