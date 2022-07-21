@@ -11,11 +11,19 @@
         <result property="xm" column="xm"/>
         <result property="zy" column="zy"/>
         <result property="xy" column="xy"/>
+        <result property="dq" column="dq"/>
         <result property="createTime" column="create_time"/>
     </resultMap>
 
     <sql id="selectExportNotificationViewVo">
-        select xh, ksh, sfzh, xm, zy, xy, create_time
+        select xh,
+               ksh,
+               sfzh,
+               xm,
+               zy,
+               xy,
+               dq,
+               create_time
         from export_notification_view
     </sql>
 
@@ -23,13 +31,16 @@
             resultMap="ExportNotificationViewResult">
         <include refid="selectExportNotificationViewVo"/>
         <where>
-            <if test="xh != null  and xh != ''"> and xh like concat('%', #{xh}, '%')</if>
-            <if test="ksh != null  and ksh != ''"> and ksh like concat('%', #{ksh}, '%')</if>
-            <if test="sfzh != null  and sfzh != ''"> and sfzh like concat('%', #{sfzh}, '%')</if>
-            <if test="xm != null  and xm != ''"> and xm like concat('%', #{xm}, '%')</if>
-            <if test="zy != null  and zy != ''"> and zy like concat('%', #{zy}, '%')</if>
-            <if test="xy != null  and xy != ''"> and xy like concat('%', #{xy}, '%')</if>
-            <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''"> and create_time between #{params.beginCreateTime} and #{params.endCreateTime}</if>
+            <if test="xh != null  and xh != ''">and xh like concat('%', #{xh}, '%')</if>
+            <if test="ksh != null  and ksh != ''">and ksh like concat('%', #{ksh}, '%')</if>
+            <if test="sfzh != null  and sfzh != ''">and sfzh like concat('%', #{sfzh}, '%')</if>
+            <if test="xm != null  and xm != ''">and xm like concat('%', #{xm}, '%')</if>
+            <if test="zy != null  and zy != ''">and zy like concat('%', #{zy}, '%')</if>
+            <if test="xy != null  and xy != ''">and xy like concat('%', #{xy}, '%')</if>
+            <if test="dq != null  and dq != ''">and dq like concat('%', #{dq}, '%')</if>
+            <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''">
+                and create_time between #{params.beginCreateTime} and #{params.endCreateTime}
+            </if>
         </where>
     </select>
 

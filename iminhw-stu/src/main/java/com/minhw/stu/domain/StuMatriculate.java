@@ -24,6 +24,9 @@ public class StuMatriculate extends BaseEntity {
     @Excel(name = "身份证号")
     private String sfzh;
 
+    @Excel(name= "序号")
+    private String xh;
+
     /**
      * 姓名
      */
@@ -36,14 +39,14 @@ public class StuMatriculate extends BaseEntity {
     @Excel(name = "录取专业")
     private String zy;
 
-    @Excel(name= "序号")
-    private String xh;
-
     /**
      * 联系电话
      */
     @Excel(name = "联系电话")
     private String lxdh;
+
+    @Excel(name = "地区")
+    private String dq;
 
     /**
      * 邮件地址
@@ -121,6 +124,14 @@ public class StuMatriculate extends BaseEntity {
         this.xh = xh;
     }
 
+    public String getDq() {
+        return dq;
+    }
+
+    public void setDq(String dq) {
+        this.dq = dq;
+    }
+
     //    @Override
 //    public String toString() {
 //        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -146,7 +157,8 @@ public class StuMatriculate extends BaseEntity {
                 ", 身份证号='" + sfzh + '\'' +
                 ", 姓名='" + xm + '\'' +
                 ", 专业='" + zy + '\'' +
-                "，序号='" + xh + '\'' +
+                ", 序号='" + xh + '\'' +
+                ", 地区='" + dq + '\'' +
                 ", 联系电话='" + lxdh + '\'' +
                 ", 地址='" + dz + '\''
                 ;
