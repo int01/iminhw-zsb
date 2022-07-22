@@ -75,6 +75,6 @@ public interface InArchivesEmsMapper {
      */
     int updateInArchivesEmsByKddh(InArchivesEms inArchivesEms);
 
-    Integer selectInArchivesEmsByDateMaxXh(@Param("dateStr") String dateStr);
+    Integer selectInArchivesEmsByYearMaxXh(@Param("dateStr") String dateStr);
 
 }

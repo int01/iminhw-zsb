@@ -111,8 +111,7 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
         for (InArchivesEms ems : inArchivesEmsList) {
             try {
                 Map<String,Object> map = new HashMap<>();
-                map.put("beginCreateTime", DateUtils.getYearStart());
-                map.put("endCreateTime", DateUtils.getYearEnd());
+                map.put("dateStr", DateUtils.getYearNow());
                 ems.setParams(map);
                 // 验证是否存在这个快递单号
                 InArchivesEms e = inArchivesEmsMapper.selectInArchivesEmsByYearkddh(ems);
@@ -160,7 +159,7 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
 
     @Override
     public Integer selectInArchivesEmsByDateMaxXh(String dateStr) {
-        Integer res = inArchivesEmsMapper.selectInArchivesEmsByDateMaxXh(dateStr);
+        Integer res = inArchivesEmsMapper.selectInArchivesEmsByYearMaxXh(dateStr);
         if (StringUtils.isNull(res)){
             return 0;
         }

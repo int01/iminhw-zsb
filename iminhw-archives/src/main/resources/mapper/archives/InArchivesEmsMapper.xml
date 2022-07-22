@@ -64,13 +64,13 @@
 
     <select id="selectInArchivesEmsByYearkddh" parameterType="InArchivesEms" resultMap="InArchivesEmsResult">
         <include refid="selectInArchivesEmsVo"/>
-        where kddh = #{kddh} and create_time between #{params.beginCreateTime} and #{params.endCreateTime}
+        where kddh = #{kddh} and YEAR(create_time) = #{dateStr}
     </select>
 
-    <select id="selectInArchivesEmsByDateMaxXh" parameterType="String" resultType="Integer">
+    <select id="selectInArchivesEmsByYearMaxXh" parameterType="String" resultType="Integer">
         select MAX(xh) as maxxh
         from in_archives_ems
-        where create_time like concat('%', #{dateStr}, '%')
+        where YEAR(create_time) = #{dateStr}
     </select>
 
     <insert id="insertInArchivesEms" parameterType="InArchivesEms" useGeneratedKeys="true" keyProperty="id">
