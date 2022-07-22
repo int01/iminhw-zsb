@@ -12,7 +12,7 @@
     <groupId>com.minhw</groupId>
     <artifactId>iminhw-zsb</artifactId>
     <packaging>pom</packaging>
-    <version>1.0</version>
+    <version>2.0</version>
     <dependencies></dependencies>
 
     <modules>
@@ -167,45 +167,45 @@
             <dependency>
                 <groupId>com.minhw</groupId>
                 <artifactId>iminhw-common</artifactId>
-                <version>1.0</version>
+                <version>2.0</version>
             </dependency>
             <!-- 定时任务-->
             <dependency>
                 <groupId>com.minhw</groupId>
                 <artifactId>iminhw-quartz</artifactId>
-                <version>1.0</version>
+                <version>2.0</version>
             </dependency>
 
             <!-- 代码生成-->
             <dependency>
                 <groupId>com.minhw</groupId>
                 <artifactId>iminhw-generator</artifactId>
-                <version>1.0</version>
+                <version>2.0</version>
             </dependency>
 
             <!-- 核心模块-->
             <dependency>
                 <groupId>com.minhw</groupId>
                 <artifactId>iminhw-framework</artifactId>
-                <version>1.0</version>
+                <version>2.0</version>
             </dependency>
 
             <!-- 系统模块-->
             <dependency>
                 <groupId>com.minhw</groupId>
                 <artifactId>iminhw-system</artifactId>
-                <version>1.0</version>
+                <version>2.0</version>
             </dependency>
 
             <dependency>
                 <groupId>com.minhw</groupId>
                 <artifactId>iminhw-archives</artifactId>
-                <version>1.0</version>
+                <version>2.0</version>
             </dependency>
             <dependency>
                 <groupId>com.minhw</groupId>
                 <artifactId>iminhw-stu</artifactId>
-                <version>1.0</version>
+                <version>2.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
