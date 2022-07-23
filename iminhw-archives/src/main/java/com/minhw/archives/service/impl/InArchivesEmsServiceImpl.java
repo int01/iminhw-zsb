@@ -176,35 +176,37 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
     @Override
     public Map<String, Object> updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms) {
         Map<String, Object> resultMap = new HashMap<>();
-        if (StringUtils.isNull(inArchivesEmsMapper.selectInArchivesEmsByNowYearKddh(inArchivesEms.getKddh()))) {
-            throw new ServiceException("当前快递单号在当年不存在，请检查导入时间或确认是否录入");
-        }
-        StuMatriculate stuMatriculate = stuMatriculateMapper.selectStuMatriculateByKsh(inArchivesEms.getKsh());
-        if (StringUtils.isNull(stuMatriculate)) {
-            throw new ServiceException("该考生号在录取数据信息中不存在");
-        }
-        InArchivesClass inArchivesClass = inArchivesClassMapper.selectInArchivesClassByKsh(inArchivesEms.getKsh());
-        if (StringUtils.isNull(inArchivesClass)) {
-            throw new ServiceException("该考生号在档案收集（分班数据）中不存在");
-        }
         Map mapPm = inArchivesEms.getParams();
+            if (StringUtils.isNull(inArchivesEmsMapper.selectInArchivesEmsByNowYearKddh(inArchivesEms.getKddh()))) {
+                throw new ServiceException("当前快递单号在当年不存在，请检查导入时间或确认是否录入");
+            }
+        if ((Boolean) mapPm.get("showSwitch")) {
+            StuMatriculate stuMatriculate = stuMatriculateMapper.selectStuMatriculateByKsh(inArchivesEms.getKsh());
+            if (StringUtils.isNull(stuMatriculate)) {
+                throw new ServiceException("该考生号在录取数据信息中不存在");
+            }
+            InArchivesClass inArchivesClass = inArchivesClassMapper.selectInArchivesClassByKsh(inArchivesEms.getKsh());
+            if (StringUtils.isNull(inArchivesClass)) {
+                throw new ServiceException("该考生号在档案收集（分班数据）中不存在");
+            }
 //        按录取信息补全ems内的基本数据
-        if ((Boolean) mapPm.get("getMatUpDateEmsSwitch")) {
-            inArchivesEms.setXm(stuMatriculate.getXm());
-            inArchivesEms.setSfzh(stuMatriculate.getSfzh());
-        }
+            if ((Boolean) mapPm.get("getMatUpDateEmsSwitch")) {
+                inArchivesEms.setXm(stuMatriculate.getXm());
+                inArchivesEms.setSfzh(stuMatriculate.getSfzh());
+            }
 //        更新班级档案状态
-        if ((Boolean) mapPm.get("updateClassSwitch")) {
+            if ((Boolean) mapPm.get("updateClassSwitch")) {
 //            InArchivesClass addClass = new InArchivesClass();
 //            addClass.setKsh(inArchivesEms.getKsh());
 //            addClass.setDazt(1L);
 //            inArchivesClassMapper.updateInArchivesClassByKsh(addClass);
-            inArchivesClass.setDazt(1L);
-            inArchivesClass.setUpdateBy(inArchivesEms.getUpdateBy());
-            resultMap.put("updateClassState", inArchivesClassMapper.updateInArchivesClass(inArchivesClass));
+                inArchivesClass.setDazt(1L);
+                inArchivesClass.setUpdateBy(inArchivesEms.getUpdateBy());
+                resultMap.put("updateClassState", inArchivesClassMapper.updateInArchivesClass(inArchivesClass));
+            }
+            resultMap.put("classEntity", inArchivesClass);
         }
         resultMap.put("unpackState", inArchivesEmsMapper.updateInArchivesEmsByNowYearKddh(inArchivesEms));
-        resultMap.put("classEntity", inArchivesClass);
         return resultMap;
     }
 }
