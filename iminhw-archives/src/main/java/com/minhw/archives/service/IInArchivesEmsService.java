@@ -79,5 +79,9 @@ public interface IInArchivesEmsService {
      * 得到id最大的那条数据
      * @return
      */
-    Integer selectInArchivesEmsByDateMaxXh(String dateStr);
+    Integer selectInArchivesEmsByYearMaxXh(String yearStr);
+
+    int  updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms);
+
+
 }

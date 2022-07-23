@@ -110,11 +110,8 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
         StringBuilder failureMsg = new StringBuilder();
         for (InArchivesEms ems : inArchivesEmsList) {
             try {
-                Map<String,Object> map = new HashMap<>();
-                map.put("dateStr", DateUtils.getYearNow());
-                ems.setParams(map);
                 // 验证是否存在这个快递单号
-                InArchivesEms e = inArchivesEmsMapper.selectInArchivesEmsByYearkddh(ems);
+                InArchivesEms e = inArchivesEmsMapper.selectInArchivesEmsByNowYearKddh(ems.getKddh());
                 if (StringUtils.isNull(e)) {
                     BeanValidators.validateWithException(validator, ems);
                     ems.setCreateBy(operName);
@@ -158,11 +155,19 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
     }
 
     @Override
-    public Integer selectInArchivesEmsByDateMaxXh(String dateStr) {
-        Integer res = inArchivesEmsMapper.selectInArchivesEmsByYearMaxXh(dateStr);
+    public Integer selectInArchivesEmsByYearMaxXh(String yearStr) {
+        Integer res = inArchivesEmsMapper.selectInArchivesEmsByYearMaxXh(yearStr);
         if (StringUtils.isNull(res)){
             return 0;
         }
         return res;
+    }
+
+    @Override
+    public int updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms) {
+        if (StringUtils.isNull(inArchivesEmsMapper.selectInArchivesEmsByNowYearKddh(inArchivesEms.getKddh()))){
+          throw new ServiceException("拆袋对应的快递单号在当前年不存在，请检查导入时间");
+        }
+        return inArchivesEmsMapper.updateInArchivesEmsByNowYearKddh(inArchivesEms);
     }
 }

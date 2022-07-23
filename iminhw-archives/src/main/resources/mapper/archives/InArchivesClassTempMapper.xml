@@ -49,6 +49,7 @@
             <if test="sfzh != null  and sfzh != ''">and sfzh like concat('%', #{sfzh}, '%')</if>
             <if test="status != null ">and status = #{status}</if>
         </where>
+        ORDER BY id DESC
     </select>
 
     <select id="selectInArchivesClassTempById" parameterType="Long" resultMap="InArchivesClassTempResult">

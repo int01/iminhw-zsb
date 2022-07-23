@@ -55,6 +55,11 @@
         where xuehao = #{xuehao}
     </select>
 
+    <select id="selectInArchivesClassByKsh" parameterType="String" resultMap="InArchivesClassResult">
+        <include refid="selectInArchivesClassVo"/>
+        where ksh = #{ksh}
+    </select>
+
     <insert id="insertInArchivesClass" parameterType="InArchivesClass">
         insert into in_archives_class
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -106,6 +111,24 @@
             <if test="createTime != null">create_time = #{createTime},</if>
         </trim>
         where xuehao = #{xuehao}
+    </update>
+
+    <update id="updateInArchivesClassByKsh" parameterType="InArchivesClass">
+        update in_archives_class
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="xh != null">xh = #{xh},</if>
+            <if test="bj != null">bj = #{bj},</if>
+            <if test="xm != null">xm = #{xm},</if>
+            <if test="dazt != null">dazt = #{dazt},</if>
+            <if test="sfzh != null">sfzh = #{sfzh},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where ksh = #{ksh}
     </update>
 
     <delete id="deleteInArchivesClassByXuehao" parameterType="String">

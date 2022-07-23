@@ -42,6 +42,7 @@
                 and create_time between #{params.beginCreateTime} and #{params.endCreateTime}
             </if>
         </where>
+        ORDER BY xh DESC
     </select>
 
     <select id="selectExportNotificationViewByXh" parameterType="String" resultMap="ExportNotificationViewResult">

@@ -50,6 +50,7 @@
             <if test="sfzh != null  and sfzh != ''">and sfzh like concat('%', #{sfzh}, '%')</if>
             <if test="status != null ">and status = #{status}</if>
         </where>
+        ORDER BY id DESC
     </select>
 
     <select id="selectInArchivesEmsById" parameterType="Long" resultMap="InArchivesEmsResult">
@@ -64,13 +65,17 @@
 
     <select id="selectInArchivesEmsByYearkddh" parameterType="InArchivesEms" resultMap="InArchivesEmsResult">
         <include refid="selectInArchivesEmsVo"/>
-        where kddh = #{kddh} and YEAR(create_time) = #{dateStr}
+        where kddh = #{kddh} and YEAR(create_time) = #{params.yearStr}
+    </select>
+    <select id="selectInArchivesEmsByNowYearKddh" parameterType="String" resultMap="InArchivesEmsResult">
+        <include refid="selectInArchivesEmsVo"/>
+        where kddh = #{kddh} and YEAR(create_time) = YEAR(NOW())
     </select>
 
     <select id="selectInArchivesEmsByYearMaxXh" parameterType="String" resultType="Integer">
         select MAX(xh) as maxxh
         from in_archives_ems
-        where YEAR(create_time) = #{dateStr}
+        where YEAR(create_time) = #{yearStr}
     </select>
 
     <insert id="insertInArchivesEms" parameterType="InArchivesEms" useGeneratedKeys="true" keyProperty="id">
@@ -122,7 +127,6 @@
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="remark != null">remark = #{remark},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
         </trim>
         where id = #{id}
     </update>
@@ -144,7 +148,24 @@
             <!--            <if test="updateTime != null">update_time = #{updateTime},</if>-->
             <!--            <if test="createTime != null">create_time = #{createTime},</if>-->
         </trim>
-        where kddh = #{kddh} and create_time between #{params.beginCreateTime} and #{params.endCreateTime}
+        where kddh = #{kddh} and YEAR(create_time) = #{params.yearStr}
+    </update>
+
+    <update id="updateInArchivesEmsByNowYearKddh" parameterType="InArchivesEms">
+        update in_archives_ems
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="xh !=null">xh = #{xh},</if>
+            <if test="qsyz != null">qsyz = #{qsyz},</if>
+            <if test="sfda != null">sfda = #{sfda},</if>
+            <if test="xm != null">xm = #{xm},</if>
+            <if test="ksh != null">ksh = #{ksh},</if>
+            <if test="sfzh != null">sfzh = #{sfzh},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where kddh = #{kddh} and YEAR(create_time) = YEAR(NOW())
     </update>
 
     <delete id="deleteInArchivesEmsById" parameterType="Long">

@@ -120,16 +120,16 @@ public class StuMatriculateServiceImpl implements IStuMatriculateService {
                         matriculate.setCreateBy(operName);
                         this.insertStuMatriculate(matriculate);
                         successNum++;
-                        successMsg.append("<br/>" + successNum + "、 " + matriculate + " 导入成功");
+                        successMsg.append("<br/>" + successNum + "、考生号 " + matriculate.getKsh() + " 导入成功");
                     } else if (isUpdateSupport) {
                         BeanValidators.validateWithException(validator, matriculate);
                         matriculate.setUpdateBy(operName);
                         this.updateStuMatriculate(matriculate);
                         successNum++;
-                        successMsg.append("<br/>" + successNum + "、 " + matriculate + " 更新成功");
+                        successMsg.append("<br/>" + successNum + "、考生号 " + matriculate.getKsh() + " 更新成功");
                     } else {
                         failureNum++;
-                        failureMsg.append("<br/>" + failureNum + "、 " + matriculate + " 已存在");
+                        failureMsg.append("<br/>" + failureNum + "、考生号 " + matriculate.getKsh() + " 已存在");
                     }
                 } else {
                     failureNum++;

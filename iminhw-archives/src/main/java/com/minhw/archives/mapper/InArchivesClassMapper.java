@@ -1,6 +1,7 @@
 package com.minhw.archives.mapper;
 
 import com.minhw.archives.domain.InArchivesClass;
+import com.minhw.archives.domain.InArchivesEms;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface InArchivesClassMapper {
      * @return 档案收集
      */
     public InArchivesClass selectInArchivesClassByXuehao(String xuehao);
+
+    InArchivesClass selectInArchivesClassByKsh(String ksh);
 
     /**
      * 查询档案收集列表
@@ -58,4 +61,6 @@ public interface InArchivesClassMapper {
      * @return 结果
      */
     public int deleteInArchivesClassByXuehaos(String[] xuehaos);
+
+    int updateInArchivesClassByKsh(InArchivesClass inArchivesClass);
 }

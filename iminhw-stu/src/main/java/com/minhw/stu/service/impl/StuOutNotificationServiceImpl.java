@@ -121,16 +121,16 @@ public class StuOutNotificationServiceImpl implements IStuOutNotificationService
                         stuOutNotification.setCreateBy(operName);
                         this.insertStuOutNotification(stuOutNotification);
                         successNum++;
-                        successMsg.append("<br/>" + successNum + "、 " + stuOutNotification + " 导入成功");
+                        successMsg.append("<br/>" + successNum + "、考生号 " + stuOutNotification.getKsh() + " 导入成功");
                     } else if (isUpdateSupport) {
                         BeanValidators.validateWithException(validator, stuOutNotification);
                         stuOutNotification.setUpdateBy(operName);
                         this.updateStuOutNotification(stuOutNotification);
                         successNum++;
-                        successMsg.append("<br/>" + successNum + "、 " + stuOutNotification + " 更新成功");
+                        successMsg.append("<br/>" + successNum + "、考生号 " + stuOutNotification.getKsh() + " 更新成功");
                     } else {
                         failureNum++;
-                        failureMsg.append("<br/>" + failureNum + "、 " + stuOutNotification + " 已存在");
+                        failureMsg.append("<br/>" + failureNum + "、考生号 " + stuOutNotification.getKsh() + " 已存在");
                     }
                 } else {
                     failureNum++;
