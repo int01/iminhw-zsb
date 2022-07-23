@@ -23,7 +23,7 @@ public class InArchivesClass extends BaseEntity {
     /**
      * 序号
      */
-    @Excel(name = "序号")
+    @Excel(name = "档案序号")
     private Long xh;
 
     /**
@@ -126,22 +126,36 @@ public class InArchivesClass extends BaseEntity {
         this.status = status;
     }
 
+//    @Override
+//    public String toString() {
+//        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+//                .append("xuehao", getXuehao())
+//                .append("xh", getXh())
+//                .append("bj", getBj())
+//                .append("xm", getXm())
+//                .append("dazt", getDazt())
+//                .append("ksh", getKsh())
+//                .append("sfzh", getSfzh())
+//                .append("status", getStatus())
+//                .append("createBy", getCreateBy())
+//                .append("updateBy", getUpdateBy())
+//                .append("remark", getRemark())
+//                .append("updateTime", getUpdateTime())
+//                .append("createTime", getCreateTime())
+//                .toString();
+//    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("xuehao", getXuehao())
-                .append("xh", getXh())
-                .append("bj", getBj())
-                .append("xm", getXm())
-                .append("dazt", getDazt())
-                .append("ksh", getKsh())
-                .append("sfzh", getSfzh())
-                .append("status", getStatus())
-                .append("createBy", getCreateBy())
-                .append("updateBy", getUpdateBy())
-                .append("remark", getRemark())
-                .append("updateTime", getUpdateTime())
-                .append("createTime", getCreateTime())
-                .toString();
+        return "class{" +
+                "学号='" + xuehao + '\'' +
+                ", 档案序号=" + xh +
+                ", 班级='" + bj + '\'' +
+                ", 姓名='" + xm + '\'' +
+                ", 档案状态=" + dazt +
+                ", 考生号='" + ksh + '\'' +
+                ", 身份证号='" + sfzh + '\'' +
+                ", 数据状态=" + status +
+                '}';
     }
 }

@@ -58,4 +58,6 @@ public interface IInArchivesClassService {
      * @return 结果
      */
     public int deleteInArchivesClassByXuehao(String xuehao);
+
+    String importInArchivesClass(List<InArchivesClass> inArchivesClassList, boolean isUpdateSupport, String operName);
 }

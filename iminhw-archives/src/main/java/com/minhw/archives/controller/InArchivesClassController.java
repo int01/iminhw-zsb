@@ -11,6 +11,7 @@ import com.minhw.common.utils.poi.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -89,5 +90,22 @@ public class InArchivesClassController extends BaseController {
     @DeleteMapping("/{xuehaos}")
     public AjaxResult remove(@PathVariable String[] xuehaos) {
         return toAjax(inArchivesClassService.deleteInArchivesClassByXuehaos(xuehaos));
+    }
+
+    @Log(title = "档案收集", businessType = BusinessType.IMPORT)
+    @PreAuthorize("@ss.hasPermi('archives:class:import')")
+    @PostMapping("/importData")
+    public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
+        ExcelUtil<InArchivesClass> util = new ExcelUtil<>(InArchivesClass.class);
+        List<InArchivesClass> inArchivesClassList = util.importExcel(file.getInputStream());
+        String operName = getUsername();
+        String message = inArchivesClassService.importInArchivesClass(inArchivesClassList, updateSupport, operName);
+        return AjaxResult.success(message);
+    }
+
+    @PostMapping("/importTemplate")
+    public void importTemplate(HttpServletResponse response) {
+        ExcelUtil<InArchivesClass> util = new ExcelUtil<>(InArchivesClass.class);
+        util.importTemplateExcel(response, "档案提交情况");
     }
 }
