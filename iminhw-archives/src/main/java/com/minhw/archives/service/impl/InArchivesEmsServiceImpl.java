@@ -1,12 +1,16 @@
 package com.minhw.archives.service.impl;
 
+import com.minhw.archives.domain.InArchivesClass;
 import com.minhw.archives.domain.InArchivesEms;
+import com.minhw.archives.mapper.InArchivesClassMapper;
 import com.minhw.archives.mapper.InArchivesEmsMapper;
 import com.minhw.archives.service.IInArchivesEmsService;
 import com.minhw.common.exception.ServiceException;
 import com.minhw.common.utils.DateUtils;
 import com.minhw.common.utils.StringUtils;
 import com.minhw.common.utils.bean.BeanValidators;
+import com.minhw.stu.domain.StuMatriculate;
+import com.minhw.stu.mapper.StuMatriculateMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +34,12 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
     protected Validator validator;
     @Autowired
     private InArchivesEmsMapper inArchivesEmsMapper;
+
+    @Autowired
+    private InArchivesClassMapper inArchivesClassMapper;
+
+    @Autowired
+    private StuMatriculateMapper stuMatriculateMapper;
 
     /**
      * 查询邮寄档案
@@ -157,17 +167,44 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
     @Override
     public Integer selectInArchivesEmsByYearMaxXh(String yearStr) {
         Integer res = inArchivesEmsMapper.selectInArchivesEmsByYearMaxXh(yearStr);
-        if (StringUtils.isNull(res)){
+        if (StringUtils.isNull(res)) {
             return 0;
         }
         return res;
     }
 
     @Override
-    public int updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms) {
-        if (StringUtils.isNull(inArchivesEmsMapper.selectInArchivesEmsByNowYearKddh(inArchivesEms.getKddh()))){
-          throw new ServiceException("拆袋对应的快递单号在当前年不存在，请检查导入时间");
+    public Map<String, Object> updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms) {
+        Map<String, Object> resultMap = new HashMap<>();
+        if (StringUtils.isNull(inArchivesEmsMapper.selectInArchivesEmsByNowYearKddh(inArchivesEms.getKddh()))) {
+            throw new ServiceException("当前快递单号在当年不存在，请检查导入时间或确认是否录入");
         }
-        return inArchivesEmsMapper.updateInArchivesEmsByNowYearKddh(inArchivesEms);
+        StuMatriculate stuMatriculate = stuMatriculateMapper.selectStuMatriculateByKsh(inArchivesEms.getKsh());
+        if (StringUtils.isNull(stuMatriculate)) {
+            throw new ServiceException("该考生号在录取数据信息中不存在");
+        }
+        InArchivesClass inArchivesClass = inArchivesClassMapper.selectInArchivesClassByKsh(inArchivesEms.getKsh());
+        if (StringUtils.isNull(inArchivesClass)) {
+            throw new ServiceException("该考生号在档案收集（分班数据）中不存在");
+        }
+        Map mapPm = inArchivesEms.getParams();
+//        按录取信息补全ems内的基本数据
+        if ((Boolean) mapPm.get("getMatUpDateEmsSwitch")) {
+            inArchivesEms.setXm(stuMatriculate.getXm());
+            inArchivesEms.setSfzh(stuMatriculate.getSfzh());
+        }
+//        更新班级档案状态
+        if ((Boolean) mapPm.get("updateClassSwitch")) {
+//            InArchivesClass addClass = new InArchivesClass();
+//            addClass.setKsh(inArchivesEms.getKsh());
+//            addClass.setDazt(1L);
+//            inArchivesClassMapper.updateInArchivesClassByKsh(addClass);
+            inArchivesClass.setDazt(1L);
+            inArchivesClass.setUpdateBy(inArchivesEms.getUpdateBy());
+            resultMap.put("updateClassState", inArchivesClassMapper.updateInArchivesClass(inArchivesClass));
+        }
+        resultMap.put("unpackState", inArchivesEmsMapper.updateInArchivesEmsByNowYearKddh(inArchivesEms));
+        resultMap.put("classEntity", inArchivesClass);
+        return resultMap;
     }
 }

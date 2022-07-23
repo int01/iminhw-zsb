@@ -15,6 +15,10 @@
             <groupId>com.minhw</groupId>
             <artifactId>iminhw-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.minhw</groupId>
+            <artifactId>iminhw-stu</artifactId>
+        </dependency>
     </dependencies>
 
     <properties>

@@ -3,6 +3,7 @@ package com.minhw.archives.service;
 import com.minhw.archives.domain.InArchivesEms;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 邮寄档案Service接口
@@ -81,7 +82,7 @@ public interface IInArchivesEmsService {
      */
     Integer selectInArchivesEmsByYearMaxXh(String yearStr);
 
-    int  updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms);
+    Map<String, Object> updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms);
 
 
 }

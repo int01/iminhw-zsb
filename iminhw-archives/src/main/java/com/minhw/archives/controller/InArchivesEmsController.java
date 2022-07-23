@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 邮寄档案Controller
@@ -136,7 +137,7 @@ public class InArchivesEmsController extends BaseController {
     @PutMapping("/unpack")
     public AjaxResult unpackEms(@RequestBody InArchivesEms inArchivesEms) {
         inArchivesEms.setUpdateBy(getUsername());
-        int resObj = inArchivesEmsService.updateInArchivesEmsByNowYearKddh(inArchivesEms);
-        return toAjax(resObj);
+        Map<String, Object> resObj = inArchivesEmsService.updateInArchivesEmsByNowYearKddh(inArchivesEms);
+        return AjaxResult.success(resObj);
     }
 }
