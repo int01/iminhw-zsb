@@ -40,7 +40,7 @@
     <select id="selectInArchivesClassList" parameterType="InArchivesClass" resultMap="InArchivesClassResult">
         <include refid="selectInArchivesClassVo"/>
         <where>
-            <if test="xuehao != null  and xuehao != ''">and xuehao = #{xuehao}</if>
+            <if test="xuehao != null  and xuehao != ''">and xuehao =  like concat(#{xuehao}, '%')</if>
             <if test="bj != null  and bj != ''">and bj like concat('%', #{bj}, '%')</if>
             <if test="xm != null  and xm != ''">and xm like concat('%', #{xm}, '%')</if>
             <if test="dazt != null ">and dazt = #{dazt}</if>

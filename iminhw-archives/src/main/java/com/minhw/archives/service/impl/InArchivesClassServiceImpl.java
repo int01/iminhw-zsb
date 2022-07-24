@@ -144,10 +144,10 @@ public class InArchivesClassServiceImpl implements IInArchivesClassService {
             }
         }
         if (failureNum > 0) {
-            failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据异常，错误如下：");
+            failureMsg.insert(0, "导入成功 " + successNum + "条，" +"导入失败 " + failureNum + " 条数据异常，错误如下：");
             throw new ServiceException(failureMsg.toString());
         } else {
-            successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
+            successMsg.insert(0, "数据已全部导入成功！共 " + successNum + " 条，数据如下：");
         }
         return successMsg.toString();
 
