@@ -122,7 +122,6 @@ public class InArchivesEmsController extends BaseController {
     }
 
     @PreAuthorize("@ss.hasPermi('archives:ems:verify')")
-    @Log(title = "邮寄档案", businessType = BusinessType.UPDATE)
     @GetMapping("/datemaxxh/{yearStr}")
     public AjaxResult getDateMaxXhElm(@PathVariable String yearStr) {
         Integer resObj = inArchivesEmsService.selectInArchivesEmsByYearMaxXh(yearStr);

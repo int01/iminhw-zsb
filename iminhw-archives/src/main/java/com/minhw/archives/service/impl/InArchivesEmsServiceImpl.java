@@ -177,6 +177,7 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
     public Map<String, Object> updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms) {
         Map<String, Object> resultMap = new HashMap<>();
         Map mapPm = inArchivesEms.getParams();
+        String remark = inArchivesEms.getRemark();
         /** 验证此快递单号是不是属于当年的，非当年的不许通过 */
         if (StringUtils.isNull(inArchivesEmsMapper.selectInArchivesEmsByNowYearKddh(inArchivesEms.getKddh()))) {
             throw new ServiceException("当前快递单号在当年不存在，请检查导入时间或确认是否录入");
@@ -194,18 +195,22 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
                 inArchivesEms.setSfzh(stuMatriculate.getSfzh());
             }
             InArchivesClass inArchivesClass = inArchivesClassMapper.selectInArchivesClassByKsh(inArchivesEms.getKsh());
-            boolean inclassdata = StringUtils.isNull(inArchivesClass);
+            boolean updateClassSwitch = (Boolean) mapPm.get("updateClassSwitch");
             /** 更新班级档案状态*/
-            if ((Boolean) mapPm.get("updateClassSwitch")) {
-                if (inclassdata){
+            if (updateClassSwitch) {
+                if (StringUtils.isNull(inArchivesClass)){
                     throw new ServiceException("更新班级档案状态失败，该考生号在档案收集（分班数据）中不存在");
                 }
                 inArchivesClass.setDazt(1L);
                 inArchivesClass.setUpdateBy(inArchivesEms.getUpdateBy());
                 resultMap.put("updateClassState", inArchivesClassMapper.updateInArchivesClass(inArchivesClass));
+            } else {
+                remark += " 该档案拆袋时班级档案状态未更新，请核对";
+                inArchivesEms.setRemark(remark);
             }
             resultMap.put("classEntity", inArchivesClass);
         }
+        /** 袋子里面是存在档案时才执行 end */
         resultMap.put("unpackState", inArchivesEmsMapper.updateInArchivesEmsByNowYearKddh(inArchivesEms));
         return resultMap;
     }
