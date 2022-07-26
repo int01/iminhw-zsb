@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * 档案收集Controller
+ * 班级档案Controller
  *
  * @author iminhw
  * @date 2022-07-09
@@ -29,7 +29,7 @@ public class InArchivesClassController extends BaseController {
     private IInArchivesClassService inArchivesClassService;
 
     /**
-     * 查询档案收集列表
+     * 查询班级档案列表
      */
     @PreAuthorize("@ss.hasPermi('archives:class:list')")
     @GetMapping("/list")
@@ -40,19 +40,19 @@ public class InArchivesClassController extends BaseController {
     }
 
     /**
-     * 导出档案收集列表
+     * 导出班级档案列表
      */
     @PreAuthorize("@ss.hasPermi('archives:class:export')")
-    @Log(title = "档案收集", businessType = BusinessType.EXPORT)
+    @Log(title = "班级档案", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, InArchivesClass inArchivesClass) {
         List<InArchivesClass> list = inArchivesClassService.selectInArchivesClassList(inArchivesClass);
         ExcelUtil<InArchivesClass> util = new ExcelUtil<InArchivesClass>(InArchivesClass.class);
-        util.exportExcel(response, list, "档案收集数据");
+        util.exportExcel(response, list, "班级档案数据");
     }
 
     /**
-     * 获取档案收集详细信息
+     * 获取班级档案详细信息
      */
     @PreAuthorize("@ss.hasPermi('archives:class:query')")
     @GetMapping(value = "/{xuehao}")
@@ -61,10 +61,10 @@ public class InArchivesClassController extends BaseController {
     }
 
     /**
-     * 新增档案收集
+     * 新增班级档案
      */
     @PreAuthorize("@ss.hasPermi('archives:class:add')")
-    @Log(title = "档案收集", businessType = BusinessType.INSERT)
+    @Log(title = "班级档案", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody InArchivesClass inArchivesClass) {
         inArchivesClass.setCreateBy(getUsername());
@@ -72,10 +72,10 @@ public class InArchivesClassController extends BaseController {
     }
 
     /**
-     * 修改档案收集
+     * 修改班级档案
      */
     @PreAuthorize("@ss.hasPermi('archives:class:edit')")
-    @Log(title = "档案收集", businessType = BusinessType.UPDATE)
+    @Log(title = "班级档案", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesClass inArchivesClass) {
         inArchivesClass.setUpdateBy(getUsername());
@@ -83,16 +83,16 @@ public class InArchivesClassController extends BaseController {
     }
 
     /**
-     * 删除档案收集
+     * 删除班级档案
      */
     @PreAuthorize("@ss.hasPermi('archives:class:remove')")
-    @Log(title = "档案收集", businessType = BusinessType.DELETE)
+    @Log(title = "班级档案", businessType = BusinessType.DELETE)
     @DeleteMapping("/{xuehaos}")
     public AjaxResult remove(@PathVariable String[] xuehaos) {
         return toAjax(inArchivesClassService.deleteInArchivesClassByXuehaos(xuehaos));
     }
 
-    @Log(title = "档案收集", businessType = BusinessType.IMPORT)
+    @Log(title = "班级档案", businessType = BusinessType.IMPORT)
     @PreAuthorize("@ss.hasPermi('archives:class:import')")
     @PostMapping("/importData")
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
