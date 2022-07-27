@@ -12,6 +12,9 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 数据过滤处理
  *
@@ -55,13 +58,19 @@ public class DataScopeAspect {
      *
      * @param joinPoint 切点
      * @param user      用户
-     * @param userAlias 别名
+     * @param deptAlias 部门别名
+     * @param userAlias 用户别名
      */
     public static void dataScopeFilter(JoinPoint joinPoint, SysUser user, String deptAlias, String userAlias) {
         StringBuilder sqlString = new StringBuilder();
+        List<String> conditions = new ArrayList<>();
 
         for (SysRole role : user.getRoles()) {
             String dataScope = role.getDataScope();
+            if (!DATA_SCOPE_CUSTOM.equals(dataScope) && conditions.contains(dataScope))
+            {
+                continue;
+            }
             if (DATA_SCOPE_ALL.equals(dataScope)) {
                 sqlString = new StringBuilder();
                 break;
@@ -83,6 +92,7 @@ public class DataScopeAspect {
                     sqlString.append(StringUtils.format(" OR {}.dept_id = 0 ", deptAlias));
                 }
             }
+            conditions.add(dataScope);
         }
 
         if (StringUtils.isNotBlank(sqlString.toString())) {

@@ -48,7 +48,7 @@ public final class ServiceException extends RuntimeException {
         this.detailMessage = detailMessage;
         return this;
     }
-
+    @Override
     public String getMessage() {
         return message;
     }

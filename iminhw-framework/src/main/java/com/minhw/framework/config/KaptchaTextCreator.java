@@ -37,7 +37,7 @@ public class KaptchaTextCreator extends DefaultTextCreator {
                 suChinese.append("+");
                 suChinese.append(CNUMBERS[y]);
             }
-        } else if (randomoperands == 2) {
+        } else {
             if (x >= y) {
                 result = x - y;
                 suChinese.append(CNUMBERS[x]);
@@ -49,11 +49,6 @@ public class KaptchaTextCreator extends DefaultTextCreator {
                 suChinese.append("-");
                 suChinese.append(CNUMBERS[x]);
             }
-        } else {
-            result = x + y;
-            suChinese.append(CNUMBERS[x]);
-            suChinese.append("+");
-            suChinese.append(CNUMBERS[y]);
         }
         suChinese.append("=?@" + result);
         return suChinese.toString();
