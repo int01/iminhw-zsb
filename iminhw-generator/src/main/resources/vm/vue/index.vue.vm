@@ -108,7 +108,7 @@
       <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="${businessName}List" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="${businessName}List" @selection-change="handleSelectionChange" @sort-change="handleSortChange">
       <el-table-column type="selection" width="55" align="center" />
 #foreach($column in $columns)
 #set($javaField=$column.javaField)
@@ -480,6 +480,13 @@ function handleSelectionChange(selection) {
   rowIds.value = selection.map(item => item.${pkColumn.javaField});
   single.value = selection.length != 1;
   multiple.value = !selection.length;
+}
+
+/** 排序触发事件 */
+function handleSortChange(column, prop, order) {
+    queryParams.value.orderByColumn = column.prop;
+    queryParams.value.isAsc = column.order;
+    getList();
 }
 
 /** 新增按钮操作 */

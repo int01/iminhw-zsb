@@ -34,7 +34,6 @@
             <if test="xy != null  and xy != ''">and xy like concat('%', #{xy}, '%')</if>
             <if test="status != null ">and status = #{status}</if>
         </where>
-        ORDER BY create_time DESC
     </select>
 
     <select id="selectStuZyXyByZy" parameterType="String" resultMap="StuZyXyResult">
