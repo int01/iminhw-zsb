@@ -60,6 +60,12 @@ public class InArchivesClassController extends BaseController {
         return AjaxResult.success(inArchivesClassService.selectInArchivesClassByXuehao(xuehao));
     }
 
+    @PreAuthorize("@ss.hasPermi('archives:class:print')")
+    @GetMapping(value = "/bj")
+    public AjaxResult getClassBybj(InArchivesClass inArchivesClass) {
+        return AjaxResult.success(inArchivesClassService.selectInArchivesClassByBj(inArchivesClass));
+    }
+
     /**
      * 新增班级档案
      */

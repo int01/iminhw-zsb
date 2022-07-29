@@ -63,4 +63,6 @@ public interface InArchivesClassMapper {
     public int deleteInArchivesClassByXuehaos(String[] xuehaos);
 
     int updateInArchivesClassByKsh(InArchivesClass inArchivesClass);
+
+    List<InArchivesClass> selectInArchivesClassByBj(InArchivesClass inArchivesClass);
 }

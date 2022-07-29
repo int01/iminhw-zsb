@@ -41,7 +41,7 @@
         <include refid="selectInArchivesClassVo"/>
         <where>
             <if test="xuehao != null  and xuehao != ''">and xuehao like concat(#{xuehao}, '%')</if>
-            <if test="bj != null  and bj != ''">and bj like concat('%', #{bj}, '%')</if>
+            <if test="bj != null  and bj != ''">and bj like concat(#{bj}, '%')</if>
             <if test="xm != null  and xm != ''">and xm like concat('%', #{xm}, '%')</if>
             <if test="dazt != null ">and dazt = #{dazt}</if>
             <if test="ksh != null  and ksh != ''">and ksh like concat('%', #{ksh}, '%')</if>
@@ -53,6 +53,15 @@
     <select id="selectInArchivesClassByXuehao" parameterType="String" resultMap="InArchivesClassResult">
         <include refid="selectInArchivesClassVo"/>
         where xuehao = #{xuehao}
+    </select>
+
+    <select id="selectInArchivesClassByBj" parameterType="InArchivesClass" resultMap="InArchivesClassResult">
+        <include refid="selectInArchivesClassVo"/>
+        <where>
+            <if test="bj != null and bj != ''">and bj = #{bj}</if>
+            <if test="status != null ">and status = #{status}</if>
+        </where>
+        ORDER BY xh ASC
     </select>
 
     <select id="selectInArchivesClassByKsh" parameterType="String" resultMap="InArchivesClassResult">

@@ -60,4 +60,6 @@ public interface IInArchivesClassService {
     public int deleteInArchivesClassByXuehao(String xuehao);
 
     String importInArchivesClass(List<InArchivesClass> inArchivesClassList, boolean isUpdateSupport, String operName);
+
+    List<InArchivesClass> selectInArchivesClassByBj(InArchivesClass inArchivesClass);
 }

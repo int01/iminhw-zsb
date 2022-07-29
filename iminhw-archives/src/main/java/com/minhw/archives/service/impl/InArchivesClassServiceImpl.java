@@ -152,4 +152,9 @@ public class InArchivesClassServiceImpl implements IInArchivesClassService {
         return successMsg.toString();
 
     }
+
+    @Override
+    public List<InArchivesClass> selectInArchivesClassByBj(InArchivesClass inArchivesClass) {
+        return inArchivesClassMapper.selectInArchivesClassByBj(inArchivesClass);
+    }
 }
