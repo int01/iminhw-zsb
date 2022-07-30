@@ -4,6 +4,7 @@ import com.minhw.archives.domain.InArchivesClass;
 import com.minhw.archives.domain.InArchivesEms;
 import com.minhw.archives.mapper.InArchivesClassMapper;
 import com.minhw.archives.mapper.InArchivesEmsMapper;
+import com.minhw.archives.service.IInArchivesClassService;
 import com.minhw.archives.service.IInArchivesEmsService;
 import com.minhw.common.exception.ServiceException;
 import com.minhw.common.utils.DateUtils;
@@ -37,6 +38,9 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
 
     @Autowired
     private InArchivesClassMapper inArchivesClassMapper;
+
+    @Autowired
+    private IInArchivesClassService inArchivesClassService;
 
     @Autowired
     private StuMatriculateMapper stuMatriculateMapper;
@@ -203,7 +207,8 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
                 }
                 inArchivesClass.setDazt(1L);
                 inArchivesClass.setUpdateBy(inArchivesEms.getUpdateBy());
-                resultMap.put("updateClassState", inArchivesClassMapper.updateInArchivesClass(inArchivesClass));
+                inArchivesClass = inArchivesClassService.selectInArchivesClassXhAndUpdateXhBybj(inArchivesClass);
+                resultMap.put("updateClass", inArchivesClass);
             } else {
                 remark += " 该档案拆袋时班级档案状态未更新，请核对";
                 inArchivesEms.setRemark(remark);

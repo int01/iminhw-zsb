@@ -69,6 +69,21 @@
         where ksh = #{ksh}
     </select>
 
+    <select id="selectInArchivesClassByKshOrXueHOrSfzh" parameterType="InArchivesClass"  resultMap="InArchivesClassResult">
+        <include refid="selectInArchivesClassVo"/>
+        <where>
+            <if test="xuehao != null and xuehao != ''">and xuehao = #{xuehao}</if>
+            <if test="sfzh != null and sfzh != ''">and sfzh = #{sfzh}</if>
+            <if test="ksh != null and ksh != ''">and ksh = #{ksh}</if>
+        </where>
+    </select>
+
+    <select id="selectInArchivesClassMaxXhBybj" parameterType="String" resultType="Integer">
+        select MAX(xh) as maxxh
+        from in_archives_class
+        where bj = #{bj}
+    </select>
+
     <insert id="insertInArchivesClass" parameterType="InArchivesClass">
         insert into in_archives_class
         <trim prefix="(" suffix=")" suffixOverrides=",">

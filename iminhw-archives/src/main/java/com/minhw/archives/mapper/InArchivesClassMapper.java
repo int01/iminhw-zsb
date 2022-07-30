@@ -2,6 +2,7 @@ package com.minhw.archives.mapper;
 
 import com.minhw.archives.domain.InArchivesClass;
 import com.minhw.archives.domain.InArchivesEms;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -65,4 +66,9 @@ public interface InArchivesClassMapper {
     int updateInArchivesClassByKsh(InArchivesClass inArchivesClass);
 
     List<InArchivesClass> selectInArchivesClassByBj(InArchivesClass inArchivesClass);
+
+    InArchivesClass selectInArchivesClassByKshOrXueHOrSfzh(InArchivesClass inArchivesClass);
+
+    Integer selectInArchivesClassMaxXhBybj(@Param("bj") String bj);
+
 }

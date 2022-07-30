@@ -78,6 +78,15 @@ public class InArchivesClassController extends BaseController {
     }
 
     /**
+     * 现场
+     */
+    @PreAuthorize("@ss.hasPermi('archives:class:collect')")
+    @GetMapping(value = "/collect")
+    public AjaxResult getinfoBy(InArchivesClass inArchivesClass) {
+        return AjaxResult.success(inArchivesClassService.selectInArchivesClassByKshOrXueHOrSfzh(inArchivesClass));
+    }
+
+    /**
      * 修改班级档案
      */
     @PreAuthorize("@ss.hasPermi('archives:class:edit')")

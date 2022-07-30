@@ -1,6 +1,7 @@
 package com.minhw.archives.service;
 
 import com.minhw.archives.domain.InArchivesClass;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -62,4 +63,10 @@ public interface IInArchivesClassService {
     String importInArchivesClass(List<InArchivesClass> inArchivesClassList, boolean isUpdateSupport, String operName);
 
     List<InArchivesClass> selectInArchivesClassByBj(InArchivesClass inArchivesClass);
+
+    InArchivesClass selectInArchivesClassByKshOrXueHOrSfzh(InArchivesClass inArchivesClass);
+
+    int selectInArchivesClassMaxXhBybj(String bj);
+
+    InArchivesClass selectInArchivesClassXhAndUpdateXhBybj(InArchivesClass inArchivesClass);
 }

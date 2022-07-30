@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Validator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 档案收集Service业务层处理
@@ -156,5 +158,39 @@ public class InArchivesClassServiceImpl implements IInArchivesClassService {
     @Override
     public List<InArchivesClass> selectInArchivesClassByBj(InArchivesClass inArchivesClass) {
         return inArchivesClassMapper.selectInArchivesClassByBj(inArchivesClass);
+    }
+
+    @Override
+    public InArchivesClass selectInArchivesClassByKshOrXueHOrSfzh(InArchivesClass inArchivesClass) {
+        InArchivesClass inArchivesClassRes = inArchivesClassMapper.selectInArchivesClassByKshOrXueHOrSfzh(inArchivesClass);
+        if (StringUtils.isNull(inArchivesClassRes)){
+            throw new ServiceException("在班级数据中查不到此人");
+        }
+        return this.selectInArchivesClassXhAndUpdateXhBybj(inArchivesClassRes);
+    }
+
+    @Override
+    public int selectInArchivesClassMaxXhBybj(String bj) {
+        Integer res = inArchivesClassMapper.selectInArchivesClassMaxXhBybj(bj);
+        if (StringUtils.isNull(res)) {
+            return 0;
+        }
+        return res;
+    }
+
+    @Override
+    public InArchivesClass selectInArchivesClassXhAndUpdateXhBybj(InArchivesClass inArchivesClass) {
+        Integer res = inArchivesClassMapper.selectInArchivesClassMaxXhBybj(inArchivesClass.getBj());
+        if (StringUtils.isNull(res)) {
+            res = 0;
+        }
+        Long xh = inArchivesClass.getXh();
+        /** 如果序号不存在，则系统自动在此人班级最大序号+1，并赋予此人 */
+        if (xh == null || xh < 1) {
+            inArchivesClass.setXh(Long.valueOf(res + 1));
+//            防止用户停留在页面不操作，导致序号被其他用户暂用，使用及时更新，就不使用mq了
+            inArchivesClassMapper.updateInArchivesClass(inArchivesClass);
+        }
+        return inArchivesClass;
     }
 }
