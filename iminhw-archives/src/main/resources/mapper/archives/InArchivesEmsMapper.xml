@@ -71,7 +71,7 @@
         where kddh = #{kddh} and YEAR(create_time) = YEAR(NOW())
     </select>
 
-    <select id="selectInArchivesEmsByYearMaxXh" parameterType="String" resultType="Integer">
+    <select id="selectInArchivesEmsMaxXhByYear" parameterType="String" resultType="Integer">
         select MAX(xh) as maxxh
         from in_archives_ems
         where YEAR(create_time) = #{yearStr}

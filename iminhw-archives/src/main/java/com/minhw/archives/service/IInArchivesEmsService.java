@@ -80,7 +80,7 @@ public interface IInArchivesEmsService {
      * 得到id最大的那条数据
      * @return
      */
-    Integer selectInArchivesEmsByYearMaxXh(String yearStr);
+    Integer selectInArchivesEmsMaxXhByYear(String yearStr);
 
     Map<String, Object> updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms);
 

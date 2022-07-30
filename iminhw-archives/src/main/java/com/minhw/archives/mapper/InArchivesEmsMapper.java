@@ -75,7 +75,7 @@ public interface InArchivesEmsMapper {
      */
     int updateInArchivesEmsByKddh(InArchivesEms inArchivesEms);
 
-    Integer selectInArchivesEmsByYearMaxXh(@Param("yearStr") String yearStr);
+    Integer selectInArchivesEmsMaxXhByYear(@Param("yearStr") String yearStr);
 
     /**
      * 得到当年快递单号的记录

@@ -165,8 +165,8 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
     }
 
     @Override
-    public Integer selectInArchivesEmsByYearMaxXh(String yearStr) {
-        Integer res = inArchivesEmsMapper.selectInArchivesEmsByYearMaxXh(yearStr);
+    public Integer selectInArchivesEmsMaxXhByYear(String yearStr) {
+        Integer res = inArchivesEmsMapper.selectInArchivesEmsMaxXhByYear(yearStr);
         if (StringUtils.isNull(res)) {
             return 0;
         }
