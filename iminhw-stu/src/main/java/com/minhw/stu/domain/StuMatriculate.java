@@ -45,7 +45,7 @@ public class StuMatriculate extends BaseEntity {
     @Excel(name = "联系电话")
     private String lxdh;
 
-    @Excel(name = "地区")
+    @Excel(name = "学籍地区")
     private String dq;
 
     /**

@@ -189,8 +189,10 @@ public class InArchivesClassServiceImpl implements IInArchivesClassService {
         if (xh == null || xh < 1) {
             inArchivesClass.setXh(Long.valueOf(res + 1));
 //            防止用户停留在页面不操作，导致序号被其他用户暂用，使用及时更新，就不使用mq了
-            inArchivesClassMapper.updateInArchivesClass(inArchivesClass);
+//            同时将邮寄档案的状态也一起更新，但当序号存在时，不会更新档案状态
         }
+// 在括号里面 当ems档案调用时，不会更新档案状态
+        inArchivesClassMapper.updateInArchivesClass(inArchivesClass);
         return inArchivesClass;
     }
 }
