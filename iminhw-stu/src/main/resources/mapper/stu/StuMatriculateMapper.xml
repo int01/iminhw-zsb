@@ -58,8 +58,8 @@
             <if test="xb != null "> and xb = #{xb}</if>
             <if test="zy != null  and zy != ''">and zy like concat('%', #{zy}, '%')</if>
             <if test="dq != null  and dq != ''">and dq like concat('%', #{dq}, '%')</if>
-            <if test="pc != null  and pc != ''"> and pc =  #{pc}</if>
-            <if test="kl != null  and kl != ''"> and kl = #{kl}</if>
+            <if test="pc != null "> and pc = #{pc}</if>
+            <if test="kl != null "> and kl = #{kl}</if>
             <if test="zxmc != null  and zxmc != ''"> and zxmc like concat('%', #{zxmc}, '%')</if>
             <if test="status != null ">and status = #{status}</if>
             <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''">
