@@ -9,7 +9,7 @@ import com.minhw.common.utils.ServletUtils;
 import com.minhw.common.utils.StringUtils;
 import com.minhw.framework.manager.AsyncManager;
 import com.minhw.framework.manager.factory.AsyncFactory;
-import com.minhw.framework.web.service.TokenService;
+import com.minhw.framework.aspectj.web.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;

@@ -1,4 +1,4 @@
-package com.minhw.framework.web.service;
+package com.minhw.framework.aspectj.web.service;
 
 import com.minhw.common.constant.CacheConstants;
 import com.minhw.common.constant.Constants;
@@ -16,6 +16,7 @@ import com.minhw.common.utils.StringUtils;
 import com.minhw.common.utils.ip.IpUtils;
 import com.minhw.framework.manager.AsyncManager;
 import com.minhw.framework.manager.factory.AsyncFactory;
+import com.minhw.framework.security.context.AuthenticationContextHolder;
 import com.minhw.system.service.ISysConfigService;
 import com.minhw.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,8 @@ public class SysLoginService {
         // 用户验证
         Authentication authentication = null;
         try {
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+            AuthenticationContextHolder.setContext(authenticationToken);
             // 该方法会去调用UserDetailsServiceImpl.loadUserByUsername
             authentication = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(username, password));

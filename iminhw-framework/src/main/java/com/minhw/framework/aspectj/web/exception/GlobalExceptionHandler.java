@@ -1,4 +1,4 @@
-package com.minhw.framework.web.exception;
+package com.minhw.framework.aspectj.web.exception;
 
 import com.minhw.common.constant.HttpStatus;
 import com.minhw.common.core.domain.AjaxResult;

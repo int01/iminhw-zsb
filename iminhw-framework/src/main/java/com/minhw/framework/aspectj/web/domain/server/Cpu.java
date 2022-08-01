@@ -1,4 +1,4 @@
-package com.minhw.framework.web.domain.server;
+package com.minhw.framework.aspectj.web.domain.server;
 
 import com.minhw.common.utils.Arith;
 

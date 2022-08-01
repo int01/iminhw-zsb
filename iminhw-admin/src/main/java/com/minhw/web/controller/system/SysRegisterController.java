@@ -4,7 +4,7 @@ import com.minhw.common.core.controller.BaseController;
 import com.minhw.common.core.domain.AjaxResult;
 import com.minhw.common.core.domain.model.RegisterBody;
 import com.minhw.common.utils.StringUtils;
-import com.minhw.framework.web.service.SysRegisterService;
+import com.minhw.framework.aspectj.web.service.SysRegisterService;
 import com.minhw.system.service.ISysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
