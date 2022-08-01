@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Validator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 档案收集Service业务层处理
@@ -146,7 +144,7 @@ public class InArchivesClassServiceImpl implements IInArchivesClassService {
             }
         }
         if (failureNum > 0) {
-            failureMsg.insert(0, "导入成功 " + successNum + "条，" +"导入失败 " + failureNum + " 条数据异常，错误如下：");
+            failureMsg.insert(0, "导入成功 " + successNum + "条，" + "导入失败 " + failureNum + " 条数据异常，错误如下：");
             throw new ServiceException(failureMsg.toString());
         } else {
             successMsg.insert(0, "数据已全部导入成功！共 " + successNum + " 条，数据如下：");
@@ -163,7 +161,7 @@ public class InArchivesClassServiceImpl implements IInArchivesClassService {
     @Override
     public InArchivesClass selectInArchivesClassByKshOrXueHOrSfzh(InArchivesClass inArchivesClass) {
         InArchivesClass inArchivesClassRes = inArchivesClassMapper.selectInArchivesClassByKshOrXueHOrSfzh(inArchivesClass);
-        if (StringUtils.isNull(inArchivesClassRes)){
+        if (StringUtils.isNull(inArchivesClassRes)) {
             throw new ServiceException("在班级数据中查不到此人");
         }
         return this.selectInArchivesClassXhAndUpdateXhBybj(inArchivesClassRes);
