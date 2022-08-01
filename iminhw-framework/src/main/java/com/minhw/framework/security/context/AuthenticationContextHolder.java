@@ -4,7 +4,7 @@ import org.springframework.security.core.Authentication;
 
 /**
  * @program: iminhw-zsb
- * @description:
+ * @description: 身份验证信息
  * @author: MinHw or mz
  * @create: 2022-08-02 00:18
  **/

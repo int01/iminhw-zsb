@@ -1,4 +1,4 @@
-package com.minhw.framework.aspectj.web.service;
+package com.minhw.framework.web.service;
 
 import com.minhw.common.core.domain.entity.SysUser;
 import com.minhw.system.service.ISysMenuService;

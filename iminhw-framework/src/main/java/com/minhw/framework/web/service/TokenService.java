@@ -1,4 +1,4 @@
-package com.minhw.framework.aspectj.web.service;
+package com.minhw.framework.web.service;
 
 import com.minhw.common.constant.CacheConstants;
 import com.minhw.common.constant.Constants;

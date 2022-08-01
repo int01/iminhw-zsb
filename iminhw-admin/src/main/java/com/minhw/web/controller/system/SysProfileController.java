@@ -12,7 +12,7 @@ import com.minhw.common.utils.SecurityUtils;
 import com.minhw.common.utils.StringUtils;
 import com.minhw.common.utils.file.FileUploadUtils;
 import com.minhw.common.utils.file.MimeTypeUtils;
-import com.minhw.framework.aspectj.web.service.TokenService;
+import com.minhw.framework.web.service.TokenService;
 import com.minhw.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

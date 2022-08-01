@@ -3,7 +3,7 @@ package com.minhw.framework.security.filter;
 import com.minhw.common.core.domain.model.LoginUser;
 import com.minhw.common.utils.SecurityUtils;
 import com.minhw.common.utils.StringUtils;
-import com.minhw.framework.aspectj.web.service.TokenService;
+import com.minhw.framework.web.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

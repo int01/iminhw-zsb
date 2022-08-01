@@ -1,4 +1,4 @@
-package com.minhw.framework.aspectj.web.domain.server;
+package com.minhw.framework.web.domain.server;
 
 /**
  * 系统文件相关信息

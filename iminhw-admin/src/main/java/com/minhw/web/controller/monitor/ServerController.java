@@ -1,7 +1,7 @@
 package com.minhw.web.controller.monitor;
 
 import com.minhw.common.core.domain.AjaxResult;
-import com.minhw.framework.aspectj.web.domain.Server;
+import com.minhw.framework.web.domain.Server;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

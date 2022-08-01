@@ -1,8 +1,8 @@
-package com.minhw.framework.aspectj.web.domain;
+package com.minhw.framework.web.domain;
 
 import com.minhw.common.utils.Arith;
 import com.minhw.common.utils.ip.IpUtils;
-import com.minhw.framework.aspectj.web.domain.server.*;
+import com.minhw.framework.web.domain.server.*;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.CentralProcessor.TickType;
