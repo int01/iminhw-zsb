@@ -74,7 +74,7 @@ public interface ISysJobService {
      * @param job 调度信息
      * @return 结果
      */
-    void run(SysJob job) throws SchedulerException;
+    boolean run(SysJob job) throws SchedulerException;
 
     /**
      * 新增任务
