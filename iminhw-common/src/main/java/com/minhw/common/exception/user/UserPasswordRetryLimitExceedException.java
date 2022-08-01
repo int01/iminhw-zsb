@@ -2,7 +2,7 @@ package com.minhw.common.exception.user;
 
 /**
  * @program: iminhw-zsb
- * @description:
+ * @description: 用户错误最大次数异常类
  * @author: MinHw or mz
  * @create: 2022-08-02 00:16
  **/
