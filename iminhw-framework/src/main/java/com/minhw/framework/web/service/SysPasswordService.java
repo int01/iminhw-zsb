@@ -8,6 +8,8 @@ import com.minhw.common.exception.user.UserPasswordNotMatchException;
 import com.minhw.common.exception.user.UserPasswordRetryLimitExceedException;
 import com.minhw.common.utils.MessageUtils;
 import com.minhw.common.utils.SecurityUtils;
+import com.minhw.common.utils.ServletUtils;
+import com.minhw.common.utils.ip.IpUtils;
 import com.minhw.framework.manager.AsyncManager;
 import com.minhw.framework.manager.factory.AsyncFactory;
 import com.minhw.framework.security.context.AuthenticationContextHolder;
@@ -42,34 +44,40 @@ public class SysPasswordService {
      * @return 缓存键key
      */
     private String getCacheKey(String username) {
-        return CacheConstants.PWD_ERR_CNT_KEY + username;
+        return CacheConstants.PWD_ERR_CNT_KEY + username + IpUtils.getIpAddr(ServletUtils.getRequest());
     }
 
+    /**
+     *
+     * @param user
+     */
     public void validate(SysUser user) {
         Authentication usernamePasswordAuthenticationToken = AuthenticationContextHolder.getContext();
         String username = usernamePasswordAuthenticationToken.getName();
         String password = usernamePasswordAuthenticationToken.getCredentials().toString();
 
-        Integer retryCount = redisCache.getCacheObject(getCacheKey(username));
+        if (Integer.valueOf(maxRetryCount).intValue() >0 || Integer.valueOf(lockTime).intValue() > 0) {
+            Integer retryCount = redisCache.getCacheObject(getCacheKey(username));
 
-        if (retryCount == null) {
-            retryCount = 0;
-        }
+            if (retryCount == null) {
+                retryCount = 0;
+            }
 
-        if (retryCount >= Integer.valueOf(maxRetryCount).intValue()) {
-            AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
-                    MessageUtils.message("user.password.retry.limit.exceed", maxRetryCount, lockTime)));
-            throw new UserPasswordRetryLimitExceedException(maxRetryCount, lockTime);
-        }
+            if (retryCount >= Integer.valueOf(maxRetryCount).intValue()) {
+                AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
+                        MessageUtils.message("user.password.retry.limit.exceed", maxRetryCount, lockTime)));
+                throw new UserPasswordRetryLimitExceedException(maxRetryCount, lockTime);
+            }
 
-        if (!matches(user, password)) {
-            retryCount = retryCount + 1;
-            AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
-                    MessageUtils.message("user.password.retry.limit.count", retryCount)));
-            redisCache.setCacheObject(getCacheKey(username), retryCount, lockTime, TimeUnit.MINUTES);
-            throw new UserPasswordNotMatchException();
-        } else {
-            clearLoginRecordCache(username);
+            if (!matches(user, password)) {
+                retryCount = retryCount + 1;
+                AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
+                        MessageUtils.message("user.password.retry.limit.count", retryCount)));
+                redisCache.setCacheObject(getCacheKey(username), retryCount, lockTime, TimeUnit.MINUTES);
+                throw new UserPasswordNotMatchException();
+            } else {
+                clearLoginRecordCache(username);
+            }
         }
     }
 
