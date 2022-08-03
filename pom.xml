@@ -24,6 +24,7 @@
         <module>iminhw-quartz</module>
         <module>iminhw-archives</module>
         <module>iminhw-stu</module>
+        <module>iminhw-analysis</module>
     </modules>
 
     <properties>
@@ -205,6 +206,11 @@
             <dependency>
                 <groupId>com.minhw</groupId>
                 <artifactId>iminhw-stu</artifactId>
+                <version>2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.minhw</groupId>
+                <artifactId>iminhw-analysis</artifactId>
                 <version>2.0</version>
             </dependency>
         </dependencies>

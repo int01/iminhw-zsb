@@ -74,6 +74,10 @@
             <groupId>com.minhw</groupId>
             <artifactId>iminhw-stu</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.minhw</groupId>
+            <artifactId>iminhw-analysis</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
