@@ -98,4 +98,13 @@ public interface InArchivesEmsMapper {
      */
     int updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms);
 
+
+    /**
+     * 更新当年导入的快递单号数据 按快递序号更新
+     *
+     * @param inArchivesEms
+     * @return
+     */
+    int updateInArchivesEmsByNowYearXh(InArchivesEms inArchivesEms);
+
 }

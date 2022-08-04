@@ -173,6 +173,22 @@
         where kddh = #{kddh} and YEAR(create_time) = YEAR(NOW())
     </update>
 
+    <update id="updateInArchivesEmsByNowYearXh" parameterType="InArchivesEms">
+        update in_archives_ems
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="qsyz != null">qsyz = #{qsyz},</if>
+            <if test="sfda != null">sfda = #{sfda},</if>
+            <if test="xm != null">xm = #{xm},</if>
+            <if test="ksh != null">ksh = #{ksh},</if>
+            <if test="sfzh != null">sfzh = #{sfzh},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where xh = #{xh} and YEAR(create_time) = YEAR(NOW())
+    </update>
+
     <delete id="deleteInArchivesEmsById" parameterType="Long">
         delete
         from in_archives_ems

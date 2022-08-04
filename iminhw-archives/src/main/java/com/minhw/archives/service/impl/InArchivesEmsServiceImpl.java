@@ -225,7 +225,9 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
             resultMap.put("classEntity", inArchivesClass);
         }
         /** 袋子里面是存在档案时才执行 end */
-        resultMap.put("unpackState", inArchivesEmsMapper.updateInArchivesEmsByNowYearKddh(inArchivesEms));
+//        resultMap.put("unpackState", inArchivesEmsMapper.updateInArchivesEmsByNowYearKddh(inArchivesEms));
+        resultMap.put("unpackState", inArchivesEmsMapper.updateInArchivesEmsByNowYearXh(inArchivesEms));
+
         return resultMap;
     }
 }
