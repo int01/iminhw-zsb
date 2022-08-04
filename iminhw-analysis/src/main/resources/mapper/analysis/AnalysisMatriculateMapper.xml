@@ -11,10 +11,10 @@
         <result property="pc" column="pc"/>
         <result property="kl" column="kl"/>
         <result property="zxmc" column="zxmc"/>
-        <result property="maxTdcj" column="maxtdcj"/>
-        <result property="minTdcj" column="mintdcj"/>
-        <result property="avgTdcj" column="avgtdcj"/>
-        <result property="countNum" column="countnum"/>
+        <result property="maxtdcj" column="maxtdcj"/>
+        <result property="mintdcj" column="mintdcj"/>
+        <result property="avgtdcj" column="avgtdcj"/>
+        <result property="countnum" column="countnum"/>
     </resultMap>
 
     <select id="selectAnalysisMatriculate" parameterType="AnalysisMatriculate" resultMap="AnalysisMatriculateResult">
