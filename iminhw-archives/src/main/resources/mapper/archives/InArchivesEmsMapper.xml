@@ -66,9 +66,15 @@
         <include refid="selectInArchivesEmsVo"/>
         where kddh = #{kddh} and YEAR(create_time) = #{params.yearStr}
     </select>
+
     <select id="selectInArchivesEmsByNowYearKddh" parameterType="String" resultMap="InArchivesEmsResult">
         <include refid="selectInArchivesEmsVo"/>
         where kddh = #{kddh} and YEAR(create_time) = YEAR(NOW())
+    </select>
+
+    <select id="selectInArchivesEmsByNowYearXhList" parameterType="Long" resultMap="InArchivesEmsResult">
+        <include refid="selectInArchivesEmsVo"/>
+        where xh = #{xh} and YEAR(create_time) = YEAR(NOW())
     </select>
 
     <select id="selectInArchivesEmsMaxXhByYear" parameterType="String" resultType="Integer">

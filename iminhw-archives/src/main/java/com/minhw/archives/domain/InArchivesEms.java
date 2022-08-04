@@ -19,7 +19,7 @@ public class InArchivesEms extends BaseEntity {
      */
     private Long id;
 
-    @Excel(name = "序号", prompt = "邮寄档案流水号")
+    @Excel(name = "快递序号")
     private Long xh;
 
     /**

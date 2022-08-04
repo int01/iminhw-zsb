@@ -84,6 +84,13 @@ public interface InArchivesEmsMapper {
     InArchivesEms selectInArchivesEmsByNowYearKddh(String kddh);
 
     /**
+     * 得到当年快递序号对应的记录
+     * @param xh
+     * @return
+     */
+    List<InArchivesEms> selectInArchivesEmsByNowYearXhList(Long xh);
+
+    /**
      * 更新当年导入的快递单号数据
      *
      * @param inArchivesEms

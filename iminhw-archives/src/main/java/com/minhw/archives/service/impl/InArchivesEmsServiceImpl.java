@@ -183,8 +183,17 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
         Map mapPm = inArchivesEms.getParams();
         String remark = inArchivesEms.getRemark();
         /** 验证此快递单号是不是属于当年的，非当年的不许通过 */
-        if (StringUtils.isNull(inArchivesEmsMapper.selectInArchivesEmsByNowYearKddh(inArchivesEms.getKddh()))) {
-            throw new ServiceException("当前快递单号在当年不存在，请检查导入时间或确认是否录入");
+//        if (StringUtils.isNull(inArchivesEmsMapper.selectInArchivesEmsByNowYearKddh(inArchivesEms.getKddh()))) {
+//            throw new ServiceException("当前快递单号在当年不存在，请检查导入时间或确认是否录入");
+//        }
+        /** 将验证快递单号修改为使用快递序号 故上侧注解。验证序号是否存在并且在当年是否多条 */
+        List<InArchivesEms> inArchivesEmsList = inArchivesEmsMapper.selectInArchivesEmsByNowYearXhList(inArchivesEms.getXh());
+        if (StringUtils.isNull(inArchivesEmsList)) {
+            if (inArchivesEmsList.size() > 1) {
+                throw new ServiceException("当前快递序号在当年存在多条，请检查录入并修改调整");
+            } else {
+                throw new ServiceException("当前快递序号在当年不存在，请检查导入时间或确认是否正确录入");
+            }
         }
         /** 袋子里面是存在档案时才执行 */
         if ((Boolean) mapPm.get("showSwitch")) {
@@ -202,7 +211,7 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
             boolean updateClassSwitch = (Boolean) mapPm.get("updateClassSwitch");
             /** 更新班级档案状态*/
             if (updateClassSwitch) {
-                if (StringUtils.isNull(inArchivesClass)){
+                if (StringUtils.isNull(inArchivesClass)) {
                     throw new ServiceException("更新班级档案状态失败，该考生号在档案收集（分班数据）中不存在");
                 }
                 inArchivesClass.setDazt(1L);
