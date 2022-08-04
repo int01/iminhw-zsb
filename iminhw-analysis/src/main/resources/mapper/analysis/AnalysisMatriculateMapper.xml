@@ -21,7 +21,7 @@
         select
         MAX(tdcj) as maxtdcj,
         MIN(tdcj) as mintdcj,
-        AVG(tdcj) as avgtdcj,
+        format(AVG(tdcj),2) as avgtdcj,
         count(*) as countnum
         <trim prefix="," suffixOverrides=",">
             <if test="params.nd != null">YEAR(create_time) as nd,</if>
