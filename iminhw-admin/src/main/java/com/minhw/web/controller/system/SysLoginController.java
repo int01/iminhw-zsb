@@ -49,7 +49,7 @@ public class SysLoginController {
     @PostMapping("/login")
     public AjaxResult login(@RequestBody LoginBody loginBody) {
         AjaxResult ajax = AjaxResult.success();
-//        if (!("true".equals(configService.selectConfigByKey("sys.login:restriction")))) {
+//        if (!("true".equals(configService.selectConfigByKey("sys_login_restriction")))) {
 ////            LoginUser user = redisCache.getCacheObject(key);
 //            return error("当前系统没有开启注册功能！");
 //        }
