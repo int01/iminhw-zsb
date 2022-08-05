@@ -57,4 +57,14 @@ public class LoginBody {
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
+
+    @Override
+    public String toString() {
+        return "LoginBody{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", code='" + code + '\'' +
+                ", uuid='" + uuid + '\'' +
+                '}';
+    }
 }

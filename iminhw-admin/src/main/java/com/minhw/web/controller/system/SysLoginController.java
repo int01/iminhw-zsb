@@ -53,6 +53,7 @@ public class SysLoginController {
 ////            LoginUser user = redisCache.getCacheObject(key);
 //            return error("当前系统没有开启注册功能！");
 //        }
+//        System.err.println(loginBody);
         // 生成令牌
         String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
                 loginBody.getUuid());
