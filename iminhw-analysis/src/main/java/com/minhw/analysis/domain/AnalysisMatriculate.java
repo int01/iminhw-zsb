@@ -63,4 +63,99 @@ public class AnalysisMatriculate extends BaseEntity {
     @Excel(name = "录取人数")
     private Long countnum;
 
+    public String getNd() {
+        return nd;
+    }
+
+    public void setNd(String nd) {
+        this.nd = nd;
+    }
+
+    public String getDq() {
+        return dq;
+    }
+
+    public void setDq(String dq) {
+        this.dq = dq;
+    }
+
+    public Long getPc() {
+        return pc;
+    }
+
+    public void setPc(Long pc) {
+        this.pc = pc;
+    }
+
+    public Long getKl() {
+        return kl;
+    }
+
+    public void setKl(Long kl) {
+        this.kl = kl;
+    }
+
+    public String getZy() {
+        return zy;
+    }
+
+    public void setZy(String zy) {
+        this.zy = zy;
+    }
+
+    public String getZxmc() {
+        return zxmc;
+    }
+
+    public void setZxmc(String zxmc) {
+        this.zxmc = zxmc;
+    }
+
+    public Double getMaxtdcj() {
+        return maxtdcj;
+    }
+
+    public void setMaxtdcj(Double maxtdcj) {
+        this.maxtdcj = maxtdcj;
+    }
+
+    public Double getMintdcj() {
+        return mintdcj;
+    }
+
+    public void setMintdcj(Double mintdcj) {
+        this.mintdcj = mintdcj;
+    }
+
+    public Double getAvgtdcj() {
+        return avgtdcj;
+    }
+
+    public void setAvgtdcj(Double avgtdcj) {
+        this.avgtdcj = avgtdcj;
+    }
+
+    public Long getCountnum() {
+        return countnum;
+    }
+
+    public void setCountnum(Long countnum) {
+        this.countnum = countnum;
+    }
+
+    @Override
+    public String toString() {
+        return "AnalysisMatriculate{" +
+                "nd='" + nd + '\'' +
+                ", dq='" + dq + '\'' +
+                ", pc=" + pc +
+                ", kl=" + kl +
+                ", zy='" + zy + '\'' +
+                ", zxmc='" + zxmc + '\'' +
+                ", maxtdcj=" + maxtdcj +
+                ", mintdcj=" + mintdcj +
+                ", avgtdcj=" + avgtdcj +
+                ", countnum=" + countnum +
+                '}';
+    }
 }
