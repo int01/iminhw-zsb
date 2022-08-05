@@ -40,7 +40,7 @@ public class AnalysisMatriculateController extends BaseController {
     }
 
     @PreAuthorize("@ss.hasPermi('analysis:matriculate:export')")
-    @Log(title = "班级档案", businessType = BusinessType.EXPORT)
+    @Log(title = "录取统计分析", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, AnalysisMatriculate analysisMatriculate) {
         List<AnalysisMatriculate> list = analysisMatriculateService.selectAnalysisMatriculate(analysisMatriculate);
