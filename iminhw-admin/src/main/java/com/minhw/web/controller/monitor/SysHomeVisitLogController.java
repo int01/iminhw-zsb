@@ -35,23 +35,23 @@ public class SysHomeVisitLogController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "用户访问前台日志", businessType = BusinessType.EXPORT)
+    @Log(title = "前台日志", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('monitor:homevisitlog:export')")
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysHomeVisitLog homeVisitLog) {
         List<SysHomeVisitLog> list = homeVisitLogService.selectHomeVisitLogList(homeVisitLog);
         ExcelUtil<SysHomeVisitLog> util = new ExcelUtil<>(SysHomeVisitLog.class);
-        util.exportExcel(response, list, "用户访问前台日志");
+        util.exportExcel(response, list, "前台日志");
     }
 
-    @Log(title = "用户访问前台日志", businessType = BusinessType.DELETE)
+    @Log(title = "前台日志", businessType = BusinessType.DELETE)
     @PreAuthorize("@ss.hasPermi('monitor:homevisitlog:remove')")
     @DeleteMapping("/{visitIds}")
     public AjaxResult remove(@PathVariable Long[] visitIds) {
         return toAjax(homeVisitLogService.deleteHomeVisitLogByIds(visitIds));
     }
 
-    @Log(title = "用户访问前台日志", businessType = BusinessType.CLEAN)
+    @Log(title = "前台日志", businessType = BusinessType.CLEAN)
     @PreAuthorize("@ss.hasPermi('monitor:homevisitlog:remove')")
     @DeleteMapping("/clean")
     public AjaxResult clean() {

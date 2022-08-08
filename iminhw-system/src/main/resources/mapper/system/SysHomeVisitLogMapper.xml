@@ -42,6 +42,9 @@
             <if test="title != null and title != ''">
                 AND title like concat('%', #{title}, '%')
             </if>
+            <if test="visitIp != null and visitIp != ''">
+                AND visit_ip like concat('%', #{visitIp}, '%')
+            </if>
             <if test="businessType != null">
                 AND business_type = #{businessType}
             </if>
