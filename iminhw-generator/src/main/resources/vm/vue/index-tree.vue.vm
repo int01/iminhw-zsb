@@ -134,7 +134,8 @@
 #end
 #end
 #end
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" v-hasPermi="['${moduleName}:${businessName}:edit','${moduleName}:${businessName}:add']"
+                       align="center" class-name="small-padding fixed-width">
         <template #default="scope">
           <el-button
             type="text"
