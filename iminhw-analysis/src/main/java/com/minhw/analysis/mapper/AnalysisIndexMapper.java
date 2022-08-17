@@ -1,6 +1,7 @@
 package com.minhw.analysis.mapper;
 
 import com.minhw.analysis.domain.AnalysisIndex;
+import com.minhw.analysis.domain.AnalysisIndex2;
 import com.minhw.analysis.domain.AnalysisMatriculate;
 
 import java.util.List;
@@ -14,4 +15,6 @@ import java.util.List;
 public interface AnalysisIndexMapper {
 
     List<AnalysisIndex> selectSysHongPageVistCount();
+
+    List<AnalysisIndex2> selectStuMatBythreeYearNumP();
 }

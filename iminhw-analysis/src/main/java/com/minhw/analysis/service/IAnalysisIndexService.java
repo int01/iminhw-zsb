@@ -1,6 +1,7 @@
 package com.minhw.analysis.service;
 
 import com.minhw.analysis.domain.AnalysisIndex;
+import com.minhw.analysis.domain.AnalysisIndex2;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ import java.util.List;
 public interface IAnalysisIndexService {
 
     List<AnalysisIndex> selectSysHongPageVistCount();
+
+    List<AnalysisIndex2> selectStuMatBythreeYearNumP();
 }

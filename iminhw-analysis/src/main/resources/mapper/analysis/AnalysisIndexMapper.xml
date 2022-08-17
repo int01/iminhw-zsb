@@ -9,8 +9,18 @@
         <result property="value" column="value"/>
     </resultMap>
 
+    <resultMap id="AnalysisIndex2Result" type="AnalysisIndex2">
+        <result property="dq" column="dq"/>
+        <result property="value" column="value"/>
+        <result property="year" column="year"/>
+    </resultMap>
+
     <select id="selectSysHongPageVistCount" resultMap="AnalysisIndexResult">
         SELECT COUNT(*) as value, title as name FROM sys_homepage_visit_log group by title;
+    </select>
+
+    <select id="selectStuMatBythreeYearNumP" resultMap="AnalysisIndex2Result">
+        SELECT dq, COUNT(dq) AS value,YEAR(create_time) AS year FROM stu_matriculate WHERE YEAR(create_time) BETWEEN YEAR(NOW())-3 AND YEAR(NOW()) AND dq NOT LIKE "%四川%" GROUP BY dq, YEAR(create_time);
     </select>
 
 </mapper>

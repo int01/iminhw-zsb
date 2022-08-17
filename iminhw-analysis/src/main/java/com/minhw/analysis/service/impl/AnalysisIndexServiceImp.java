@@ -1,6 +1,7 @@
 package com.minhw.analysis.service.impl;
 
 import com.minhw.analysis.domain.AnalysisIndex;
+import com.minhw.analysis.domain.AnalysisIndex2;
 import com.minhw.analysis.mapper.AnalysisIndexMapper;
 import com.minhw.analysis.service.IAnalysisIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,10 @@ public class AnalysisIndexServiceImp implements IAnalysisIndexService {
     @Override
     public List<AnalysisIndex> selectSysHongPageVistCount() {
         return analysisIndexMapper.selectSysHongPageVistCount();
+    }
+
+    @Override
+    public List<AnalysisIndex2> selectStuMatBythreeYearNumP() {
+        return analysisIndexMapper.selectStuMatBythreeYearNumP();
     }
 }

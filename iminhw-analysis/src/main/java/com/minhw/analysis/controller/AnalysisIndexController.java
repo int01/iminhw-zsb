@@ -28,4 +28,10 @@ public class AnalysisIndexController extends BaseController {
         return AjaxResult.success(analysisIndexService.selectSysHongPageVistCount());
     }
 
+    @GetMapping("/smbynp")
+    @PreAuthorize("@ss.hasPermi('analysis:index:smnp')")
+    public AjaxResult getStuMatBythreeYearNumP(){
+        return AjaxResult.success(analysisIndexService.selectStuMatBythreeYearNumP());
+    }
+
 }
