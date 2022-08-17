@@ -64,6 +64,10 @@ public class SysProfileController extends BaseController {
         }
         user.setUserId(sysUser.getUserId());
         user.setPassword(null);
+        // 防止修改资料头像被覆盖
+        user.setAvatar(null);
+        // 防止用户个人信息修改部门
+        user.setDeptId(null);
         if (userService.updateUserProfile(user) > 0) {
             // 更新缓存用户信息
             sysUser.setNickName(user.getNickName());

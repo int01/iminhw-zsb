@@ -5,6 +5,7 @@ import com.minhw.common.annotation.Log;
 import com.minhw.common.core.domain.model.LoginUser;
 import com.minhw.common.enums.BusinessStatus;
 import com.minhw.common.enums.HttpMethod;
+import com.minhw.common.filter.PropertyPreExcludeFilter;
 import com.minhw.common.utils.SecurityUtils;
 import com.minhw.common.utils.ServletUtils;
 import com.minhw.common.utils.StringUtils;
@@ -37,6 +38,9 @@ import java.util.Map;
 @Component
 public class LogAspect {
     private static final Logger log = LoggerFactory.getLogger(LogAspect.class);
+
+    /** 排除敏感属性字段 */
+    public static final String[] EXCLUDE_PROPERTIES = { "password", "oldPassword", "newPassword", "confirmPassword" };
 
     /**
      * 处理完请求后执行
@@ -184,4 +188,13 @@ public class LogAspect {
         return o instanceof MultipartFile || o instanceof HttpServletRequest || o instanceof HttpServletResponse
                 || o instanceof BindingResult;
     }
+
+    /**
+     * 忽略敏感属性
+     */
+    public PropertyPreExcludeFilter excludePropertyPreFilter()
+    {
+        return new PropertyPreExcludeFilter().addExcludes(EXCLUDE_PROPERTIES);
+    }
+
 }
