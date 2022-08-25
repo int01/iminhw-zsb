@@ -114,4 +114,13 @@ public interface SysMenuMapper {
      * @return 结果
      */
     public SysMenu checkMenuNameUnique(@Param("menuName") String menuName, @Param("parentId") Long parentId);
+
+    /**
+     * 根据角色ID查询权限
+     *
+     * @param roleId 角色ID
+     * @return 权限列表
+     */
+    public List<String> selectMenuPermsByRoleId(Long roleId);
+
 }

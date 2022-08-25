@@ -4,6 +4,7 @@ import com.minhw.common.annotation.Log;
 import com.minhw.common.constant.UserConstants;
 import com.minhw.common.core.controller.BaseController;
 import com.minhw.common.core.domain.AjaxResult;
+import com.minhw.common.core.domain.entity.SysDept;
 import com.minhw.common.core.domain.entity.SysRole;
 import com.minhw.common.core.domain.entity.SysUser;
 import com.minhw.common.core.page.TableDataInfo;
@@ -11,6 +12,7 @@ import com.minhw.common.enums.BusinessType;
 import com.minhw.common.utils.SecurityUtils;
 import com.minhw.common.utils.StringUtils;
 import com.minhw.common.utils.poi.ExcelUtil;
+import com.minhw.system.service.ISysDeptService;
 import com.minhw.system.service.ISysPostService;
 import com.minhw.system.service.ISysRoleService;
 import com.minhw.system.service.ISysUserService;
@@ -41,6 +43,9 @@ public class SysUserController extends BaseController {
 
     @Autowired
     private ISysPostService postService;
+
+    @Autowired
+    private ISysDeptService deptService;
 
     /**
      * 获取用户列表
@@ -205,5 +210,16 @@ public class SysUserController extends BaseController {
         userService.checkUserDataScope(userId);
         userService.insertUserAuth(userId, roleIds);
         return success();
+    }
+
+
+    /**
+     * 获取部门树列表
+     */
+    @PreAuthorize("@ss.hasPermi('system:user:list')")
+    @GetMapping("/deptTree")
+    public AjaxResult deptTree(SysDept dept)
+    {
+        return AjaxResult.success(deptService.selectDeptTreeList(dept));
     }
 }

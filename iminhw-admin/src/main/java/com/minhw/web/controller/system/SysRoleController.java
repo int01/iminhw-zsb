@@ -4,6 +4,7 @@ import com.minhw.common.annotation.Log;
 import com.minhw.common.constant.UserConstants;
 import com.minhw.common.core.controller.BaseController;
 import com.minhw.common.core.domain.AjaxResult;
+import com.minhw.common.core.domain.entity.SysDept;
 import com.minhw.common.core.domain.entity.SysRole;
 import com.minhw.common.core.domain.entity.SysUser;
 import com.minhw.common.core.domain.model.LoginUser;
@@ -14,6 +15,7 @@ import com.minhw.common.utils.poi.ExcelUtil;
 import com.minhw.framework.web.service.SysPermissionService;
 import com.minhw.framework.web.service.TokenService;
 import com.minhw.system.domain.SysUserRole;
+import com.minhw.system.service.ISysDeptService;
 import com.minhw.system.service.ISysRoleService;
 import com.minhw.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,9 @@ public class SysRoleController extends BaseController {
 
     @Autowired
     private ISysUserService userService;
+
+    @Autowired
+    private ISysDeptService deptService;
 
     @PreAuthorize("@ss.hasPermi('system:role:list')")
     @GetMapping("/list")
@@ -213,4 +218,19 @@ public class SysRoleController extends BaseController {
         roleService.checkRoleDataScope(roleId);
         return toAjax(roleService.insertAuthUsers(roleId, userIds));
     }
+
+
+    /**
+     * 获取对应角色部门树列表
+     */
+    @PreAuthorize("@ss.hasPermi('system:role:list')")
+    @GetMapping(value = "/deptTree/{roleId}")
+    public AjaxResult deptTree(@PathVariable("roleId") Long roleId)
+    {
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put("checkedKeys", deptService.selectDeptListByRoleId(roleId));
+        ajax.put("depts", deptService.selectDeptTreeList(new SysDept()));
+        return ajax;
+    }
+
 }

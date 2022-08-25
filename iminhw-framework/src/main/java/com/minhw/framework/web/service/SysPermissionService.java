@@ -1,5 +1,6 @@
 package com.minhw.framework.web.service;
 
+import com.minhw.common.core.domain.entity.SysRole;
 import com.minhw.common.core.domain.entity.SysUser;
 import com.minhw.system.service.ISysMenuService;
 import com.minhw.system.service.ISysRoleService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -51,7 +53,21 @@ public class SysPermissionService {
         if (user.isAdmin()) {
             perms.add("*:*:*");
         } else {
-            perms.addAll(menuService.selectMenuPermsByUserId(user.getUserId()));
+            List<SysRole> roles = user.getRoles();
+            if (!roles.isEmpty() && roles.size() > 1)
+            {
+                // 多角色设置permissions属性，以便数据权限匹配权限
+                for (SysRole role : roles)
+                {
+                    Set<String> rolePerms = menuService.selectMenuPermsByRoleId(role.getRoleId());
+                    role.setPermissions(rolePerms);
+                    perms.addAll(rolePerms);
+                }
+            }
+            else
+            {
+                perms.addAll(menuService.selectMenuPermsByUserId(user.getUserId()));
+            }
         }
         return perms;
     }

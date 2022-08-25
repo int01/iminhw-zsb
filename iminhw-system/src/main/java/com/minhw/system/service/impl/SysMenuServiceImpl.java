@@ -445,4 +445,26 @@ public class SysMenuServiceImpl implements ISysMenuService {
         return StringUtils.replaceEach(path, new String[]{Constants.HTTP, Constants.HTTPS},
                 new String[]{"", ""});
     }
+
+    /**
+     * 根据角色ID查询权限
+     *
+     * @param roleId 角色ID
+     * @return 权限列表
+     */
+    @Override
+    public Set<String> selectMenuPermsByRoleId(Long roleId)
+    {
+        List<String> perms = menuMapper.selectMenuPermsByRoleId(roleId);
+        Set<String> permsSet = new HashSet<>();
+        for (String perm : perms)
+        {
+            if (StringUtils.isNotEmpty(perm))
+            {
+                permsSet.addAll(Arrays.asList(perm.trim().split(",")));
+            }
+        }
+        return permsSet;
+    }
+
 }
