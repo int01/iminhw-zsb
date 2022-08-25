@@ -5,6 +5,7 @@ import com.minhw.common.core.domain.BaseEntity;
 import com.minhw.common.core.domain.entity.SysRole;
 import com.minhw.common.core.domain.entity.SysUser;
 import com.minhw.common.core.domain.model.LoginUser;
+import com.minhw.common.core.text.Convert;
 import com.minhw.common.utils.SecurityUtils;
 import com.minhw.common.utils.StringUtils;
 import com.minhw.framework.security.context.PermissionContextHolder;
@@ -73,7 +74,8 @@ public class DataScopeAspect {
             {
                 continue;
             }
-            if (StringUtils.isNotEmpty(permission) && StringUtils.isNotEmpty(role.getPermissions()) && !role.getPermissions().contains(permission))
+            if (StringUtils.isNotEmpty(permission) && StringUtils.isNotEmpty(role.getPermissions())
+                    && !StringUtils.containsAny(role.getPermissions(), Convert.toStrArray(permission)))
             {
                 continue;
             }

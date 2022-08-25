@@ -495,4 +495,25 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         }
         return sb.toString();
     }
+
+    /**
+     * 判断给定的set列表中是否包含数组array 判断给定的数组array中是否包含给定的元素value
+     *
+     * @param collection 给定的集合
+     * @param array
+     * @return
+     */
+    public static boolean containsAny(Collection<String> collection, String... array) {
+        if (isEmpty(collection) || isEmpty(array)) {
+            return false;
+        } else {
+            for (String str : array) {
+                if (collection.contains(str)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
 }
