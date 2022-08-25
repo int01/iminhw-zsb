@@ -12,6 +12,7 @@
         <result property="dazt" column="dazt"/>
         <result property="ksh" column="ksh"/>
         <result property="sfzh" column="sfzh"/>
+        <result property="dadqk" column="dadqk"/>
         <result property="status" column="status"/>
         <result property="createBy" column="create_by"/>
         <result property="updateBy" column="update_by"/>
@@ -28,6 +29,7 @@
                dazt,
                ksh,
                sfzh,
+               dadqk,
                status,
                create_by,
                update_by,
@@ -46,6 +48,7 @@
             <if test="dazt != null ">and dazt = #{dazt}</if>
             <if test="ksh != null  and ksh != ''">and ksh like concat('%', #{ksh}, '%')</if>
             <if test="sfzh != null  and sfzh != ''">and sfzh like concat('%', #{sfzh}, '%')</if>
+            <if test="dadqk != null ">and dadqk = #{dadqk}</if>
             <if test="status != null ">and status = #{status}</if>
         </where>
     </select>
@@ -69,7 +72,8 @@
         where ksh = #{ksh}
     </select>
 
-    <select id="selectInArchivesClassByKshOrXueHOrSfzh" parameterType="InArchivesClass"  resultMap="InArchivesClassResult">
+    <select id="selectInArchivesClassByKshOrXueHOrSfzh" parameterType="InArchivesClass"
+            resultMap="InArchivesClassResult">
         <include refid="selectInArchivesClassVo"/>
         <where>
             <if test="xuehao != null and xuehao != ''">and xuehao = #{xuehao}</if>
@@ -94,6 +98,7 @@
             <if test="dazt != null">dazt,</if>
             <if test="ksh != null">ksh,</if>
             <if test="sfzh != null">sfzh,</if>
+            <if test="dadqk != null">dadqk,</if>
             <if test="status != null">status,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateBy != null">update_by,</if>
@@ -109,6 +114,7 @@
             <if test="dazt != null">#{dazt},</if>
             <if test="ksh != null">#{ksh},</if>
             <if test="sfzh != null">#{sfzh},</if>
+            <if test="dadqk != null">#{dadqk},</if>
             <if test="status != null">#{status},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -127,6 +133,7 @@
             <if test="dazt != null">dazt = #{dazt},</if>
             <if test="ksh != null">ksh = #{ksh},</if>
             <if test="sfzh != null">sfzh = #{sfzh},</if>
+            <if test="dadqk != null">dadqk = #{dadqk},</if>
             <if test="status != null">status = #{status},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
@@ -145,6 +152,7 @@
             <if test="xm != null">xm = #{xm},</if>
             <if test="dazt != null">dazt = #{dazt},</if>
             <if test="sfzh != null">sfzh = #{sfzh},</if>
+            <if test="dadqk != null">dadqk = #{dadqk},</if>
             <if test="status != null">status = #{status},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>

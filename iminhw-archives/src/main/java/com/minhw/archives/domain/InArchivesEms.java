@@ -58,6 +58,10 @@ public class InArchivesEms extends BaseEntity {
     @Excel(name = "身份证号")
     private String sfzh;
 
+    /** 档案袋情况 */
+//    @Excel(name = "档案袋情况")
+    private Integer dadqk;
+
     /**
      * 数据状态
      */
@@ -134,6 +138,14 @@ public class InArchivesEms extends BaseEntity {
 
     public void setXh(Long xh) {
         this.xh = xh;
+    }
+
+    public Integer getDadqk() {
+        return dadqk;
+    }
+
+    public void setDadqk(Integer dadqk) {
+        this.dadqk = dadqk;
     }
 
     @Override

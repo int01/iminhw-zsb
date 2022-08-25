@@ -56,6 +56,10 @@ public class InArchivesClass extends BaseEntity {
     @Excel(name = "身份证号")
     private String sfzh;
 
+    /** 档案袋情况 */
+//    @Excel(name = "档案袋情况", dictType= "class_file_cover_status")
+    private Long dadqk;
+
     /**
      * 数据状态
      */
@@ -126,7 +130,15 @@ public class InArchivesClass extends BaseEntity {
         this.status = status;
     }
 
-//    @Override
+    public Long getDadqk() {
+        return dadqk;
+    }
+
+    public void setDadqk(Long dadqk) {
+        this.dadqk = dadqk;
+    }
+
+    //    @Override
 //    public String toString() {
 //        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
 //                .append("xuehao", getXuehao())
