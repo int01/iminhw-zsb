@@ -127,10 +127,10 @@ public class InArchivesClassServiceImpl implements IInArchivesClassService {
                         inArchivesClass.setUpdateBy(operName);
                         this.updateInArchivesClass(inArchivesClass);
                         successNum++;
-                        successMsg.append("<br/>" + successNum + "、考生号 " + inArchivesClass.getXuehao() + " 更新成功");
+                        successMsg.append("<br/>" + successNum + "、学号 " + inArchivesClass.getXuehao() + " 更新成功");
                     } else {
                         failureNum++;
-                        failureMsg.append("<br/>" + failureNum + "、考生号 " + inArchivesClass.getXuehao() + " 已存在");
+                        failureMsg.append("<br/>" + failureNum + "、学号 " + inArchivesClass.getXuehao() + " 已存在");
                     }
                 } else {
                     failureNum++;
