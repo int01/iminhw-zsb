@@ -64,7 +64,7 @@
             <if test="bj != null and bj != ''">and bj = #{bj}</if>
             <if test="status != null ">and status = #{status}</if>
         </where>
-        ORDER BY xh ASC
+        ORDER BY xh is null, xh ASC
     </select>
 
     <select id="selectInArchivesClassByKsh" parameterType="String" resultMap="InArchivesClassResult">
