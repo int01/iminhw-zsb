@@ -83,6 +83,7 @@ public class InArchivesClassController extends BaseController {
     @PreAuthorize("@ss.hasPermi('archives:class:collect')")
     @GetMapping(value = "/collect")
     public AjaxResult getinfoBy(InArchivesClass inArchivesClass) {
+        inArchivesClass.setUpdateBy(getUsername());
         return AjaxResult.success(inArchivesClassService.selectInArchivesClassByKshOrXueHOrSfzh(inArchivesClass));
     }
 
