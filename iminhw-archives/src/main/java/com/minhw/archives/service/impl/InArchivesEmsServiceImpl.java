@@ -215,7 +215,10 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
                     throw new ServiceException("更新班级档案状态失败，该考生号在档案收集（分班数据）中不存在");
                 }
                 inArchivesClass.setDazt(1L);
+//                inArchivesClass.setDadqk((Long) mapPm.get("dadqk"));
+                inArchivesClass.setDadqk(Long.valueOf(mapPm.get("dadqk").toString()));
                 inArchivesClass.setUpdateBy(inArchivesEms.getUpdateBy());
+                inArchivesClass.setRemark("邮寄");
                 inArchivesClass = inArchivesClassService.selectInArchivesClassXhAndUpdateXhBybj(inArchivesClass);
                 resultMap.put("updateClass", inArchivesClass);
             } else {
