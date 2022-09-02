@@ -139,4 +139,15 @@ public class InArchivesEmsController extends BaseController {
         Map<String, Object> resObj = inArchivesEmsService.updateInArchivesEmsByNowYearKddh(inArchivesEms);
         return AjaxResult.success(resObj);
     }
+
+    /**
+     * 查询待录入的情况
+     */
+    @PreAuthorize("@ss.hasPermi('archives:ems:unpack')")
+    @GetMapping("/unpack/unusual")
+    public TableDataInfo selectInArchivesEmsUnusual(InArchivesEms inArchivesEms) {
+        startPage();
+        List<InArchivesEms> list = inArchivesEmsService.selectInArchivesEmsUnusual();
+        return getDataTable(list);
+    }
 }

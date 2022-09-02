@@ -233,4 +233,9 @@ public class InArchivesEmsServiceImpl implements IInArchivesEmsService {
 
         return resultMap;
     }
+
+    @Override
+    public List<InArchivesEms> selectInArchivesEmsUnusual() {
+        return inArchivesEmsMapper.selectInArchivesEmsUnusual();
+    }
 }

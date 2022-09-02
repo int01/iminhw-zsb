@@ -60,6 +60,11 @@
         where id = #{id}
     </select>
 
+    <select id="selectInArchivesEmsUnusual" resultMap="InArchivesEmsResult">
+        <include refid="selectInArchivesEmsVo"/>
+        WHERE ksh IS NULL AND sfda is NULL
+    </select>
+
     <select id="selectInArchivesEmsBykddh" parameterType="InArchivesEms" resultMap="InArchivesEmsResult">
         <include refid="selectInArchivesEmsVo"/>
         where kddh = #{kddh}

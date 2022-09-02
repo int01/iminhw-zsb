@@ -107,4 +107,9 @@ public interface InArchivesEmsMapper {
      */
     int updateInArchivesEmsByNowYearXh(InArchivesEms inArchivesEms);
 
+    /**
+     * 拆袋录入异常数据查询 ksh IS NULL AND sfda is NULL
+     * @return List<InArchivesEms>
+     */
+    List<InArchivesEms> selectInArchivesEmsUnusual();
 }

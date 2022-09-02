@@ -84,5 +84,7 @@ public interface IInArchivesEmsService {
 
     Map<String, Object> updateInArchivesEmsByNowYearKddh(InArchivesEms inArchivesEms);
 
+    List<InArchivesEms> selectInArchivesEmsUnusual();
+
 
 }
