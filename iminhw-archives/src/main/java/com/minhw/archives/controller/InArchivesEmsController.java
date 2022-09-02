@@ -121,6 +121,8 @@ public class InArchivesEmsController extends BaseController {
         return AjaxResult.success(resObj);
     }
 
+
+    @Log(title = "邮寄档案验证", businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermi('archives:ems:verify')")
     @GetMapping("/datemaxxh/{yearStr}")
     public AjaxResult getDateMaxXhElm(@PathVariable String yearStr) {
@@ -132,7 +134,7 @@ public class InArchivesEmsController extends BaseController {
      * archives:ems:unpack
      */
     @PreAuthorize("@ss.hasPermi('archives:ems:unpack')")
-    @Log(title = "邮寄档案", businessType = BusinessType.UPDATE)
+    @Log(title = "邮寄档案拆袋", businessType = BusinessType.UPDATE)
     @PutMapping("/unpack")
     public AjaxResult unpackEms(@RequestBody InArchivesEms inArchivesEms) {
         inArchivesEms.setUpdateBy(getUsername());
