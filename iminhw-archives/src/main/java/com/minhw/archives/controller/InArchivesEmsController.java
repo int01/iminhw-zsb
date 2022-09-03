@@ -113,7 +113,7 @@ public class InArchivesEmsController extends BaseController {
     }
 
     @PreAuthorize("@ss.hasPermi('archives:ems:verify')")
-    @Log(title = "邮寄档案", businessType = BusinessType.UPDATE)
+    @Log(title = "邮寄档案验证", businessType = BusinessType.UPDATE)
     @PutMapping("/verify")
     public AjaxResult verifyKddh(@RequestBody InArchivesEms inArchivesEms) {
         inArchivesEms.setUpdateBy(getUsername());
@@ -122,7 +122,6 @@ public class InArchivesEmsController extends BaseController {
     }
 
 
-    @Log(title = "邮寄档案验证", businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermi('archives:ems:verify')")
     @GetMapping("/datemaxxh/{yearStr}")
     public AjaxResult getDateMaxXhElm(@PathVariable String yearStr) {
