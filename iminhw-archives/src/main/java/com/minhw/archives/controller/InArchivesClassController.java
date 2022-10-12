@@ -92,7 +92,7 @@ public class InArchivesClassController extends BaseController {
      * 修改班级档案 ,archives:class:collect
      */
 //    @PreAuthorize("@ss.hasPermi('archives:class:edit')")
-    @PreAuthorize("ss.hasAnyPermi('archives:class:edit,archives:class:collect')")
+    @PreAuthorize("@ss.hasAnyPermi({'archives:class:edit','archives:class:collect'})")
     @Log(title = "班级档案", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesClass inArchivesClass) {
