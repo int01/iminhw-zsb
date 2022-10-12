@@ -81,6 +81,7 @@ public class InArchivesClassController extends BaseController {
      * 现场
      */
     @PreAuthorize("@ss.hasPermi('archives:class:collect')")
+    @Log(title = "档案现场录入", businessType = BusinessType.UPDATE)
     @GetMapping(value = "/collect")
     public AjaxResult getinfoBy(InArchivesClass inArchivesClass) {
         inArchivesClass.setUpdateBy(getUsername());
@@ -88,9 +89,10 @@ public class InArchivesClassController extends BaseController {
     }
 
     /**
-     * 修改班级档案
+     * 修改班级档案 ,archives:class:collect
      */
-    @PreAuthorize("@ss.hasPermi('archives:class:edit')")
+//    @PreAuthorize("@ss.hasPermi('archives:class:edit')")
+    @PreAuthorize("ss.hasAnyPermi('archives:class:edit,archives:class:collect')")
     @Log(title = "班级档案", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesClass inArchivesClass) {

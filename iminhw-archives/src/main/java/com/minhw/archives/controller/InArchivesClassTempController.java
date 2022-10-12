@@ -63,7 +63,9 @@ public class InArchivesClassTempController extends BaseController {
     /**
      * 新增档案收录缓存
      */
-    @PreAuthorize("@ss.hasPermi('archives:classtemp:add')")
+//    @PreAuthorize("@ss.hasPermi('archives:classtemp:add')")
+
+    @PreAuthorize("ss.hasAnyPermi('archives:classtemp:add,archives:class:collect')")
     @Log(title = "档案收录缓存", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody InArchivesClassTemp inArchivesClassTemp) {
@@ -75,7 +77,9 @@ public class InArchivesClassTempController extends BaseController {
     /**
      * 修改档案收录缓存
      */
-    @PreAuthorize("@ss.hasPermi('archives:classtemp:edit')")
+//    @PreAuthorize("@ss.hasPermi('archives:classtemp:edit')")
+
+    @PreAuthorize("ss.hasAnyPermi('archives:classtemp:edit,archives:class:collect')")
     @Log(title = "档案收录缓存", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesClassTemp inArchivesClassTemp) {
