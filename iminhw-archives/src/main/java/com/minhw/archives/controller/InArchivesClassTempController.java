@@ -76,9 +76,7 @@ public class InArchivesClassTempController extends BaseController {
     /**
      * 修改档案收录缓存
      */
-//    @PreAuthorize("@ss.hasPermi('archives:classtemp:edit')")
-
-    @PreAuthorize("ss.hasAnyPermi('archives:classtemp:edit,archives:class:collect')")
+    @PreAuthorize("@ss.hasPermi('archives:classtemp:edit')")
     @Log(title = "档案收录缓存", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody InArchivesClassTemp inArchivesClassTemp) {
