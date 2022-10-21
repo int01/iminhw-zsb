@@ -44,7 +44,8 @@ public class SysPasswordService {
      * @return 缓存键key
      */
     private String getCacheKey(String username) {
-        return CacheConstants.PWD_ERR_CNT_KEY + username + IpUtils.getIpAddr(ServletUtils.getRequest());
+        return CacheConstants.PWD_ERR_CNT_KEY + username;
+//        + IpUtils.getIpAddr(ServletUtils.getRequest())
     }
 
     /**
